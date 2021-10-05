@@ -72,7 +72,7 @@ return [
     'picked'      => 'PICKED',
     'closed'      => 'CLOSE',
     'cancel'      => 'CANCEL',
-    'status'      => [ 'FLOAT', 'RECEIVED', 'ON PROCESS', 'SERVICE', 'CLOSE' ],
+    'status'      => [ 'FLOAT', 'SERVICE', 'DELIVERED', 'PICKED' ],
     'no_charge' => [3899,1895,3368,3900,1707],
     'new_encryption_date' => '2018-07-30 15:30',
     'default_pass' => 234,

@@ -56,7 +56,7 @@
 	<tr>
 		<td colspan="10" style="font-weight: 500; font-size: 10px; font-family: 'Calibri Light'; text-align: left;">CS : Store Count</td>
 	</tr>
-	<tr>	
+	<tr>
 		<td colspan="10" style="font-weight: 500; font-size: 10px; font-family: 'Calibri Light'; text-align: left;">TC : Transaction Count</td>
 	</tr>
 	<tr>

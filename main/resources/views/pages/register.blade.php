@@ -165,6 +165,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <h6 class="h6-reg-text">Remarks</h6>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea name="remarks" id="remarks" class="form-control" placeholder="Remarks"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" name="chkTerms" id="customCheck2">
                                     <label class="custom-control-label" style="display: block; font-size: 11px;" for="customCheck2">I Agree with <a href="#">Term and Conditions</a></label>

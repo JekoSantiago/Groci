@@ -1,7 +1,7 @@
 @extends('layout.default')
-	@section('contents')    
+	@section('contents')
 	<style type="text/css">
-		div.dataTables_scrollBody thead {           
+		div.dataTables_scrollBody thead {
 			display: none;
 		}
 	</style>
@@ -44,7 +44,7 @@
 						<td class="text-center">{{ $row['contact_num'] }}</td>
 						<td class="text-center">{{ $row['order_date'] }}</td>
 						<td>
-							{!! App\Services\OrderServices::showOrderStatus($row['order_id'], $row['order_type']) !!}	
+							{!! App\Services\OrderServices::showOrderStatus($row['order_id'], $row['order_type']) !!}
 						</td>
 						<td>{{ $row['order_amount'] }}</td>
 						<td class="text-center">{{ $row['order_type'] }}</td>
@@ -54,26 +54,26 @@
 						<td>{{ strtoupper($row['origin']) }}</td>
 						<td class="text-center">
 							<ul class="icons-list">
-								@if($row['order_status'] == 'FLOAT' || $row['order_status'] == 'CLOSE' || $row['order_status'] == 'CANCEL')
+								@if($row['order_status'] == 'FLOAT' || $row['order_status'] == 'DELIVERED' || $row['order_status'] == 'CANCEL' || $row['order_status'] == 'PICKED')
 								<li>
-									<a data-toggle="modal" data-target="#modal_order_details" data-oid="{{ $row['order_id'] }}" data-status="{{ $row['order_status'] }}" data-popup="tooltip" title="Details" data-placement="left">
+									<a data-toggle="modal" data-target="#modal_order_details" data-oid="{{ $row['order_id'] }}" data-status="{{ $row['order_status'] }}" data-popup="tooltip" title="Details" data-placement="top">
 										<i class="icon-eye"></i>
 									</a>
 								</li>
 								@endif
 
-								@if($row['order_status'] == 'RECEIVED')
+								{{-- @if($row['order_status'] == 'RECEIVED')
 								<li>
 									<a data-toggle='modal' data-target='#modal_receipt_form' data-sid='{{ $row['order_id'] }}' data-popup="tooltip" title="Punch" data-placement="left">
 										<i class="icon-calculator2"></i>
 									</a>
 								</li>
-								@endif
+								@endif --}}
 
 								@if($row['order_status'] == 'ON PROCESS')
 								<li>
-									<a data-toggle='modal' data-target='#modal_order_validation' data-oid='{{ $row['order_id'] }}' data-ot='{{ $row['order_type'] }}' data-popup="tooltip" title="Validate" data-placement="left">
-										<i class="icon-clipboard5"></i>
+									<a data-toggle='modal' data-target='#modal_order_validation' data-oid='{{ $row['order_id'] }}' data-ot='{{ $row['order_type'] }}' data-popup="tooltip" title="Deliver" data-placement="left">
+										<i class="icon-truck"></i>
 									</a>
 								</li>
 								@endif
@@ -81,7 +81,7 @@
 								@if($row['order_status'] == 'OUT FOR DELIVERY')
 								<li>
 									<a id="btnOrderDelivered" data-oid='{{ $row['order_id'] }}' data-popup="tooltip" title="Delivered" data-placement="left">
-										<i class="icon-truck"></i>
+										<i class="icon-thumbs-up2"></i>
 									</a>
 								</li>
 								@endif
@@ -94,31 +94,31 @@
 								</li>
 								@endif
 
-								@if($row['order_status'] == 'DELIVERED' || $row['order_status'] == 'PICKED')
+								{{-- @if($row['order_status'] == 'DELIVERED' || $row['order_status'] == 'PICKED')
 								<li>
 									<a id="btnOrderClosed" data-oid='{{ $row['order_id'] }}' data-popup="tooltip" title="Close" data-placement="left">
 										<i class="icon-thumbs-up2"></i>
 									</a>
 								</li>
-								@endif
+								@endif --}}
 
 								@if($row['order_status'] != 'CLOSE' && $row['order_status'] != 'CANCEL')
 								<li style="margin-left: 10px;">
 									<a data-toggle='modal' data-target='#modal_cancel_form' data-oid='{{ $row['order_id'] }}' data-popup="tooltip" title="Cancel" data-placement="left">
-										<i class="icon-cancel-square2"></i> 
+										<i class="icon-cancel-square2"></i>
 									</a>
 								</li>
 								@endif
 
 								<li style="margin-left: 10px;">
 									<a id="btnRePrint" data-oid='{{ $row['order_id'] }}' data-popup="tooltip" title="Print" data-placement="left">
-										<i class="icon-printer2"></i> 
+										<i class="icon-printer2"></i>
 									</a>
 								</li>
 							</ul>
 						</td>
-					</tr>		
-				@endforeach		
+					</tr>
+				@endforeach
 				</tbody>
 			</table>
 		</div>
@@ -136,7 +136,7 @@
 						<button type="button" class="btn bg-danger-700 btn-xs btn-raised" id="btnCloseModal" data-dismiss="modal"><i class="icon-x position-left"></i>CLOSE</button>
 						<button type="button" class="btn bg-success-700 btn-xs btn-raised" id="btnReceiveOrder"><i class="icon-check position-left"></i>CONFIRM</button>
 						<!--
-						<button type="button" class="btn bg-indigo-700 btn-xs btn-raised" id="btnEditOrder"><i class="icon-pencil position-left"></i>EDIT</button>						
+						<button type="button" class="btn bg-indigo-700 btn-xs btn-raised" id="btnEditOrder"><i class="icon-pencil position-left"></i>EDIT</button>
 						<button type="button" class="btn bg-primary-700 btn-xs btn-raised" id="btnPrintOrder"><i class="icon-printer4 position-left"></i>PRINT</button> -->
 					</div>
 				</div>
@@ -154,7 +154,7 @@
 					</div>
 					<div class="modal-body"></div>
 					<div class="modal-footer text-center">
-						<button type="button" class="btn bg-danger-700 btn-xs btn-raised" id="btnClose" data-dismiss="modal"><i class="icon-x position-left"></i>CLOSE</button>
+						{{-- <button type="button" class="btn bg-danger-700 btn-xs btn-raised" id="btnClose" data-dismiss="modal"><i class="icon-x position-left"></i>CLOSE</button> --}}
 						<button type="button" class="btn bg-primary-700 btn-xs btn-raised" id="btnPunch"><i class="icon-database-add position-left"></i>SAVE</button>
 					</div>
 				</div>
@@ -197,7 +197,7 @@
 		<!-- /edit form modal -->
 
 		<style type="text/css">
-			div.dataTables_scrollBody thead {           
+			div.dataTables_scrollBody thead {
 				display: none;
 			}
 		</style>

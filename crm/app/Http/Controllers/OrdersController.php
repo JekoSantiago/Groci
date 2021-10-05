@@ -160,7 +160,7 @@ class OrdersController extends Controller
         ];
 
         $response = OrderServices::saveOrderData($orderData);
-        //$this->orderReceiptMail($request->input('orderID'));
+        $this->orderReceiptMail($request->input('orderID'));
         $check = $this->checkOrderSlip($request->input('orderID'));
         if(!$check['isExist']) :
             $this->generatePDF($request->input('orderID'));
@@ -391,7 +391,7 @@ class OrdersController extends Controller
 
         if($request->input('status') == 'received') :
             $data = [ 'name' => $name ];
-            //Mail::to($email)->send(new SendOrderReceiveConfirmation($data));
+          Mail::to($email)->send(new SendOrderReceiveConfirmation($data));
         endif;
 
         if($request->input('status') == 'pick-up' || $request->input('status') == 'delivery') :
@@ -400,13 +400,13 @@ class OrdersController extends Controller
                 'status' => $request->input('status'),
                 'store'  => $detail[0]->store_name
             ];
-           // Mail::to($email)->send(new SendOrderReadyConfirmation($data));
+           Mail::to($email)->send(new SendOrderReadyConfirmation($data));
         endif;
 
         if($request->input('status') == 'picked' || $request->input('status') == 'delivered') :
             $data = [ 'name' => $name];
             $this->updateStoreItemsQty($orderID, base64_decode(Session::get('LocationCode')));
-            //Mail::to($email)->send(new SendThankYou($data));
+            Mail::to($email)->send(new SendThankYou($data));
         endif;
 
         $response = OrderServices::orderStatus($orderID, $status, $receipt, $payStatus, base64_decode(Session::get('LocationCode')));

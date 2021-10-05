@@ -17,7 +17,7 @@ $(function() {
     // Setting datatable defaults
     $.extend( $.fn.dataTable.defaults, {
         autoWidth: false,
-        columnDefs: [{ 
+        columnDefs: [{
             orderable: false,
         }],
         dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
@@ -47,7 +47,7 @@ $(function() {
 
     var cartItems = $('.datatable-order-items').DataTable({
         bJQueryUI: true,
-        bFilter: false, 
+        bFilter: false,
         bInfo: false,
         bPaginate: false,
         sDom: 't',
@@ -58,12 +58,12 @@ $(function() {
         "ajax": {
             "url": webURL + "/orders/cart/item/"+orderID,
             "method": "POST",
-            "datatype": "json", 
+            "datatype": "json",
             error: function (jqXHR, textStatus, errorThrown) {
                 alert("Processing data failed. Please report to the System Adminstator.");
             }
         },
-        columns:[   
+        columns:[
             {
                 render: function (data, type, row) {
                     var value = row.order_items_id;
@@ -85,7 +85,7 @@ $(function() {
         ],
         "fnInitComplete": function(oSettings, json) {
             var totalRecords = json.recordsTotal;
-             
+
             if(totalRecords > 0)
             {
                 $('#btnReview').attr('disabled', false);
@@ -96,12 +96,12 @@ $(function() {
                 $('#btnReview').attr('disabled', true);
                 $('#totalAmount').html('0.00');
             }
-        } 
+        }
     });
 
     var editBasketItems = $('#editBasketItems').DataTable({
         bJQueryUI: true,
-        bFilter: false, 
+        bFilter: false,
         bInfo: false,
         bPaginate: false,
         sDom: 't',
@@ -112,12 +112,12 @@ $(function() {
         "ajax": {
             "url": webURL + "/orders/cart/item/"+orderID,
             "method": "POST",
-            "datatype": "json", 
+            "datatype": "json",
             error: function (jqXHR, textStatus, errorThrown) {
                 alert("Processing data failed. Please report to the System Adminstator.");
             }
         },
-        columns:[   
+        columns:[
             {
                 render: function (data, type, row) {
                     return '<ul class="icons-list"><li><a id="btnDeleteItemE" data-oid="'+ row.order_items_id+'" data-itemid="'+ row.item_id  +'" data-popup="tooltip" title="Add" data-placement="left"><i class="icon-x"></i></a></li></ul>';
@@ -138,7 +138,7 @@ $(function() {
         "fnInitComplete": function(oSettings, json) {
             var totalRecords = json.recordsTotal;
             var amountDue = parseFloat(json.totalAmount) + parseFloat(json.charges) ;
-                
+
             if(totalRecords > 0)
             {
                 $('#amountDue').html(amountDue.toFixed(2));
@@ -147,7 +147,7 @@ $(function() {
             {
                 $('#totalAmount').html('0.00');
             }
-        } 
+        }
     });
 
     $('body').on('change', '#updateQtyE', function(){
@@ -249,7 +249,7 @@ $(function() {
         var inpQty = $("input[name='Quant_"+ d[1] +"']").val();
         var minValue =  parseInt($(this).attr('min'));
         var maxValue =  parseInt($(this).attr('max'));
-        
+
         if(isNaN(inpQty) || inpQty <= 0 || isFloat(inpQty))
         {
             var error = true;
@@ -291,10 +291,10 @@ $(function() {
 
             $("input[name='Quant_"+ d[1] +"']").val("");
         }
-        
-        if(error == false) 
+
+        if(error == false)
         {
-            var newVal = value +'@@'+ inpQty; 
+            var newVal = value +'@@'+ inpQty;
             prodItems.push(newVal);
             $('#selectedItems').val(prodItems);
         }
@@ -305,7 +305,7 @@ $(function() {
         var error = false;
         var orderID = $('#orderID').val();
         var prodItems = $("#selectedItems").val();
-        
+
         if(prodItems.length == 0)
         {
             var error = true;
@@ -315,7 +315,7 @@ $(function() {
                 confirmButtonColor: "#EF5350",
                 type: "error"
             });
-        } 
+        }
 
         if(error == false)
         {
@@ -340,8 +340,8 @@ $(function() {
         var remarks     = $('#orderRemarks').val();
         var customerID  = $('#customerID').val();
         var addressID   = $('#addressID').val();
-        var totAmount   = $('#totAmount').val();    
-        var orderID     = $('#orderID').val();         
+        var totAmount   = $('#totAmount').val();
+        var orderID     = $('#orderID').val();
         var transType   = $('#transactionType').val();
         var changeFor   = $('#change_for').val();
 
@@ -351,7 +351,7 @@ $(function() {
             var schedule = $('#pickDate').val() + ' ' + $('#pickHour').val() + ':' + $('#pickMin').val() +' '+ $('#pickAMPM').val();
             var orderType = 'Pick-up';
         }
-        else 
+        else
         {
             var deliverType = $('input[name="deliveryType"]:checked').val();
             var schedule = (deliverType == 'Delivery Now') ? 'PROMISE TIME' : $('#dLaterDate').val() + ' ' + $('#dLaterHour').val()+':'+$('#dLaterMin').val()+' '+$('#dLaterAMPM').val();
@@ -415,7 +415,7 @@ $(function() {
                 $('#changeError').show();
             }
         }
-        
+
         if(error == false)
         {
             $('#btnSaveOrder').hide();
@@ -472,7 +472,7 @@ $(function() {
                             else {
                                 $(window.location).attr('href', webURL + '/orders');
                             }
-                            
+
                         });
                     }
                     else
@@ -553,7 +553,7 @@ $(function() {
                 radioClass: 'choice'
             });
 
-            $('#dLaterDate, #pickDate').daterangepicker({ 
+            $('#dLaterDate, #pickDate').daterangepicker({
                 singleDatePicker: true,
                 locale: {
                     format: 'YYYY-MM-DD'
@@ -608,7 +608,7 @@ $(function() {
         var d = value.split('@@');
         var inpQty = $("input[name='qty_"+ d[0] +"']").val();
         var curQty  = $("#curQty_"+  d[0]).val();
-        
+
         if(isNaN(inpQty) || inpQty < 0 || isFloat(inpQty))
         {
             swal({
@@ -627,16 +627,16 @@ $(function() {
         {
             updateBasket( d[0], inpQty,  d[1], cartItems, orderID, 'update');
         }
-        
+
     });
 
     $('body').on('click', '#removeItem', function() {
         var orderItemID = $(this).data('itemid');
         var inpQty    = 0;
         var itemPrice = 0;
-        
+
         updateBasket(orderItemID, inpQty,  itemPrice, cartItems, orderID, 'remove');
-        
+
     });
 
     $('body').on('change', '#storeCustomer', function() {
@@ -650,7 +650,7 @@ $(function() {
             contentType: false,
             processData: false,
             success: function (response) {
-                
+
                 $('#firstName').val(response.firstname);
                 $('#firstName').attr('disabled','disabled');
                 $('#lastName').val(response.lastname);
@@ -677,7 +677,7 @@ $(function() {
     });
 
     $('body').on('click', '#btnReset', function() {
-        
+
         $('#storeCustomer').val("").change();
         $('#firstName').val("");
         $('#firstName').removeAttr('disabled');
@@ -700,7 +700,7 @@ $(function() {
         $('#customerID').val("");
         $('#addressID').val("");
     });
-    
+
     $('body').on('click', '#btnCancel', function() {
         swal({
             title: "Are you sure?",
@@ -740,8 +740,8 @@ $(function() {
         {
             var error = true;
             $('#receiptNumError').show();
-        }   
-        else 
+        }
+        else
         {
             if(isNaN(receipt) || isFloat(receipt))
             {
@@ -767,7 +767,7 @@ $(function() {
     /* ---- Edit Form Modal  --------- */
     $('#modal_order_details').on('show.bs.modal', function(e) {
         var orderID     = $(e.relatedTarget).data('oid');
-        var orderStatus = $(e.relatedTarget).data('status'); 
+        var orderStatus = $(e.relatedTarget).data('status');
         var remoteLink  = webURL + '/orders/details/'+orderID;
         $(this).find('.modal-body').load(remoteLink, function() {
             // Init Select2 when loaded
@@ -779,13 +779,13 @@ $(function() {
 
             $('[data-popup=tooltip]').tooltip();
 
-            if(orderStatus == 'CLOSE' || orderStatus == 'CANCEL')
+            if(orderStatus == 'CLOSE' || orderStatus == 'CANCEL' || orderStatus == 'DELIVERED' || orderStatus == 'PICKED')
             {
                 $('#btnPrintOrder').hide();
                 $('#btnReceiveOrder').hide();
                 $('#btnEditOrder').hide();
             }
-            else 
+            else
             {
                 $('#btnPrintOrder').show();
                 $('#btnReceiveOrder').show();
@@ -882,7 +882,7 @@ $(function() {
         });
     });
 
-    
+
 
     $('body').on('click', '#btnOrderDelivered', function(){
         var orderID = $(this).data('oid');
@@ -967,7 +967,7 @@ $(function() {
         var orderID = $(this).data('oid');
         var form_data = new FormData();
         form_data.append('id', orderID);
-        
+
         $.ajax({
             url: webURL + '/orders/create/pdf',
             type: 'POST',
@@ -981,7 +981,7 @@ $(function() {
                 print_pdf(docs);
             }
         });
-        
+
     });
 
     $('body').on('click', '#btnPrintOrder', function() {
@@ -991,7 +991,7 @@ $(function() {
         var pdfDoc  = webURL + '/storage/pdfs/'+fileName;
         print_pdf(pdfDoc);
     });
-    
+
     $('body').on('click', '#btnReceiveOrder', function() {
         var orderID = $('#orderID').val();
         var form_data = new FormData();
@@ -1016,9 +1016,10 @@ $(function() {
                 if(response.status == 'success')
                 {
                     $('#orderCount').html(response.count);
-                    //$('#ordersTable').load(location.href + " #ordersTable");                    
+                    //$('#ordersTable').load(location.href + " #ordersTable");
                     $('#modal_order_details').modal('hide');
-                    $(window.location).attr('href', webURL + '/orders');
+                    $('#modal_receipt_form').modal('show');
+                    // $(window.location).attr('href', webURL + '/orders');
                 }
                 else
                 {
@@ -1039,7 +1040,7 @@ $(function() {
                     });
                 }
             }
-        }); 
+        });
     });
 
     $('body').on('click', '#btnEditOrder', function(){
@@ -1171,7 +1172,7 @@ $(function() {
                             {
                                 $('#modal_receipt_form').modal('hide');
                             }
-                            else if(status == 'delivery' || status == 'pick-up') 
+                            else if(status == 'delivery' || status == 'pick-up')
                             {
                                 $('#modal_order_validation').modal('hide');
                             }
@@ -1199,7 +1200,7 @@ $(function() {
                             {
                                 $('#btnPunch').removeAttr('disabled');
                             }
-                            else if(status == 'on_delivery') 
+                            else if(status == 'on_delivery')
                             {
                                 $('#btnCheckOrder').removeAttr('disabled');
                             }
@@ -1221,7 +1222,7 @@ $(function() {
             return true;
         }
     }
-    
+
     // External table additions
     // ------------------------------
 
@@ -1234,7 +1235,7 @@ $(function() {
         minimumResultsForSearch: Infinity,
         width: 'auto'
     });
-    
+
 });
 
 
@@ -1253,12 +1254,12 @@ function print_pdf(doc)
     document.querySelector('iframe').contentWindow.print();
 
     /*
-    var id = 'iframe'; 
+    var id = 'iframe';
     var html = '<iframe id="'+id+'" src="'+doc+'" style="position:absolute; left: -10000px; top: -10000px;"></iframe>';
     $('body').append(html);
     document.getElementById(id).contentWindow.print(); */
 
-    
+
 }
 
 

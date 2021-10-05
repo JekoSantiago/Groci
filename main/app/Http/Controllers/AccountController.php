@@ -134,8 +134,11 @@ class AccountController extends Controller
             'customerID' => $request->input('customerID'),
             'addressID'  => $request->input('addressID'),
             'isConfirm'  => 1,
-            'isActive'   => $isActive
+            'isActive'   => $isActive,
+            'remarks'    => $request->input('remarks')
         ];
+
+        // dd($data);
 
         $store  = ContentServices::storeName($request->input('store'));
         $result = AccountServices::doRegister($data);

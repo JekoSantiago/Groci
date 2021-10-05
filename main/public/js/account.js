@@ -324,6 +324,7 @@ $(document).ready(function() {
             form_data.append('customerID', $('#customerID').val());
             form_data.append('addressID', $('#addressID').val());
             form_data.append('landmarks', $('#landmarks').val());
+            form_data.append('remarks', $('#remarks').val());
 
             $.ajax({
                 url: webURL + '/account/register',
@@ -347,6 +348,7 @@ $(document).ready(function() {
                         $('#address').val("");
                         $('#city').val("");
                         $('#landmarks').val("");
+                        $('#remarks').val("");
                         $('#province').html(response.province);
                         $('#selectStore').html(response.stores);
                         $('#firstName').removeAttr('disabled');

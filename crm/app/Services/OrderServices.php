@@ -203,14 +203,14 @@ class OrderServices
 
             if(in_array($status, $statArr)) :
                 if($count == $length) :
-                    if($status == 'CLOSE') :
+                    if($status == 'DELIVERED' || $status == 'PICKED' ) :
                         $bg = 'bg-success';
                     else :
                         $bg = 'bg-yellow';
                     endif;
                 else :
                     if(in_array('CANCEL', $statArr)) :
-                        $c = $length - 2;
+                        $c = $length;
                         if($statArr[$c] == $status) :
                             $bg = 'bg-danger';
                             else :
@@ -227,7 +227,13 @@ class OrderServices
             endif;
 
             $detail = static::abbrStatus($status);
-            $htm .= '<li><a data-popup="tooltip" title="'.$detail['tooltip'].'" data-placement="left"><span class="label label-rounded '.$bg.' }}" style="font-size: 11px; padding: 2px 8px;">'.$detail['text'].'</span></a></li>';
+
+            $hide = '';
+            if(($detail['text'] == 'PD' && $stat != 'Pick-up') || ($detail['text'] == 'D' && $stat == 'Pick-up' ) )
+            {
+                $hide = 'style="display: none"';
+            }
+            $htm .= '<li '.$hide.'><a data-popup="tooltip" title="'.$detail['tooltip'].'" data-placement="top"><span class="label label-rounded '.$bg.' }}" style="font-size: 11px; padding: 2px 8px;">'.$detail['text'].'</span></a></li>';
             $count++;
         endforeach;
         $htm .= '</ul>';
@@ -255,28 +261,32 @@ class OrderServices
                 $tooltip = 'CANCEL';
                 break;
             case "OUT FOR DELIVERY":
-                $stat = "OD";
-                $tooltip = 'DELIVERY';
+                $stat = "FD";
+                $tooltip = 'FOR DELIVERY';
                 break;
             case "READY FOR PICK-UP";
                 $stat = "RP";
                 $tooltip = 'PICK-UP';
                 break;
             case "RECEIVED":
-                $stat = "R";
-                $tooltip = 'RECEIVED';
+                $stat = "OR";
+                $tooltip = 'ORDER RECEIVED';
                 break;
             case "ON PROCESS";
                 $stat = "P";
                 $tooltip = 'PROCESSING';
                 break;
-            case "CLOSE";
-                $stat = "C";
-                $tooltip = 'CLOSE';
+            case "DELIVERED";
+                $stat = "D";
+                $tooltip = 'DELIVERED';
                 break;
+            case "PICKED";
+                $stat = "PD";
+                $tooltip = 'PICKED';
+             break;
             default:
-                $stat = 'F';
-                $tooltip = 'FLOAT';
+                $stat = 'OR';
+                $tooltip = 'ORDER RECEIVED';
                 break;
           }
 
