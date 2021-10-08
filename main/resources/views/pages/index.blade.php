@@ -1,6 +1,6 @@
-    
+
 @extends('layout.base_tpl')
-    @section('contents')    
+    @section('contents')
     <!--- Index content section -->
     @include('pages.partials.headers')
     <section class="osahan-carousel-two border-top py-4">
@@ -9,13 +9,13 @@
                 <div class="col-lg-3">
                     <div class="category-list-sidebar">
                         <div class="category-list-sidebar-header">
-                            <button class="btn btn-link badge-success" type="button" id="menuToggle">
+                            <button class="btn btn-link badge-danger" type="button" id="menuToggle">
                                 All Categories <i class="mdi mdi-menu" aria-hidden="true"></i>
                             </button>
                             <input type="hidden" id="hideValue" value="1">
                         </div>
                         <div class="menuCategories">
-                            <div class="category-list-sidebar-body">    
+                            <div class="category-list-sidebar-body">
                                 @foreach($category as $c)
                                 <div class="item">
                                     <div class="sidebar-category-item">
@@ -25,7 +25,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                @endforeach  
+                                @endforeach
                                 <div class="item">
                                     <div class="sidebar-category-item">
                                         <a href="{{ url('/sale') }}">
@@ -33,7 +33,7 @@
                                             <h6>SALE PRODUCTS</h6>
                                         </a>
                                     </div>
-                                </div>  
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                 <h5 class="heading-design-h5">Top Savers</h5>
             </div>   -->
             <div class="row">
-                @foreach($topSaver as $row) 
+                @foreach($topSaver as $row)
                 <div class="col-md-3 col-xs-12 mb-4">
                     <div class="product">
                         <div class="product-header">
@@ -80,7 +80,7 @@
                                 <span style="display: block; margin: 5px 0px 10px;" class="regular-price">Php {{ $row['regular_price'] }}</span>
                                 @endif
                             </p>
-                            
+
                             <div style="display: inline-block: text-align: center;">
                                 <div class="form-group">
                                     <span class="input-group-btn" style="line-height: 22px !important; display: inline-block">

@@ -1,4 +1,4 @@
-    <div class="navbar-top pt-2 pb-2">
+    <div class="navbar-top pt-2 pb-2" style="background-color: #E92230">
         <div class="container">
             <div class="row">
                 <div class="col-md-4" style="margin-top: 4px;">
@@ -35,7 +35,7 @@
     <nav class="navbar navbar-light navbar-expand-lg bg-dark bg-faded osahan-menu">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('img/logo.png') }}" alt="logo">
+                <img src="{{ asset('img/Logo_header.fw.png') }}" alt="logo">
             </a>
             <div class="navbar-collapse" id="navbarNavDropdown ">
                 <div class="navbar-nav mr-auto mt-5 mt-lg-2 margin-auto top-categories-search-main">

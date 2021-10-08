@@ -1,6 +1,6 @@
-    
+
 @extends('layout.base_tpl')
-    @section('contents')    
+    @section('contents')
     <!--- Index content section -->
     @include('pages.partials.headers')
 
@@ -10,7 +10,7 @@
                 <div class="col-lg-3">
                     <div class="category-list-sidebar">
                         <div class="category-list-sidebar-header">
-                            <button class="btn btn-link badge-success" type="button" id="menuToggle" >
+                            <button class="btn btn-link badge-danger" type="button" id="menuToggle" >
                                 All Categories <i class="mdi mdi-menu" aria-hidden="true"></i>
                             </button>
                             <input type="hidden" id="hideValue" value="1">
@@ -26,7 +26,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                @endforeach  
+                                @endforeach
                                 <div class="item">
                                     <div class="sidebar-category-item">
                                         <a href="{{ url('/sale') }}">
@@ -34,7 +34,7 @@
                                             <h6>SALE PRODUCTS</h6>
                                         </a>
                                     </div>
-                                </div>   
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -43,13 +43,13 @@
                     <div class="shop-head">
                         <a href="{{ url('/') }}">
                             <span class="mdi mdi-home"></span> Home
-                        </a> 
-                        <span class="mdi mdi-chevron-right"></span> 
+                        </a>
+                        <span class="mdi mdi-chevron-right"></span>
                         <a href="#">{{ $categoryName }}</a>
                     </div>
-                    <h5 class="mb-3">{{ $categoryName }}</h5>   
+                    <h5 class="mb-3">{{ $categoryName }}</h5>
                     @if(count($items) == 0)
-                    <h5 class="mb-3">No results found!</h5> 
+                    <h5 class="mb-3">No results found!</h5>
                     @else
                     <div class="row">
                         @foreach($items as $i)
@@ -102,7 +102,7 @@
                     </div>
                     @if(request()->segment(1) == 'category')
                     {!! $items->links('vendor.pagination.default') !!}
-                    @else 
+                    @else
                     {!! $items->links('vendor.pagination.promo') !!}
                     @endif
                     @endif
@@ -110,7 +110,7 @@
             </div>
         </div>
     </section>
-    
+
     @include('pages.partials.footers')
     @include('pages.partials.modal_login')
     <!-- End index section -->

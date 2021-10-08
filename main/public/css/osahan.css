@@ -5,32 +5,35 @@ Author URI: https://themeforest.net/user/askbootstrap
 Version: 1.3
 */
 /*
-    -- Body 
-    -- Top Menu 
-    -- Link Menu 
-    -- Category Slider 
-    -- Main Slider 
-    -- Featured Product 
-    -- Featured Box 
-    -- Footer 
-    -- Cart Sidebar 
-    -- Shop Filters 
-    -- Shop Detail 
-    -- Cart Page 
-    -- Checkout Page 
-    -- Login Modal 
-    -- My Account 
+    -- Body
+    -- Top Menu
+    -- Link Menu
+    -- Category Slider
+    -- Main Slider
+    -- Featured Product
+    -- Featured Box
+    -- Footer
+    -- Cart Sidebar
+    -- Shop Filters
+    -- Shop Detail
+    -- Cart Page
+    -- Checkout Page
+    -- Login Modal
+    -- My Account
     -- About Page
     -- Blog Page
     -- Mobile Media
 */
-/*@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900|Roboto+Condensed:300,300i,400,400i,700,700i'); */
+@import url('https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900|Roboto+Condensed:300,300i,400,400i,700,700i');
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic");
+
 /* Body */
 body {
     background-color: #eff7fa;
+    background: url("/img/pattern-bg.jpg");
     font-size: 12px;
-    font-family: "Poppins", sans-serif;
+    font-family: "Open Sans";
     line-height: 25px;
     color: #888;
 }
@@ -114,21 +117,21 @@ a:focus {
     border-color: transparent !important;
     font-weight: 500;
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0cc5b7+0,2bd891+100 */
-    background: #005aab; /* Old browsers */
+    background: #E92230; /* Old browsers */
     background: -moz-linear-gradient(
         -45deg,
-        #005aab 0%,
-        #005aab 100%
+        #E92230 0%,
+        #E92230 100%
     ); /* FF3.6-15 */
     background: -webkit-linear-gradient(
         -45deg,
-        #005aab 0%,
-        #005aab 100%
+        #E92230 0%,
+        #E92230 100%
     ); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(
         135deg,
-        #005aab 0%,
-        #005aab 100%
+        #E92230 0%,
+        #E92230 100%
     ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0cc5b7', endColorstr='#2bd891',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
@@ -188,7 +191,7 @@ a:focus {
 .btn-outline-danger:hover,
 .badge-danger {
     border-color: transparent !important;
-    background: #e96125;
+    background: #E92230;
 }
 .btn-outline-danger {
     border-color: #ff253a;
@@ -333,11 +336,11 @@ a:focus {
     border-color: transparent !important;
     background: #171b20;
     /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #171b20 1%, #343a40 100%);
+    background: -moz-linear-gradient(-45deg, #E92230 1%, #E92230 100%);
     /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #171b20 1%, #343a40 100%);
+    background: -webkit-linear-gradient(-45deg, #E92230 1%, #E92230 100%);
     /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #171b20 1%, #343a40 100%);
+    background: linear-gradient(135deg, #E92230 1%, #E92230 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171b20', endColorstr='#343a40',GradientType=1 );
     /* IE6-9 fallback on horizontal gradient */
@@ -899,7 +902,7 @@ body.toggled::after {
     padding: 18px 20px;
 }
 .cart-sidebar-header {
-    background: #1c2224 none repeat scroll 0 0;
+    background: #E92230 none repeat scroll 0 0;
     color: #fff;
     padding: 18px 20px;
 }
@@ -1011,8 +1014,8 @@ body.toggled::after {
     width: 100%;
 }
 .list-group-item.active {
-    background: #005aab none repeat scroll 0 0;
-    border-color: #005aab;
+    background: #E92230 none repeat scroll 0 0;
+    border-color: #E92230;
 }
 .shop-filters .card {
     margin: -2px 0 0;
@@ -1907,7 +1910,7 @@ strong {
     padding-top: 20px;
 }
 
-/** 
+/**
     Radio buttons
 */
 [type="radio"]:checked,
@@ -3382,4 +3385,8 @@ body.stop-scrolling {
     .customer-reg-store {
         width: 100% !important;
     }
+}
+
+html {
+    background: url("/img/pattern-bg.jpg");
 }

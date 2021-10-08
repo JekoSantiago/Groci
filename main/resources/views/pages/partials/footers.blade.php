@@ -41,7 +41,7 @@
     <div class="cart-sidebar" id="myBasket">
         <div class="cart-sidebar-header">
             <h5>
-                My Cart <span class="text-success">({{ $result['cntItems'] }} item)</span>  
+                My Cart <span class="text-warning">({{ $result['cntItems'] }} item)</span>
                 <a data-toggle="offcanvas" class="float-right" href="#"><i class="mdi mdi-close"></i></a>
             </h5>
         </div>
@@ -49,8 +49,8 @@
         @if($result['items'] == NULL)
             <p>Your basket is empty</p>
         @else
-            @foreach($result['items'] as $ii) 
-            
+            @foreach($result['items'] as $ii)
+
             <div class="cart-list-product">
                 <a style="cursor: pointer;" class="float-right remove-cart" id="removeItem" data-itemid="{{ $ii['order_temp_item_id'] }}"><i class="mdi mdi-close" style="font-weight: 700"></i></a>
                 <img class="img-fluid" src="{{ config('app.assets_url').'/products/item/'.$ii['img'] }}" alt="">
@@ -58,7 +58,7 @@
                 <h5 style="font-size: 12px !important; margin: -11px 0 5px 0">{{ $ii['item_name'] }}</h5>
                 <div class="float-right" style="width: 70%">
                     <div style="width: 25%; display: inline-block">
-                        <input type="text" class="form-control form-inp" id="Quant" data-oid="{{ $ii['order_temp_item_id'] }}" data-value="{{ $ii['order_temp_item_id'].'@@'.$ii['item_price'] }}" name="Quant_{{ $ii['order_temp_item_id'] }}" value="{{ $ii['qty'] }}">   
+                        <input type="text" class="form-control form-inp" id="Quant" data-oid="{{ $ii['order_temp_item_id'] }}" data-value="{{ $ii['order_temp_item_id'].'@@'.$ii['item_price'] }}" name="Quant_{{ $ii['order_temp_item_id'] }}" value="{{ $ii['qty'] }}">
                         <input type="hidden" id="curQty_{{ $ii['order_temp_item_id'] }}" value="{{ $ii['qty'] }}">
                         <input type="hidden" id="actualStocks_{{ $ii['order_temp_item_id'] }}" value="{{ intval($ii['stocks_on_hand']) - intval($ii['pre_order_qty']) }}">
                     </div>
