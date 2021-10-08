@@ -13,7 +13,7 @@ class OrderServices
         $encode = [];
 
         foreach($result as $row) :
-            $price = (empty($row->reg_price)) ? $row->price : number_format($row->reg_price, 2);
+            $price = (empty($row->reg_price)) ? $row->nat_price : number_format($row->reg_price, 2);
             $promo = (empty($row->reg_price)) ? $row->is_promo : $row->reg_is_promo;
             $row->img    = ($row->img_pic == NULL) ? 'no-image-available.png' : $row->img_pic;
             $row->params = $row->item_id.'@@'.$row->item_name.'@@'.$price.'@@'.$promo;

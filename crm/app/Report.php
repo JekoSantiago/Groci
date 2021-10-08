@@ -40,7 +40,7 @@ class Report extends Model
         $result = DB::connection('dbSqlSrv')->select('EXEC sp_StorePerDC_WithTransaction_Get ?, ?, ?', [ $bcode, $dateFrom, $dateTo ]);
 
         return $result;
-    } 
+    }
 
     public static function getTop15Products($dateFrom, $dateTo)
     {
@@ -52,6 +52,13 @@ class Report extends Model
     public static function getTop15ProductsDailyData($itemID, $date)
     {
         $result = DB::connection('dbSqlSrv')->select('EXEC sp_RPT_Top15Products_Daily_Data_Get ?, ?', [ $itemID, $date ]);
+
+        return $result;
+    }
+
+    public static function getReportOrdersPerStore($scode,$date)
+    {
+        $result = DB::connection('dbSqlSrv')->select('EXEC sp_RPT_OrdersPerStore_Get ?, ?', [ $scode, $date ]);
 
         return $result;
     }

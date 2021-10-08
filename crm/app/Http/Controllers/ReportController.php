@@ -10,6 +10,7 @@ use App\Exports\ExportPerStorePerDateRangeReport;
 use App\Exports\ExportPerStorePerDayReport;
 use App\Exports\ExportTopProductsReport;
 use App\Cms;
+use App\Orders;
 use App\Report;
 use Excel;
 use Illuminate\Support\Facades\Redirect;
@@ -125,6 +126,31 @@ class ReportController extends Controller
                 'scode'     => $scode
             ]
         );
+    }
+
+    public function viewStoreOrdersPerDay(Request $request)
+    {
+        $param  = ReportServices::base64url_decode($request->segment(5));
+        $detail = explode('@@', $param);
+        $scode  = $detail[0];
+        $date = $detail[1];
+        $data['page'] = 'Orders Page';
+        $data['storeName'] = ReportServices::storeName($scode);
+        $data['orders'] = Report::getReportOrdersPerStore($scode,$date);
+
+        // dd($data);
+        return view('pages.reports.orders',$data);
+    }
+
+    public function viewOrderItems(Request $request)
+    {
+        $orderID = $request->segment(6);
+        $receipt = $request->segment(7);
+        // dd($orderID);
+        $data['receipt'] = $receipt;
+        $data['items'] = Orders::getCartItems($orderID);
+        // dd($data);
+        return view('pages.reports.modal.items',$data);
     }
 
     /**

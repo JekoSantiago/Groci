@@ -82,7 +82,7 @@ class LoginController extends Controller
     {
         Session::flush();
 
-        return Redirect::to(config('app.myhub_url'))->send();
+        return Redirect::to(config('app.myhub_url' . '?/logout'))->send();
     }
 
     private static function passwordEncrypt($data)

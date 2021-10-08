@@ -1,5 +1,5 @@
 @extends('layout.base')
-    @section('contents')    
+    @section('contents')
     <!--- Report content section -->
     <script type="text/javascript" src="{{ asset('assets/js/report.js') }}"></script>
     <div class="row">
@@ -65,14 +65,14 @@
                                 <th class="text-semibold text-center">{{ $tData['TC'] }}</th>
                                 <th class="text-semibold text-center">{{ $tData['SPD'] }}</th>
                                 <th class="text-semibold text-center">{{ $tData['STD'] }}</th>
-                                <th class="text-semibold text-center">{{ number_format(($tData['SPD'] / $tData['STD']), 3, '.', '') }}</th>
+                                <th class="text-semibold text-center">{{ ($tData['SPD'] > 0) ? number_format(($tData['SPD'] / $tData['STD']), 3, '.', '') : 0 }}</th>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <div class="panel-body">
-                    <h6 class="panel-title display-block text-semibold">LEGENDS</h6>  
+                    <h6 class="panel-title display-block text-semibold">LEGENDS</h6>
 
                     <div class="row">
                         <div class="col-md-6">
@@ -87,7 +87,7 @@
                             <div class="col-md-6 text-semibold">STD : Average sales transaction per day</div>
                             <div class="col-md-6 text-semibold">APC : Average per customer</div>
                         </div>
-                    </div>     
+                    </div>
                 </div>
             </div>
             <!-- /marketing campaigns -->

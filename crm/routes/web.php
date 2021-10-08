@@ -142,6 +142,8 @@ Route::post('report/stores', 'ReportController@optionStores');
 Route::get('report/per-day/{param}', 'ReportController@branchPerDayReport');
 Route::get('report/per-store/{param}', 'ReportController@branchPerStoreReport');
 Route::get('report/view/store/{param}', 'ReportController@viewStorePerDay');
+Route::get('report/view/store/orders/{param}', 'ReportController@viewStoreOrdersPerDay');
+Route::get('report/view/store/orders/details/{oid}/{rn}', 'ReportController@viewOrderItems');
 Route::get('report/export/{sd}/{ed}/{dc}/{code}', 'ReportController@exportReports');
 Route::get('report/export/branch/daily/{id}', 'ReportController@exportBranchDailyReport');
 Route::get('report/export/branch/store/{id}', 'ReportController@exportPerBranchReport');

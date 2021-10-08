@@ -1,4 +1,4 @@
-@php 
+@php
 	if(Session::get('isLogged') == false) :
         Redirect::to('/')->send();
     endif
@@ -15,7 +15,7 @@
 
 	<!-- Global stylesheets -->
 	<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
 	<link href="{{ asset('assets/css/icons/icomoon/styles.css')}}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('assets/css/core.css') }}" rel="stylesheet" type="text/css">
@@ -58,7 +58,7 @@
     </script><!--
 	<script type="text/javascript" src="{{ asset('assets/js/pages/dashboard.js') }}"></script> -->
 	<script type="text/javascript" src="{{ asset('assets/js/cms.js') }}"></script>
-	
+
 	<script type="text/javascript" src="{{ asset('assets/js/plugins/ui/ripple.min.js') }}"></script>
 	<!-- /theme JS files -->
 
@@ -85,7 +85,7 @@
 
 		<div class="navbar-collapse collapse" id="navbar-mobile">
 			<ul class="nav navbar-nav navbar-right">
-				
+
 				<li class="dropdown dropdown-user">
 					<a class="dropdown-toggle" data-toggle="dropdown">
 						<img src="{{ asset('assets/images/no_photo.fw.png') }}" alt="">
@@ -164,7 +164,7 @@
                         <i class="icon-users4 position-left"></i> Customers
                     </a>
 				</li>
-				
+
 				<li id="customer" {{ (request()->segment(1) == 'report') ? 'class=active' : '' }}>
                     <a href="{{ url('report') }}">
                         <i class="icon-graph position-left"></i> Reports
@@ -181,7 +181,14 @@
 		<div class="page-header-content">
 			<div class="page-title">
 				<h4>
-                    <i class="icon-arrow-left52 position-left"></i>
+                    <a href="
+                    @if (request()->segment(2) != '')
+                    javascript: history.go(-1);
+                    @else
+                    #
+                    @endif
+                    "
+                     style="font-weight: 500; font-size: 14px; color: #111"><i class="icon-arrow-left52 position-left"></i></a>
                     <span class="text-semibold">Home</span> - {{ (request()->segment(1) == 'cms') ? 'Content Management' : ucwords(request()->segment(1)) }}
 					<small class="display-block">{{ App\Services\HelperServices::greetings() }} {{ base64_decode(Session::get('Emp_Name')) }}!</small>
 				</h4>
@@ -200,7 +207,7 @@
             <div class="content-wrapper">
 
                 @yield('contents')
-            
+
             </div>
             <!-- /main content -->
 

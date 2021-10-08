@@ -4,13 +4,13 @@
     <form>
         <div class="row">
             <h6 class="text-semibold col-md-12">Delivery Details</h6>
-        </div>    
+        </div>
         <div class="row">
             <div class="form-group col-md-11">
                 <input type="text" class="form-control" readonly value="Name : {{ $details[0]->customer_name }}">
             </div>
         </div>
-        <div class="row"> 
+        <div class="row">
             <div class="form-group col-md-11">
                 <input type="text" class="form-control" readonly value="Mobile No. : {{ $details[0]->contact_num }}">
             </div>
@@ -32,13 +32,13 @@
     <form>
         <div class="row">
             <h6 class="text-semibold col-md-12">Payment Details</h6>
-        </div>    
+        </div>
         <div class="row">
             <div class="form-group col-md-11">
                 <input type="text" class="form-control" readonly value="Payment Option : {{ $details[0]->payment_option }}">
             </div>
         </div>
-        <div class="row"> 
+        <div class="row">
             <div class="form-group col-md-11">
                 <input type="text" class="form-control" readonly value="Amount Due : PhP {{ $details[0]->order_amount }}">
             </div>
@@ -61,7 +61,7 @@
     <form>
         <div class="row">
             <h6 class="text-semibold col-md-12">Transaction Details</h6>
-        </div>    
+        </div>
         <div class="row">
             <div class="form-group col-md-6">
                 <input type="text" class="form-control" readonly value="Transaction Type : {{ $details[0]->order_type }}">
@@ -82,7 +82,7 @@
 <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
     <div class="row">
         <h6 class="text-semibold col-md-12">Order Summary - ({{ count($data['items']) }} items)</h6>
-    </div>    
+    </div>
     <div class="row">
         <div class="table-responsive pre-scrollable" style="max-height: 231px;">
             <table class="table" id="modalBasketItems">
@@ -100,7 +100,7 @@
         <div class="panel-body bg-teal" style="padding: 12px 20px;">
             <div class="col-md-12 text-right text-semibold">DELIVERY CHARGE : {{ number_format($data['charges'], 2) }}</div>
             <div class="col-md-12 text-right text-semibold">SUB-TOTAL AMOUNT : <span id="amountDue"></span></div>
-            
+
         </div>
     </div>
 </div>
@@ -117,7 +117,7 @@ $(function() {
 
     var basketItemsTable = $('#modalBasketItems').DataTable({
         bJQueryUI: true,
-        bFilter: false, 
+        bFilter: false,
         bInfo: false,
         bPaginate: false,
         sDom: 't',
@@ -128,15 +128,15 @@ $(function() {
         "ajax": {
             "url": webURL + "/orders/cart/item/"+$('#orderID').val(),
             "method": "POST",
-            "datatype": "json", 
+            "datatype": "json",
             error: function (jqXHR, textStatus, errorThrown) {
                 alert("Processing data failed. Please report to the System Adminstator.");
             }
         },
-        columns:[   
+        columns:[
             {
                 render: function (data, type, row) {
-                    return '<ul class="icons-list"><li><a id="btnDeleteItem" data-oid="'+ row.order_items_id+'" data-itemid="'+ row.item_id  +'" data-popup="tooltip" title="Add" data-placement="left"><i class="icon-x"></i></a></li></ul>';
+                    return '<ul class="icons-list"><li><a id="btnDeleteItem" data-oid="'+ row.order_items_id+'" data-itemid="'+ row.item_id  +'" data-popup="tooltip" title="Remove" data-placement="left"><i class="icon-x"></i></a></li></ul>';
                 }
             },
             { "data": "item_name" },
@@ -154,7 +154,7 @@ $(function() {
         "fnInitComplete": function(oSettings, json) {
             var totalRecords = json.recordsTotal;
             var amountDue = parseFloat(json.totalAmount) ;
-                
+
             if(totalRecords > 0)
             {
                 $('#amountDue').html(amountDue.toFixed(2));
@@ -163,7 +163,7 @@ $(function() {
             {
                 $('#totalAmount').html('0.00');
             }
-        } 
+        }
     });
 
     $('body').on('change', '#updateQty', function(){
@@ -274,6 +274,12 @@ $(function() {
                         {
                             basketItemsTable.ajax.reload();
                             $('#amountDue').html(response.amount.toFixed(2));
+                            swal({
+                                title: "Success!",
+                                text: response.message,
+                                confirmButtonColor: "#EF5350",
+                                type: "success"
+                            });
                         }
                         else
                         {
@@ -287,7 +293,7 @@ $(function() {
                     }
                 });
             }
-        }); 
+        });
     });
 
 });

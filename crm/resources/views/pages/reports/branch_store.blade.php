@@ -1,5 +1,5 @@
 @extends('layout.base')
-    @section('contents')    
+    @section('contents')
     <!--- Report content section -->
     <script type="text/javascript" src="{{ asset('assets/js/report.js') }}"></script>
     <div class="row">
@@ -35,7 +35,7 @@
                         </thead>
 
                         <tbody>
-                            @php 
+                            @php
                             $totalQty = 0;
                             $cntStore = 0;
                             $netSales = 0;
@@ -51,7 +51,7 @@
                             $spd += $data['SPD'];
                             $std += $data['STD'];
                             $totalQty += $data['QTY'];
-                            $apc = ($data['SPD'] / $data['STD']);
+                            $apc = ($data['SPD'] != null) ? ($data['SPD'] / $data['STD']) : 0;
                             @endphp
                             <tr>
                                 <td class="text-center">
@@ -74,10 +74,10 @@
                                 <td class="text-center">{{ $data['STD'] }}</td>
                                 <td class="text-center">{{ number_format($apc, 3, '.', '') }}</td>
                             </tr>
-                            @php 
+                            @php
                             endforeach;
 
-                            $totalAPC = ($spd / $std);
+                            $totalAPC = ($spd > 0) ? ($spd / $std) : 0;
                             @endphp
                             <tr>
                                 <td class="text-semibold" colspan="2">GRAND TOTAL</td>
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <h6 class="panel-title display-block text-semibold">LEGENDS</h6>  
+                    <h6 class="panel-title display-block text-semibold">LEGENDS</h6>
 
                     <div class="row">
                         <div class="col-md-6">
@@ -111,8 +111,8 @@
                             <div class="col-md-6 text-semibold">STD : Average sales transaction per day</div>
                             <div class="col-md-6 text-semibold">APC : Average per customer</div>
                         </div>
-                    </div>       
-                
+                    </div>
+
                 </div>
             </div>
             <!-- /marketing campaigns -->

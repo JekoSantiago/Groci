@@ -1,5 +1,5 @@
 @extends('layout.base')
-    @section('contents')    
+    @section('contents')
     <script type="text/javascript" src="{{ asset('assets/js/report.js') }}"></script>
     <!--- Report content section -->
     <div class="row">
@@ -20,6 +20,7 @@
                     <table class="table no-wrap">
                         <thead>
                             <tr class="bg-teal">
+                                <th style="width: 5%" class="text-center">ACTION</th>
                                 <th style="width: 25%">STORE</th>
                                 <th style="width: 10%">DATE</th>
                                 <th style="width: 7%" class="text-center">WD</th>
@@ -37,8 +38,20 @@
                             @php
                             foreach($dateRange as $date) :
                             $data = App\Services\ReportServices::reportPerStorePerDay($scode, date('Y-m-d', strtotime($date)));
+                            $param = App\Services\ReportServices::base64url_encode($scode.'@@'.date('Y-m-d', strtotime($date)));
                             @endphp
                             <tr>
+                                <td class="text-center">
+                                    @if($data['STD'] > 0)
+                                    <ul class="icons-list">
+                                        <li>
+                                            <a href="{{ url('report/view/store/orders/'.$param) }}" data-popup="tooltip" title="Orders" data-placement="right">
+                                                <i class="icon-eye"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    @endif
+                                </td>
                                 <td>{{ $storeName }}</td>
                                 <td>{{ date('M j, Y', strtotime($date)) }}</td>
                                 <td class="text-center">1</td>
@@ -72,7 +85,7 @@
                 </div>
 
                 <div class="panel-body">
-                    <h6 class="panel-title display-block text-semibold">LEGENDS</h6>  
+                    <h6 class="panel-title display-block text-semibold">LEGENDS</h6>
 
                     <div class="row">
                         <div class="col-md-6">
@@ -87,8 +100,8 @@
                             <div class="col-md-6 text-semibold">STD : Average sales transaction per day</div>
                             <div class="col-md-6 text-semibold">APC : Average per customer</div>
                         </div>
-                    </div>       
-                
+                    </div>
+
                 </div>
             </div>
             <!-- /marketing campaigns -->

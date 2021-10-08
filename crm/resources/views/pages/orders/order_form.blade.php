@@ -1,5 +1,5 @@
 @extends('layout.default')
-    @section('contents')    
+    @section('contents')
     <script type="text/javascript"> var orderID = {{ $orderID }} </script>
     <script type="text/javascript" src="{{ asset('assets/js/orders.js') }}"></script>
     <input type="hidden" id="orderID" value="{{ $orderID }}">
@@ -28,8 +28,8 @@
                     </thead>
                     <tbody>
                     @foreach($items as $row)
-                        @php 
-                            $price = (empty($row['reg_price'])) ? $row['price'] : $row['reg_price'];
+                        @php
+                            $price = (empty($row['reg_price'])) ? $row['nat_price'] : $row['reg_price'];
                             $promo = (empty($row['reg_price'])) ? $row['is_promo'] : $row['reg_is_promo'];
                             $value = $orderID.'@@'.$row['item_id'].'@@'.$row['item_name'].'@@'.$price.'@@'.$promo;
                         @endphp
@@ -37,7 +37,7 @@
                             <td>{{ strtoupper($row['category_name']) }}</td>
                             <td>{{ $row['sku'] }}</td>
                             <td>{{ $row['item_name'] }}</td>
-                            <td>{{ (empty($row['reg_price'])) ? $row['price'] : $row['reg_price'] }}</td>
+                            <td>{{ (empty($row['reg_price'])) ? $row['nat_price'] : $row['reg_price'] }}</td>
                             <td>
                                 <input type="text" class="form-control text-center" data-params="{{ $value }}" id="Quant" name="Quant_{{ $row['item_id'] }}" min="1" max="{{ $row['stocks_on_hand'] - $row['pre_order_qty'] }}">
                             </td>

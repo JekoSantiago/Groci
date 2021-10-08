@@ -20,13 +20,13 @@ $(function() {
 
         if(dc == 'all')
         {
-            $('#stores').html('<option></option>');    
+            $('#stores').html('<option></option>');
         }
-        else 
+        else
         {
             var form_data = new FormData();
             form_data.append('bcode', dc);
-            
+
             $.ajax({
                 url: webURL + '/report/stores',
                 type: 'POST',
@@ -36,9 +36,9 @@ $(function() {
                 processData: false,
                 data: form_data,
                 success: function (response) {
-                    $('#stores').html(response); 
+                    $('#stores').html(response);
                 }
-            }); 
+            });
         }
     });
 
@@ -51,7 +51,7 @@ $(function() {
         var endDate = arrTwo[2]+'-'+arrTwo[0]+'-'+arrTwo[1];
         var optDC     = $('#optDC').val();
         var stores    = $('#stores').val();
-        var scode     = (stores.length == 0) ? 0 : stores; 
+        var scode     = (stores.length == 0) ? 0 : stores;
 
         $(window.location).attr('href', webURL + '/report/export/'+startDate+'/'+endDate+'/'+optDC+'/'+scode);
     });
@@ -84,5 +84,13 @@ $(function() {
         var endDate = arrTwo[2]+'-'+arrTwo[0]+'-'+arrTwo[1];
 
         $(window.location).attr('href', webURL + '/report/export/products/'+startDate+'/'+endDate);
+    });
+
+    $('#modal_items_list').on('show.bs.modal', function(e) {
+    	var orderID  = $(e.relatedTarget).data('oid');
+        var receiptNo = ($(e.relatedTarget).data('rno').length > 0) ? $(e.relatedTarget).data('rno') : 0;
+        var remoteLink = webURL + '/report/view/store/orders/details/'+orderID+'/'+receiptNo;
+        $(this).find('.modal-body').load(remoteLink, function() {
+        });
     });
 });
