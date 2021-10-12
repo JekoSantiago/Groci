@@ -1,5 +1,5 @@
 @extends('layout.base')
-    @section('contents')    
+    @section('contents')
     <!--- Sliders index section -->
 
         <!-- Basic datatable -->
@@ -7,6 +7,9 @@
 		    <div class="panel-heading">
 				<h5 class="panel-title">Stores</h5>
 				<div class="heading-elements">
+                    <button class="btn bg-success-800 btn-xs btn-raised" id="btnExtractStoreList">
+                        <i class="icon-download4 position-left"></i> EXPORT
+                    </button>
 					<button type="button" class="btn bg-indigo btn-xs btn-raised" id="btnRefreshStores">
 						<i class="icon-spinner4 position-left"></i> Refresh Store Lists
 					</button>
@@ -57,8 +60,8 @@
 								</li>
 							</ul>
 						</td>
-					</tr>		
-				@endforeach		
+					</tr>
+				@endforeach
 				</tbody>
 		    </table>
 		</div>

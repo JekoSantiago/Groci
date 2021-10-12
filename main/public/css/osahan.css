@@ -3390,3 +3390,8 @@ body.stop-scrolling {
 html {
     background: url("/img/pattern-bg.jpg");
 }
+
+.shop-content {
+    float: none;
+    top: -76px;
+}

@@ -10,12 +10,13 @@ use App\Exports\ExportPerStorePerDateRangeReport;
 use App\Exports\ExportPerStorePerDayReport;
 use App\Exports\ExportTopProductsReport;
 use App\Cms;
+use App\Exports\ExportStoreList;
 use App\Orders;
 use App\Report;
 use Excel;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-
+use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
 
 class ReportController extends Controller
 {
@@ -295,4 +296,6 @@ class ReportController extends Controller
 
         return json_encode($output);
     }
+
+
 }

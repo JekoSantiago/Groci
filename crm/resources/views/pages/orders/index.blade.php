@@ -149,7 +149,7 @@
 			<div class="modal-dialog modal-xs">
 				<div class="modal-content">
 					<div class="modal-header bg-primary">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						{{-- <button type="button" class="close" data-dismiss="modal">&times;</button> --}}
 						<h5 class="modal-title">Receipt Form</h5>
 					</div>
 					<div class="modal-body"></div>

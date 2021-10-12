@@ -7,13 +7,11 @@ use App\Services\CmsServices;
 use App\Services\HelperServices;
 use App\Exports\ExportItemsPrice;
 use App\Cms;
-use Storage;
+use App\Exports\ExportStoreList;
 use Illuminate\Support\Facades\Session;
-
-use File;
-use Maatwebsite\Excel\Excel;
 use SimpleXLSX;
-use Illuminate\Support\Facades\Redirect;
+use Excel;
+
 
 class CmsController extends Controller
 {/*
@@ -748,7 +746,6 @@ class CmsController extends Controller
     {
         $logUser = str_replace(',', '', base64_decode(Session::get('Emp_Name')));
         $result = CmsServices::refreshBranchList($logUser);
-
         echo json_encode($result);
     }
 
@@ -772,6 +769,7 @@ class CmsController extends Controller
     {
         $result = CmsServices::stores();
 
+        // dd($result);
         return view('pages.maintenance.stores.index',
             [
                 'page'  => 'Store Branch Page',
@@ -807,6 +805,13 @@ class CmsController extends Controller
     private function uploadFiles($file, $fileName, $path)
     {
         $file->storeAs($path, $fileName);
+    }
+
+    public function exportStoreList()
+    {
+        $filename  = 'StoresListAsOf_'.date('Ymd').'.xlsx';
+        return Excel::download(new ExportStoreList, $filename);
+
     }
 
 }

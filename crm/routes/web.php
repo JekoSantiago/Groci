@@ -132,6 +132,7 @@ Route::post('cms/store/branch/status/{action}', 'CmsController@updateBranchStatu
 Route::get('cms/store', 'CmsController@stores');
 Route::post('cms/store/refresh', 'CmsController@updateStore');
 Route::post('cms/store/status/{action}', 'CmsController@updateStoreStatus');
+Route::any('cms/store/extract','CmsController@exportStoreList');
 
 /**
  * Report Routes

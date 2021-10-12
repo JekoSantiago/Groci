@@ -40,8 +40,8 @@ $(function() {
     });
 
     $('.datatable-stores').DataTable({
-        "ordering": false,
-        scrollX: true
+        "ordering": true,
+        scrollX: true,
     });
 
     // Basic initialization
@@ -1560,6 +1560,11 @@ $(function() {
         minimumResultsForSearch: Infinity,
         width: 'auto'
     });
+
+
+    $('body').on('click','#btnExtractStoreList',function(){
+        $(window.location).attr('href', webURL + '/cms/store/extract');
+    })
 });
 
 function updateItemStatus(action, id)
@@ -1806,4 +1811,6 @@ function updateStoreStatus(action, id)
             }
         }
     });
+
+
 }

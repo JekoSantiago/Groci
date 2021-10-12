@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-lg-9 shop-content">
                     <div class="shop-head">
                         <a href="{{ url('/') }}">
                             <span class="mdi mdi-home"></span> Home

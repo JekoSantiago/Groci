@@ -61,7 +61,7 @@ $(function() {
                         $('#modal_view_customer').modal('toggle');
                         var remoteLink = webURL + '/customer/view/details/'+customerID+'/'+addressID;
                         $('#modal_view_customer').find('.modal-body').load(remoteLink, function() {
-                            
+
                             $('.select').select2({
                                 minimumResultsForSearch: Infinity
                             });
@@ -84,7 +84,7 @@ $(function() {
         $('#cCodeError').hide();
     });
 
-    
+
     $('body').on('click', '#btnConfirm', function(e){
         e.preventDefault()
         var customerID = $('#customerID').val();
@@ -105,7 +105,7 @@ $(function() {
         $('#modal_reject_remarks_form').modal('toggle');
         var remoteLink = webURL + '/customer/remarks/'+customerID+'/'+addressID+'/'+action;
         $('#modal_reject_remarks_form').find('.modal-body').load(remoteLink, function() {});
-        
+
     });
 
     $('body').on('click', '#btnSubmitRemarks', function(e){
@@ -156,11 +156,11 @@ function updateConfirmationStatus(customerID, addressID, action, remarks)
     {
         $('#btnCancel').html('<i class="icon-spinner4"></i> Processing');
     }
-    else 
+    else
     {
         $('#btnConfirm').html('<i class="icon-spinner4"></i> Processing');
     }
-            
+
     $.ajax({
         url: webURL + '/customer/confirm/status',
         type: 'POST',
@@ -200,7 +200,7 @@ function updateConfirmationStatus(customerID, addressID, action, remarks)
                         {
                             $('#btnCancel').html('CANCEL');
                         }
-                        else 
+                        else
                         {
                             $('#btnConfirm').html('CONFIRM');
                         }
@@ -213,41 +213,59 @@ function updateConfirmationStatus(customerID, addressID, action, remarks)
 
 function deleteCustomer(id)
 {
-    var form_data = new FormData();
-    form_data.append('id', id);
 
-    $.ajax({
-        url: webURL + '/customer/delete',
-        type: 'POST',
-        dataType: 'json',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        success: function (response) {
-         	if(response.status == 'success')
-        	{
-                swal({
-                	title: "Success!",
-                    text: response.message,
-                    confirmButtonColor: "#EF5350",
-                    type: "success"
-                },
-                function(isConfirm){
-                	if (isConfirm) {
-                    	$(window.location).attr('href', webURL + '/customer/all');
-                     }
-                });
-            }
-            else
-            {
-                swal({
-                    title: "Error!",
-                    text: response.message,
-                    confirmButtonColor: "#EF5350",
-                    type: "error"
-                });
-            }
+    swal({
+        title: "Are you sure?",
+        text: "You want to delete the customer?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#2196f3",
+        cancelButtonColor: "#ed1c24",
+        confirmButtonText: "YES",
+        cancelButtonText: "NO",
+        closeOnConfirm: true,
+        closeOnCancel: true
+    },
+    function(isConfirm){
+        if (isConfirm) {
+            var form_data = new FormData();
+            form_data.append('id', id);
+
+            $.ajax({
+                url: webURL + '/customer/delete',
+                type: 'POST',
+                dataType: 'json',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,
+                success: function (response) {
+                     if(response.status == 'success')
+                    {
+                        swal({
+                            title: "Success!",
+                            text: response.message,
+                            confirmButtonColor: "#EF5350",
+                            type: "success"
+                        },
+                        function(isConfirm){
+                            if (isConfirm) {
+                                $(window.location).attr('href', webURL + '/customer/all');
+                             }
+                        });
+                    }
+                    else
+                    {
+                        swal({
+                            title: "Error!",
+                            text: response.message,
+                            confirmButtonColor: "#EF5350",
+                            type: "error"
+                        });
+                    }
+                }
+            });
         }
     });
+
 }

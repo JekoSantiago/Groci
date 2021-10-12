@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-lg-9 shop-content">
                     <div class="carousel-slider-main text-center">
                         <div class="owl-carousel owl-carousel-slider rounded overflow-hidden shadow-sm">
                         @foreach($sliders as $s)

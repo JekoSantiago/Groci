@@ -192,6 +192,7 @@ class OrderServices
     {
         $statArr = static::getOrderStatus($orderID);
         $length = count($statArr);
+        // dd($length);
         $count = 1;
         $htm = '<ul class="icons-list">';
         foreach(config('app.status') as $value) :
@@ -210,7 +211,7 @@ class OrderServices
                     endif;
                 else :
                     if(in_array('CANCEL', $statArr)) :
-                        $c = $length;
+                        $c = $length-2;
                         if($statArr[$c] == $status) :
                             $bg = 'bg-danger';
                             else :

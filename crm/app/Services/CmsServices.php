@@ -244,7 +244,7 @@ class CmsServices
 	public static function stores()
 	{
 		$result = Cms::getStores();
-
+        // dd($result);
 		foreach($result as $row) :
 			if($row->is_active == 1) :
 				$row->text   = 'active';
@@ -267,6 +267,7 @@ class CmsServices
 	public static function refreshBranchList($logUser)
 	{
 		$result = Cms::getBranchMyHub();
+        // dd($result);
 
 		foreach($result as $row) :
 			if($row->Location_ID == 2 || $row->Location_ID == 973) :
