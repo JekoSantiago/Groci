@@ -609,4 +609,60 @@ class OrdersController extends Controller
             ]
         );
     }
+
+    public function manualAdd(Request $request)
+    {
+        $orderID = $request->segment(3);
+        return view('pages.orders.modals.add_order',
+        [
+            'items'   => OrderServices::productItems(base64_decode(Session::get('LocationCode'))),
+            'orderID' => $orderID
+        ]);
+    }
+
+    public function addToBasketNew(Request $request)
+    {
+        $items = explode(',', $request->input('items'));
+        $oid = $request->input('id');
+        // dd($oid);
+        $totalAmt = 0;
+        $ids = [];
+        foreach($items as $item) :
+            $i = explode('@@', $item);
+            $amount = $i[5] * $i[3];
+            $totalAmt += $amount;
+            $ids[] = $i[1];
+            $data = [
+                'orderID'   => $oid,
+                'itemID'    => $i[1],
+                'itemName'  => $i[2],
+                'itemPrice' => $i[3],
+                'itemQty'   => $i[5],
+                'totalAmt'  => $amount,
+                'promo'     => $i[4]
+            ];
+
+            Orders::saveItemsToBasket($data);
+        endforeach;
+
+        $a = OrderServices::basketItems($request->input('id'));
+
+        $item = [
+            'orderID' => $oid ,
+            'amount'  => $a['amount']
+        ];
+
+        $update = Orders::updateOrderAmount($item);
+
+
+
+        $response = [
+            'status'      => 'ok',
+            'message'     => '',
+            'totalAmount' => $a['amount'],
+            'itemIDs'     => $ids
+        ];
+
+        echo json_encode($response);
+    }
 }

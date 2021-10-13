@@ -36,6 +36,9 @@ Route::get('orders/details/{id}', 'OrdersController@orderDetails');
 Route::get('orders/validate/{id}', 'OrdersController@validateOrder');
 Route::get('orders/punch/{id}', 'OrdersController@punchReceiptForm');
 Route::post('orders/status/update', 'OrdersController@orderStatus');
+Route::get('orders/manual/{id}','OrdersController@manualAdd');
+Route::post('orders/add/itemsNew', 'OrdersController@addToBasketNew');
+
 
 Route::get('orders/form/cash-change/{id}', 'OrdersController@cashChangeForm');
 Route::post('orders/save/cash-change', 'OrdersController@saveCashChange');

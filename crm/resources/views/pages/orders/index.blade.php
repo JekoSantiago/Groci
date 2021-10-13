@@ -133,6 +133,7 @@
 					</div>
 					<div class="modal-body"></div>
 					<div class="modal-footer">
+                        <button type="button" class="btn bg-warning-700 btn-xs btn-raised" id="btnModifyOrder"><i class="icon-pen position-left"></i>EDIT</button>
 						<button type="button" class="btn bg-danger-700 btn-xs btn-raised" id="btnCloseModal" data-dismiss="modal"><i class="icon-x position-left"></i>CLOSE</button>
 						<button type="button" class="btn bg-success-700 btn-xs btn-raised" id="btnReceiveOrder"><i class="icon-check position-left"></i>CONFIRM</button>
 						<!--
@@ -195,6 +196,21 @@
 			</div>
 		</div>
 		<!-- /edit form modal -->
+
+        {{-- Add Order Modal --}}
+        <div id="modal_order_add" class="modal fade" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn bg-danger-700 btn-xs btn-raised" id="btnCloseModal" data-dismiss="modal"><i class="icon-x position-left"></i>CANCEL</button>
+                        <button type="button" class="btn bg-primary-700 btn-xs btn-raised" id="btnAddManual"><i class="icon-cart-add position-left"></i>CONFIRM</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Add Order Modal --}}
+
 
 		<style type="text/css">
 			div.dataTables_scrollBody thead {

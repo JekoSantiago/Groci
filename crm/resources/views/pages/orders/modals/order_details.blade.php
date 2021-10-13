@@ -81,7 +81,12 @@
 
 <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
     <div class="row">
-        <h6 class="text-semibold col-md-12">Order Summary - ({{ count($data['items']) }} items)</h6>
+        <div class="col-md-10">
+            <h6 class="text-semibold col-md-12">Order Summary - ({{ count($data['items']) }} items)</h6>
+        </div>
+        <div class="col-md-2 pl-4">
+            <button style="display: none" type="button" class="btn bg-primary-700 btn-xs btn-raised" data-toggle="modal" data-target="#modal_order_add" data-oid="{{ $orderID }}" id="btnManualAdd" data-dismiss="modal"><i class="icon-plus3 position-left"></i>ADD</button>
+        </div>
     </div>
     <div class="row">
         <div class="table-responsive pre-scrollable" style="max-height: 231px;">
@@ -100,7 +105,6 @@
         <div class="panel-body bg-teal" style="padding: 12px 20px;">
             <div class="col-md-12 text-right text-semibold">DELIVERY CHARGE : {{ number_format($data['charges'], 2) }}</div>
             <div class="col-md-12 text-right text-semibold">SUB-TOTAL AMOUNT : <span id="amountDue"></span></div>
-
         </div>
     </div>
 </div>
@@ -136,7 +140,7 @@ $(function() {
         columns:[
             {
                 render: function (data, type, row) {
-                    return '<ul class="icons-list"><li><a id="btnDeleteItem" data-oid="'+ row.order_items_id+'" data-itemid="'+ row.item_id  +'" data-popup="tooltip" title="Remove" data-placement="left"><i class="icon-x"></i></a></li></ul>';
+                    return '<ul class="icons-list"><li class="delbut" style="display:none;"><a id="btnDeleteItem" data-oid="'+ row.order_items_id+'" data-itemid="'+ row.item_id  +'" data-popup="tooltip" title="Remove" data-placement="left"><i class="icon-x"></i></a></li></ul>';
                 }
             },
             { "data": "item_name" },
@@ -155,6 +159,7 @@ $(function() {
             var totalRecords = json.recordsTotal;
             var amountDue = parseFloat(json.totalAmount) ;
 
+            $('#btnManualAdd').hide();
             if(totalRecords > 0)
             {
                 $('#amountDue').html(amountDue.toFixed(2));
@@ -295,6 +300,34 @@ $(function() {
             }
         });
     });
+
+
+    $('#btnModifyOrder').on('click',function(){
+
+        swal({
+            title: "Please Advise",
+            text: "Have you advised the customer about the order?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#2196f3",
+            cancelButtonColor: "#ed1c24",
+            confirmButtonText: "YES",
+            cancelButtonText: "NO",
+            closeOnConfirm: true,
+            closeOnCancel: true
+        },
+        function(isConfirm){
+            if (isConfirm) {
+                $('.delbut').show();
+                $('#btnManualAdd').show();
+                console.log('editopen');
+            }
+        });
+    })
+
+    $('#modal_order_add').on('hide.bs.modal',function(){
+        basketItemsTable.ajax.reload();
+    })
 
 });
 

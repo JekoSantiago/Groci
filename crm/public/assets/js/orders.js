@@ -563,6 +563,20 @@ $(function() {
         });
     });
 
+    $('#modal_order_add').on('show.bs.modal', function(e) {
+        var oid = $(this).data('oid');
+        var remoteLink = webURL + '/orders/manual/'+oid;
+        $(this).find('.modal-body').load(remoteLink, function() {
+            // Init Select2 when loaded
+            $('#dt-order').DataTable({
+                "ordering": false,
+                pageLength : 5,
+                lengthChange: false,
+            });
+
+        });
+    });
+
     $('body').on('click', '#btnTransType', function() {
         var value = $(this).data('value');
 
@@ -1235,6 +1249,132 @@ $(function() {
         minimumResultsForSearch: Infinity,
         width: 'auto'
     });
+
+
+    var basketItemsTable = $('#modalBasketItems').DataTable({
+        bJQueryUI: true,
+        bFilter: false,
+        bInfo: false,
+        bPaginate: false,
+        sDom: 't',
+        "ordering": false,
+        autoWidth: false,
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": webURL + "/orders/cart/item/"+$('#orderID').val(),
+            "method": "POST",
+            "datatype": "json",
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Processing data failed. Please report to the System Adminstator.");
+            }
+        },
+        columns:[
+            {
+                render: function (data, type, row) {
+                    return '<ul class="icons-list"><li><a id="btnDeleteItem" data-oid="'+ row.order_items_id+'" data-itemid="'+ row.item_id  +'" data-popup="tooltip" title="Remove" data-placement="left"><i class="icon-x"></i></a></li></ul>';
+                }
+            },
+            { "data": "item_name" },
+            { "data": "item_price" },
+            {
+                render: function (data, type, row) {
+                    var value = row.order_items_id+'@@'+row.item_price+'@@'+row.item_id;
+
+                    return '<input class="form-control text-center" data-oid="'+value+'" id="updateQty" name="uQty_'+row.order_items_id+'" type="text" value="' + row.qty + '">'+
+                            '<input type="hidden" id="upCurQty_'+row.order_items_id+'" value="' + row.qty + '">';
+                }
+            },
+            { "data": "total_amount" }
+        ],
+        "fnInitComplete": function(oSettings, json) {
+            var totalRecords = json.recordsTotal;
+            var amountDue = parseFloat(json.totalAmount) ;
+
+            if(totalRecords > 0)
+            {
+                $('#amountDue').html(amountDue.toFixed(2));
+            }
+            else
+            {
+                $('#totalAmount').html('0.00');
+            }
+        }
+    });
+
+    $(document).on('show.bs.modal', '.modal', function (event) {
+        var zIndex = 1040 + (10 * $('.modal:visible').length);
+        $(this).css('z-index', zIndex);
+        setTimeout(function() {
+            $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+        }, 0);
+    });
+
+    $('body').on('click', '#btnAddManual', function(e){
+        e.preventDefault();
+        var error = false;
+        var orderID = $('#orderID').val();
+        var prodItems = $("#selectedItems").val();
+
+        if(prodItems.length == 0)
+        {
+            var error = true;
+            swal({
+                title: "Error!",
+                text: 'Please select product items to add to basket.',
+                confirmButtonColor: "#EF5350",
+                type: "error"
+            });
+        }
+
+        if(error == false)
+        {
+            addToBasketNew(prodItems,orderID);
+
+        }
+    });
+
+    function addToBasketNew(value, orderID)
+    {
+        var form_data = new FormData();
+        form_data.append('items', value);
+        form_data.append('id', orderID);
+
+        // console.log(form_data);
+
+        $.ajax({
+            url: webURL + '/orders/add/itemsNew',
+            type: 'POST',
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            success: function (response) {
+                if(response.status == 'ok')
+                {
+                    console.log(response);
+                    $('#amountDue').html(response.totalAmount.toFixed(2));
+                    swal({
+                        title: "Success!",
+                        text: response.message,
+                        confirmButtonColor: "#EF5350",
+                        type: "success"
+                    });
+                    $('#modal_order_add').modal('hide');
+                }
+                else
+                {
+                    swal({
+                        title: "Error!",
+                        text: response.message,
+                        confirmButtonColor: "#EF5350",
+                        type: "error"
+                    });
+                }
+            }
+        });
+    }
 
 });
 
