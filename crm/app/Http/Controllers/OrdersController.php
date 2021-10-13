@@ -26,13 +26,13 @@ class OrdersController extends Controller
 
     public function __construct()
     {
-        // $this->middleware(function ($request, $next) {
-        //     if(base64_decode(Session::get('Role_ID')) != 2) :
-        //         abort(403, json_encode(config('app.btn_previous')));
-        //     endif;
+        $this->middleware(function ($request, $next) {
+            if(base64_decode(Session::get('Role_ID')) != 2) :
+                abort(403, json_encode(config('app.btn_previous')));
+            endif;
 
-        //     return $next($request);
-        // });
+            return $next($request);
+        });
     }
 
 
@@ -646,10 +646,10 @@ class OrdersController extends Controller
         endforeach;
 
         $a = OrderServices::basketItems($request->input('id'));
-
+        $details = Orders::getOrderDetails($request->input('id'));
         $item = [
             'orderID' => $oid ,
-            'amount'  => $a['amount']
+            'amount'  => $a['amountDue']
         ];
 
         $update = Orders::updateOrderAmount($item);

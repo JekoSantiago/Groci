@@ -10,7 +10,7 @@
                     <div class="category-list-sidebar">
                         <div class="category-list-sidebar-header">
                             <button class="btn btn-link badge-danger" type="button" id="menuToggle">
-                                All Categories <i class="mdi mdi-menu" aria-hidden="true"></i>
+                                Let's Shop <i class="mdi mdi-menu" aria-hidden="true"></i>
                             </button>
                             <input type="hidden" id="hideValue" value="1">
                         </div>

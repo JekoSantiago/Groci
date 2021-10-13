@@ -11,10 +11,10 @@ use App\Exports\ExportStoreList;
 use Illuminate\Support\Facades\Session;
 use SimpleXLSX;
 use Excel;
-
+use Illuminate\Support\Facades\Redirect;
 
 class CmsController extends Controller
-{/*
+{
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -24,7 +24,7 @@ class CmsController extends Controller
 
             return $next($request);
         });
-    } */
+    }
 
     public function index()
     {

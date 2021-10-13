@@ -222,7 +222,7 @@ class CheckoutController extends Controller
             'charges' => $charge
         ];
 
-        // Mail::to($email)->send(new SendOrderReceipt($data));
+        Mail::to($email)->send(new SendOrderReceipt($data));
     }
 
     public function testMail()

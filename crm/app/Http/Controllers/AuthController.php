@@ -11,9 +11,9 @@ class AuthController extends Controller
 {
     public function index(Request $request)
     {
-	/*if(date('Y-m-d') == '2021-04-13') :
+	    if(date('Y-m-d') == '2021-04-13') :
             abort(503);
-        endif; */
+        endif;
 
         $empNo = static::decrypted($request->input('id'));
         $result = Users::logUserDetails($empNo);

@@ -12,13 +12,13 @@ class InventoryController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware(function ($request, $next) {
-        //     if(base64_decode(Session::get('Role_ID')) != 2) :
-        //         abort(403, json_encode(config('app.btn_previous')));
-        //     endif;
+        $this->middleware(function ($request, $next) {
+            if(base64_decode(Session::get('Role_ID')) != 2) :
+                abort(403, json_encode(config('app.btn_previous')));
+            endif;
 
-        //     return $next($request);
-        // });
+            return $next($request);
+        });
     }
 
     public function index()

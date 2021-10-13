@@ -25,12 +25,12 @@ $(document).ready(function() {
         var val    = $(this).data('value');
         var itemID = $(this).data('itemid');
         var inpQty = $("input[name='quant["+itemID+"]']").val();
-        
-        if(isLogged == "") 
+
+        if(isLogged == "")
         {
             $(window.location).attr('href', webURL + '/login');
         }
-        else 
+        else
         {
             if(sessBasket == "")
             {
@@ -39,12 +39,12 @@ $(document).ready(function() {
                 $('#itemID').val(itemID);
                 $('#Qty').val(inpQty);
             }
-            else 
+            else
             {
                 addToCart(val, inpQty, itemID);
             }
         }
-    }); 
+    });
 
 
     /**
@@ -57,7 +57,7 @@ $(document).ready(function() {
         var inpQty = $("input[name='Quant_"+ d[0] +"']").val();
         var curQty  = $("#curQty_"+ d[0]).val();
         var actualQty = $("#actualStocks_"+ d[0]).val();
-        
+
         if(isNaN(inpQty) || inpQty <= 0 || isFloat(inpQty))
         {
             $("input[name='Quant_"+ d[0] +"']").val(curQty);
@@ -76,7 +76,7 @@ $(document).ready(function() {
 
                 $("input[name='Quant_"+ d[0] +"']").val(curQty).change();
             }
-            else 
+            else
             {
                 updateBasket(d[0], inpQty, d[1]);
             }
@@ -84,7 +84,7 @@ $(document).ready(function() {
     });
 
     /**
-     * Remove items in basket 
+     * Remove items in basket
      * Click event
      */
     $('body').on('click', '#removeItem', function() {
@@ -99,30 +99,30 @@ $(document).ready(function() {
      */
     $('.btn-number').click(function(e){
         e.preventDefault();
-        
+
         var fieldName = $(this).attr('data-field');
         var type      = $(this).attr('data-type');
         var input     = $("input[name='"+fieldName+"']");
         var currentVal = parseInt(input.val());
         if (!isNaN(currentVal)) {
             if(type == 'minus') {
-                
+
                 if(currentVal > input.attr('min')) {
                     input.val(currentVal - 1).change();
-                } 
+                }
                 if(parseInt(input.val()) == input.attr('min')) {
                     $(this).attr('disabled', true);
                 }
-    
+
             } else if(type == 'plus') {
-    
+
                 if(currentVal < input.attr('max')) {
                     input.val(currentVal + 1).change();
                 }
                 if(parseInt(input.val()) == input.attr('max')) {
                     $(this).attr('disabled', true);
                 }
-    
+
             }
         } else {
             input.val(0);
@@ -134,11 +134,11 @@ $(document).ready(function() {
     });
 
     $('.input-number').change(function() {
-        
+
         var minValue =  parseInt($(this).attr('min'));
         var maxValue =  parseInt($(this).attr('max'));
         var valueCurrent = parseInt($(this).val());
-        
+
         var name = $(this).attr('name');
         if(valueCurrent >= minValue) {
             $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
@@ -168,24 +168,24 @@ $(document).ready(function() {
             $(this).val($(this).data('oldValue'));
         }
     });
-    
+
     $(".input-number").keydown(function (e) {
             // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
             // Allow: Ctrl+A
-            (e.keyCode == 65 && e.ctrlKey === true) || 
+            (e.keyCode == 65 && e.ctrlKey === true) ||
              // Allow: home, end, left, right
             (e.keyCode >= 35 && e.keyCode <= 39)) {
              // let it happen, don't do anything
             return;
         }
-        
+
         // Ensure that it is a number and stop the keypress
         if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
             e.preventDefault();
         }
     });
-    
+
     $('body').on('click', '#btnCheckOut', function() {
         var cntItems = $('#cntItems').val();
         var minCharge = $('#minimumCharge').val();
@@ -196,18 +196,18 @@ $(document).ready(function() {
             {
                 $(window.location).attr('href', webURL + '/checkout');
             }
-            else 
+            else
             {
-                if(parseFloat(minCharge) > parseFloat(totalAmountDue)) 
+                if(parseFloat(minCharge) > parseFloat(totalAmountDue))
                 {
                     swal({
                         title: "Warning!",
-                        text: 'Total amount due is less than the minimum charge required, which is PhP '+ minCharge+'. Add more items.',
+                        text: 'TOur minimum order requirement is P'+ minCharge+'. Please add more items. ',
                         confirmButtonColor: "#EF5350",
                         type: "warning"
                     });
                 }
-                else 
+                else
                 {
                     $(window.location).attr('href', webURL + '/checkout');
                 }
@@ -240,13 +240,13 @@ $(document).ready(function() {
             var schedule = $('#pickDate').val() + ' ' + $('#pickTimeHour').val() + ':' + $('#pickTimeMin').val() +' '+ $('#pickTimeAMPM').val();
             var orderType = 'Pick-up';
         }
-        else 
+        else
         {
             var deliverType = $('input[name="radio-group"]:checked').val();
             var schedule = (deliverType == 'Delivery Now') ? 'PROMISE TIME' : $('#deliverLaterDate').val() + ' ' + $('#dlTimeHour').val()+':'+$('#dlTimeMin').val()+' '+$('#dlTimeAMPM').val();
             var orderType = deliverType;
         }
-        
+
         if(!checkTerms)
         {
             var error = true;
@@ -258,7 +258,7 @@ $(document).ready(function() {
             var error = true;
             $('#changeForError').show();
         }
-        else 
+        else
         {
             if(isNaN(amtChange))
             {
@@ -266,7 +266,7 @@ $(document).ready(function() {
                 $('#changeForError').html('Please enter number only');
                 $('#changeForError').show();
             }
-            else 
+            else
             {
                 if(parseFloat(amtChange) < parseFloat(amtDue))
                 {
@@ -312,7 +312,7 @@ $(document).ready(function() {
                     {
                         $(window.location).attr('href', webURL + '/success/' + orderID);
                     }
-                    else 
+                    else
                     {
                         $('#btnCancelOrders').show();
                         $('#btnSubmitOrder').show();
@@ -329,7 +329,7 @@ $(document).ready(function() {
     $('body').on('keyup', '#amtChange', function() {
         $('#changeForError').hide();
     });
-    
+
     $('body').on('click', 'input[name="chkTermsConditions"]', function(){
         $('#chkTermsConditionsError').hide();
     });
@@ -340,9 +340,8 @@ $(document).ready(function() {
         $('#btnBackHome').attr('disabled', 'disabled');
 
         swal({
-            title: "Are you sure?",
-            text: "You want to cancel your order?",
-            type: "warning",
+            title: "Are you sure you want to cancel your order?",
+            type: "question",
             showCancelButton: true,
             confirmButtonColor: "#2196f3",
             cancelButtonColor: "#ed1c24",
@@ -400,7 +399,7 @@ $(document).ready(function() {
                         }
                     });
                 }
-                else 
+                else
                 {
                     swal({
                         title: "Error!",
@@ -428,9 +427,8 @@ $(document).ready(function() {
         $('#btnClosed').prop('disabled', true);
 
         swal({
-            title: "Are you sure?",
-            text: "You want to cancel your order?",
-            type: "warning",
+            title: "Are you sure you want to cancel your order?",
+            type:"warning",
             showCancelButton: true,
             confirmButtonColor: "#2196f3",
             cancelButtonColor: "#ed1c24",
@@ -465,7 +463,7 @@ $(document).ready(function() {
                                 }
                             });
                         }
-                        else 
+                        else
                         {
                             swal({
                                 title: "Error!",
@@ -509,16 +507,15 @@ function addToCart(value, qty, id)
         data: form_data,
         success: function (response) {
             swal({
-                title: "Success!!!",
-                text: "Item "+ response.item +" successfully added to basket.",
+                title: "Item added to your basket.",
                 type: "success",
                 timer: 2000,
                 showConfirmButton: false
             });
-            
+
             $("input[name='quant["+id+"]']").val(1);
             $("#myBasket").load(location.href + " #myBasket");
-            $("#itemsCount").load(location.href + " #itemsCount");            
+            $("#itemsCount").load(location.href + " #itemsCount");
         }
     });
 }
