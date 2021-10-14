@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-	<title>Alfanda Express</title>
+	<title>Shop Alfamart</title>
 
 	<!-- Global stylesheets -->
 	<style type="text/css" media="all">
@@ -43,7 +43,7 @@
 			<table cellspacing="0" cellpadding="0" border="0" align="center">
 				<tr>
 					<td style="width: 50% padding: 0px;">
-						<img src="{{ url('assets/images/Alfamart-logo.fw.png') }}" alt="Alfanda Express" style="height: 45px">
+						<img src="{{ url('assets/images/Alfamart-logo.fw.png') }}" alt="Shop Alfamart" style="height: 45px">
 					</td>
 					<td style="width: 50% padding: 0px; text-align: right; font-family: 'Arial';">
 						<h3>Order Slip</h3>

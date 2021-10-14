@@ -7,7 +7,7 @@
                 <!--
                 <div class="col-lg-4 col-md-4">
                     <p class="mb-0"><a class="text-success" href="#"><i class="mdi mdi-email"></i> <span class="__cf_email__" data-cfemail="fc959d91938f9d949d92bc9b919d9590d29f9391">customercare@alfamart.com.ph</span></a></p>
-                    <p class="mb-0"><a class="text-primary" href="http://groci.atp.ph"><i class="mdi mdi-web"></i>http://groci.atp.ph</a></p>
+                    <p class="mb-0"><a class="text-primary" href="http://Shop Alfamart.atp.ph"><i class="mdi mdi-web"></i>http://Shop Alfamart.atp.ph</a></p>
                 </div> -->
                 <div class="col-lg-10 col-md-10" style="padding-top: 7px;">
                     <ul>
@@ -24,7 +24,7 @@
         <div class="container">
             <div class="row no-gutters">
                 <div class="col-lg-12 col-sm-12">
-                    <p class="mt-1 mb-0">&copy; Copyright 2021 <strong class="text-dark">Groci</strong>. All Rights Reserved
+                    <p class="mt-1 mb-0">&copy; Copyright 2021 <strong class="text-dark">Shop Alfamart</strong>. All Rights Reserved
                     <!--<br>
                         <small class="mt-0 mb-0">Made with <i class="mdi mdi-heart text-danger"></i> by <a href="#" target="_blank" class="text-primary">Alfamart IT-PM Team</a></small> -->
                     </p>

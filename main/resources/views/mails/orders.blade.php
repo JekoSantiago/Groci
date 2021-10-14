@@ -4,7 +4,7 @@
     <meta charset="utf-8"> <!-- utf-8 works for most cases -->
     <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
-    <title>Alfanda Express | Order Confirmation Notification</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+    <title>Shop Alfamart | Order Confirmation Notification</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Web Font / @font-face : BEGIN -->
     <!-- NOTE: If web fonts are not required, lines 9 - 26 can be safely removed. -->
@@ -153,7 +153,7 @@
 						            <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%">
 						                <tr>
 						                    <td style="padding-top: 50px; text-align: center">
-						                       <img src="{{ url('img/Alfamart-logo.fw.png') }}" alt="Alfanda Express" border="0" align="center" style="max-height: 80px;">
+						                       <img src="{{ url('img/Alfamart-logo.fw.png') }}" alt="Shop Alfamart" border="0" align="center" style="max-height: 80px;">
 						                    </td>
 						                </tr>
 						            </table>
@@ -163,7 +163,7 @@
 					            		<tr>
 					            			<td style="padding: 20px 20px 10px" colspan="2">
 					            				<p style="margin:0px; border-radius: 5px; padding: 15px; font-size: 13px; background-color: #F8DA00;">
-					            					<span style="margin-bottom: 10px; display: block;">Thank you for ordering at Groci, {{ $name }}! Please see the order summary below with reference number <span style="font-weight: 600">{{ $orderID }}</span> </span>
+					            					<span style="margin-bottom: 10px; display: block;">Thank you for ordering at Shop Alfamart, {{ $name }}! Please see the order summary below with reference number <span style="font-weight: 600">{{ $orderID }}</span> </span>
 												</p>
 					            			</td>
 					            		</tr>
@@ -303,7 +303,7 @@
 
 										<tr>
                                             <td style="font-size: 11px; font-weight: 500; color: #555555; text-align: center" colspan="2">
-                                                &copy; Copyright 2020 Groci. All Rights Reserved
+                                                &copy; Copyright 2020 Shop Alfamart. All Rights Reserved
                                             </td>
                                         </tr>
 

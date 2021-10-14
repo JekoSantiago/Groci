@@ -6,7 +6,7 @@
     <meta name="description" content="Alfamart Delivery">
     <meta name="author" content="Alfamart Delivery">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Alfanda Express - {{ $page }}</title>
+    <title>Shop Alfamart - {{ $page }}</title>
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/icons/css/materialdesignicons.min.css') }}" media="all" rel="stylesheet" type="text/css" />
@@ -38,7 +38,7 @@
         var webURL = '{!! url('/') !!}';
         var sessBasket = '{!! Session::get('transType') !!}';
         var isLogged = '{!! Session::get('isLogged') !!}';
-        
+
         function updateClock ( )
         {
             var today = "{{ date('F j, Y') }}";
@@ -46,7 +46,7 @@
             var currentTime = new Date ();
             var timeOffset = 8 * 60 * 60 * 1000;
             currentTime.setTime(clientTime.getTime() + timeOffset);
-            
+
             var currentHours = currentTime.getUTCHours ( );
             var currentMinutes = currentTime.getUTCMinutes ( );
             var currentSeconds = currentTime.getUTCSeconds ( );
@@ -54,10 +54,10 @@
             var day = currentTime.getDate();
             var currentMonth = currentTime.getMonth();
             var currentYear = currentTime.getFullYear();
-            
+
             var dayArr = new Array("Sun","Mon","Tue","Wed","Thu","Fri","Sat");
             var monthArr = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
-                
+
             currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
             currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
 
@@ -119,7 +119,7 @@
 			    var expires = "expires="+ d.toUTCString();
 			    document.cookie = "GDPR" + "=" + "TRUE" + ";" + expires + ";path=/";
             });
-            
+
             $('.order-list-tabel').DataTable({
                 "bFilter": false,
                 "bLengthChange": false,
@@ -141,7 +141,7 @@
 		            return c.substring(name.length, c.length);
 		        }
 		    }
-		
+
 		    return "";
 		}
     </script>

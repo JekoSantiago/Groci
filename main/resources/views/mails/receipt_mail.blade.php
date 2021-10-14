@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <!-- utf-8 works for most cases -->
 	<meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
-	<title>Alfanda Express | Registration Confirmation</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+	<title>Shop Alfamart | Registration Confirmation</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 	<!-- Web Font / @font-face : BEGIN -->
 	<!-- NOTE: If web fonts are not required, lines 9 - 26 can be safely removed. -->
@@ -128,7 +128,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
                                         <tr>
                                             <td style="padding-top: 50px; text-align: center">
-                                                <img src="{{ url('img/Alfamart-logo.fw.png') }}" alt="Alfanda Express" border="0" align="center" style="max-height: 80px;">
+                                                <img src="{{ url('img/Alfamart-logo.fw.png') }}" alt="Shop Alfamart" border="0" align="center" style="max-height: 80px;">
                                             </td>
                                         </tr>
                                     </table>
@@ -144,7 +144,7 @@
                                                         <td style="text-align: left; padding: 40px 0px; font-family: 'Poppins', sans-serif; font-size: 13px; mso-height-rule: exactly; line-height: 20px; color: #555555;">
                                                             Dear {{ $name }},
                                                             <br><br>
-                                                            Thank you for registering with Groci. Please visit your registered store to confirm your registration. Make sure you don't share this confirmation code publicly, because it's unique for you!.
+                                                            Thank you for registering with Shop Alfamart. Please visit your registered store to confirm your registration. Make sure you don't share this confirmation code publicly, because it's unique for you!.
                                                             <br><br>
                                                             Registered Store :
                                                             <br>
@@ -166,7 +166,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0">
                                         <tr>
                                             <td style="width: 100%; font-size: 11px; font-weight: 500; font-family: 'Poppins', sans-serif; color: #555555;">
-                                                &copy; Copyright 2020 Groci. All Rights Reserved
+                                                &copy; Copyright 2020 Shop Alfamart. All Rights Reserved
                                             </td>
                                         </tr>
                                     </table>

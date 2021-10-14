@@ -29,7 +29,7 @@ class SendConfirmationCode extends Mailable
      */
     public function build()
     {
-        return $this->subject('Thank you for signing-up with Alfanda Express')
+        return $this->subject('Thank you for signing-up with Shop Alfamart')
             ->view('mails.receipt_mail')
             ->with($this->data);
     }

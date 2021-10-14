@@ -11,7 +11,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>Alfanda Express - CRM | {{ $page }}</title>
+	<title>Shop Alfamart - CRM | {{ $page }}</title>
 
 	<!-- Global stylesheets -->
 	<link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
@@ -70,7 +70,7 @@
 	<div class="navbar navbar-inverse bg-danger-800">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">
-				<img src="{{ asset('assets/images/Alfamart-logo.fw.png') }}" alt="Alfanda Express">
+				<img src="{{ asset('assets/images/Alfamart-logo.fw.png') }}" alt="Shop Alfamart">
 			</a>
 
 			<ul class="nav navbar-nav pull-right visible-xs-block">
@@ -215,7 +215,7 @@
 
 	<!-- Footer -->
 	<div class="footer text-muted">
-		&copy; {{ date('Y') }}. <a href="{{ url(config('app.web_url')) }}" target="_blank">Alfanda Express</a> - CRM. All Rights Reserved.
+		&copy; {{ date('Y') }}. <a href="{{ url(config('app.web_url')) }}" target="_blank">Shop Alfamart</a> - CRM. All Rights Reserved.
 	</div>
 	<!-- /footer -->
 
