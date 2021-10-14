@@ -15,16 +15,16 @@ use Illuminate\Support\Facades\Redirect;
 
 class CmsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(function ($request, $next) {
-            if(base64_decode(Session::get('Role_ID')) != 5) :
-                return Redirect::to('/403')->send();
-            endif;
+    // public function __construct()
+    // {
+    //     $this->middleware(function ($request, $next) {
+    //         if(base64_decode(Session::get('Role_ID')) != 5) :
+    //             return Redirect::to('/403')->send();
+    //         endif;
 
-            return $next($request);
-        });
-    }
+    //         return $next($request);
+    //     });
+    // }
 
     public function index()
     {

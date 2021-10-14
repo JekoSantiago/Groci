@@ -1,7 +1,7 @@
 <form id="addItemForm">
     <div class="form-group">
         <label for="role" class="text-semibold">PRODUCT CATEGORY</label>
-        <select name="category" class="select" id="category">
+        <select name="category" class="select" id="category" disabled>
             <option value="">SELECT ONE</option>
             @foreach($category as $c)
             <option value="{{ $c->category_id }}" {{ ($detail[0]->category_id == $c->category_id) ? 'selected=selected' : '' }} >{{ strtoupper($c->category_name) }}</option>
@@ -9,10 +9,10 @@
         </select>
         <label class="error form-error-message" id="categoryError" >* Please select category.</label>
     </div>
-    
+
     <div class="form-group">
         <label for="role" class="text-semibold">SKU</label>
-        <input type="text" class="form-control" name="sku" id="sku" value="{{ $detail[0]->sku }}">
+        <input type="text" class="form-control" name="sku" id="sku" value="{{ $detail[0]->sku }}" readonly>
         <label class="error form-error-message" id="skuError" >* Please enter SKU.</label>
     </div>
     <div class="form-group">
@@ -24,7 +24,7 @@
     <div class="form-group">
         <label for="role" class="text-semibold display-block">EXCLUDED STORES</label>
         <select name="exStores" multiple="multiple" class="bootstrap-select" data-width="100%" id="exStores">
-            @php 
+            @php
             $code = explode(',', trim($detail[0]->store_code));
             foreach($stores as $s) :
             @endphp
@@ -39,7 +39,7 @@
         <label for="role" class="text-semibold display-block">IMAGE FILE : <span style="font-size: 11px; color: red">[ Accepted formats: gif, png, jpg, jpeg ]</span></label>
         <div class="media no-margin-top display-block">
 		    <div class="media-left">
-                @php 
+                @php
 			        $imgFile = ($detail[0]->img_pic == NULL) ? 'no-image-available.png' : $detail[0]->img_pic;
 			    @endphp
 			    <img src="{{ url('storage/products/item/'.$imgFile) }}" style="border-radius: 2px;" alt="">

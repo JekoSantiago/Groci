@@ -29,7 +29,7 @@
 		<td style="text-align: left; font-size: 10px; font-family: 'Calibri';">{{ $i['items']['TC'] }}</td>
 		<td style="text-align: left; font-size: 10px; font-family: 'Calibri';">{{ $i['items']['SPD'] }}</td>
 		<td style="text-align: left; font-size: 10px; font-family: 'Calibri';">{{ $i['items']['STD'] }}</td>
-		<td style="text-align: left; font-size: 10px; font-family: 'Calibri';">{{ number_format(($i['items']['SPD'] / $i['items']['STD']), 3, '.', '') }}</td>
+		<td style="text-align: left; font-size: 10px; font-family: 'Calibri';">{{($i['items']['SPD'] ) ? number_format(($i['items']['SPD'] / $i['items']['STD']), 3, '.', '') : 0 }}</td>
 	</tr>
 	@endforeach
 	<tr>
@@ -57,7 +57,7 @@
 	<tr>
 		<td colspan="10" style="font-weight: 500; font-size: 10px; font-family: 'Calibri Light'; text-align: left;">CS : Store Count</td>
 	</tr>
-	<tr>	
+	<tr>
 		<td colspan="10" style="font-weight: 500; font-size: 10px; font-family: 'Calibri Light'; text-align: left;">TC : Transaction Count</td>
 	</tr>
 	<tr>

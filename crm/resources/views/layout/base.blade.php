@@ -74,7 +74,7 @@
 	<div class="navbar navbar-inverse bg-danger-800">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#">
-				<img src="{{ asset('assets/images/logo.png') }}" alt="Alfanda Express">
+				<img src="{{ asset('assets/images/Alfamart-logo.png') }}" alt="Alfanda Express">
 			</a>
 
 			<ul class="nav navbar-nav pull-right visible-xs-block">

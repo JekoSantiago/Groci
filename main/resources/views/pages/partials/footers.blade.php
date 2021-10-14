@@ -2,7 +2,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-2 col-md-2">
-                    <h4 class="mb-1 mt-0"><a class="logo" href="{{ url('/') }}"><img src="{{ asset('img/logo.png') }}" alt="Alfamart Delivery"></a></h4>
+                    <h4 class="mb-1 mt-0"><a class="logo" href="{{ url('/') }}"><img src="{{ asset('img/Alfamart-logo.fw.png') }}" alt="Alfamart Delivery"></a></h4>
                 </div>
                 <!--
                 <div class="col-lg-4 col-md-4">

@@ -44,7 +44,7 @@
         <td style="text-align: left; font-weight: 500; font-size: 10px; font-family: 'Calibri Light';">{{ $total['TC'] }}</td>
 		<td style="text-align: left; font-weight: 500; font-size: 10px; font-family: 'Calibri Light';">{{ $total['SPD'] }}</td>
 		<td style="text-align: left; font-weight: 500; font-size: 10px; font-family: 'Calibri Light';">{{ $total['STD'] }}</td>
-		<td style="text-align: left; font-weight: 500; font-size: 10px; font-family: 'Calibri Light';">{{ number_format(($total['SPD'] / $total['STD']), 3, '.', '') }}</td>
+		<td style="text-align: left; font-weight: 500; font-size: 10px; font-family: 'Calibri Light';">{{ ($total['SPD'] > 0) ? number_format(($total['SPD'] / $total['STD']), 3, '.', '') : 0 }}</td>
 	</tr>
 
 	<tr>

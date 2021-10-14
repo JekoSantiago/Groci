@@ -2,7 +2,7 @@
     @section('contents')
     <nav class="navbar navbar-light navbar-expand-lg bg-faded" style="background-color: transparent;">
         <div class="container">
-            <a class="navbar-brand mr-auto mt-5 mt-lg-2 margin-auto top-categories-search-main" href="{{ url('/') }}"><img src="{{ asset('img/logo.png') }}" alt="logo"></a>
+            <a class="navbar-brand mr-auto mt-5 mt-lg-2 margin-auto top-categories-search-main" href="{{ url('/') }}"><img src="{{ asset('img/Alfamart-logo.fw.png') }}" alt="logo"></a>
         </div>
     </nav>
 

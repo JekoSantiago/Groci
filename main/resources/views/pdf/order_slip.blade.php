@@ -19,8 +19,8 @@
         }
 
         .page_wrapper {
-        	width: 500px; 
-        	margin: 0 auto 20px auto; 
+        	width: 500px;
+        	margin: 0 auto 20px auto;
 			padding: 40px 20px;
         }
 
@@ -31,7 +31,7 @@
 
         table {
         	background-color: #ffffff;
-        	width: 100%; 
+        	width: 100%;
         	max-width: 500px;
         }
 	</style>
@@ -43,7 +43,7 @@
 			<table cellspacing="0" cellpadding="0" border="0" align="center">
 				<tr>
 					<td style="width: 50% padding: 0px;">
-						<img src="{{ url('assets/images/logo.png') }}" alt="Alfanda Express" style="height: 45px">
+						<img src="{{ url('assets/images/Alfamart-logo.fw.png') }}" alt="Alfanda Express" style="height: 45px">
 					</td>
 					<td style="width: 50% padding: 0px; text-align: right; font-family: 'Arial';">
 						<h3>Order Slip</h3>
@@ -107,7 +107,7 @@
 				</tr>
 			</table>
 		</div>
-	</div>			
+	</div>
 	<div class="row">
 		<div style="margin-bottom: 20px">
 			<table cellspacing="0" cellpadding="0" border="1" align="center">

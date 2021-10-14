@@ -85,7 +85,7 @@
             <h6 class="text-semibold col-md-12">Order Summary - ({{ count($data['items']) }} items)</h6>
         </div>
         <div class="col-md-2 pl-4">
-            <button style="display: none" type="button" class="btn bg-primary-700 btn-xs btn-raised" data-toggle="modal" data-target="#modal_order_add" data-oid="{{ $orderID }}" id="btnManualAdd" data-dismiss="modal"><i class="icon-plus3 position-left"></i>ADD</button>
+            <button style="display: none" type="button" class="btn bg-primary-700 btn-xs btn-raised" data-toggle="modal" data-target="#modal_order_add" data-oid="{{ $orderID }}" id="btnManualAdd"  data-backdrop="static" data-keyboard="false"><i class="icon-plus3 position-left"></i>ADD</button>
         </div>
     </div>
     <div class="row">
@@ -327,6 +327,8 @@ $(function() {
 
     $('#modal_order_add').on('hide.bs.modal',function(){
         basketItemsTable.ajax.reload();
+        $('#btnManualAdd').hide();
+
     })
 
 });

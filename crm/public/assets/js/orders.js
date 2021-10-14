@@ -798,12 +798,16 @@ $(function() {
                 $('#btnPrintOrder').hide();
                 $('#btnReceiveOrder').hide();
                 $('#btnEditOrder').hide();
+                $('#btnModifyOrder').hide();
+
             }
             else
             {
                 $('#btnPrintOrder').show();
                 $('#btnReceiveOrder').show();
                 $('#btnEditOrder').show();
+                $('#btnModifyOrder').show();
+
             }
         });
     });
@@ -1251,56 +1255,7 @@ $(function() {
     });
 
 
-    var basketItemsTable = $('#modalBasketItems').DataTable({
-        bJQueryUI: true,
-        bFilter: false,
-        bInfo: false,
-        bPaginate: false,
-        sDom: 't',
-        "ordering": false,
-        autoWidth: false,
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-            "url": webURL + "/orders/cart/item/"+$('#orderID').val(),
-            "method": "POST",
-            "datatype": "json",
-            error: function (jqXHR, textStatus, errorThrown) {
-                alert("Processing data failed. Please report to the System Adminstator.");
-            }
-        },
-        columns:[
-            {
-                render: function (data, type, row) {
-                    return '<ul class="icons-list"><li><a id="btnDeleteItem" data-oid="'+ row.order_items_id+'" data-itemid="'+ row.item_id  +'" data-popup="tooltip" title="Remove" data-placement="left"><i class="icon-x"></i></a></li></ul>';
-                }
-            },
-            { "data": "item_name" },
-            { "data": "item_price" },
-            {
-                render: function (data, type, row) {
-                    var value = row.order_items_id+'@@'+row.item_price+'@@'+row.item_id;
 
-                    return '<input class="form-control text-center" data-oid="'+value+'" id="updateQty" name="uQty_'+row.order_items_id+'" type="text" value="' + row.qty + '">'+
-                            '<input type="hidden" id="upCurQty_'+row.order_items_id+'" value="' + row.qty + '">';
-                }
-            },
-            { "data": "total_amount" }
-        ],
-        "fnInitComplete": function(oSettings, json) {
-            var totalRecords = json.recordsTotal;
-            var amountDue = parseFloat(json.totalAmount) ;
-
-            if(totalRecords > 0)
-            {
-                $('#amountDue').html(amountDue.toFixed(2));
-            }
-            else
-            {
-                $('#totalAmount').html('0.00');
-            }
-        }
-    });
 
     $(document).on('show.bs.modal', '.modal', function (event) {
         var zIndex = 1040 + (10 * $('.modal:visible').length);

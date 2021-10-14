@@ -62,13 +62,13 @@
 								</li>
 								@endif
 
-								{{-- @if($row['order_status'] == 'RECEIVED')
+								@if($row['order_status'] == 'RECEIVED')
 								<li>
 									<a data-toggle='modal' data-target='#modal_receipt_form' data-sid='{{ $row['order_id'] }}' data-popup="tooltip" title="Punch" data-placement="left">
 										<i class="icon-calculator2"></i>
 									</a>
 								</li>
-								@endif --}}
+								@endif
 
 								@if($row['order_status'] == 'ON PROCESS')
 								<li>
@@ -102,7 +102,7 @@
 								</li>
 								@endif --}}
 
-								@if($row['order_status'] != 'CLOSE' && $row['order_status'] != 'CANCEL')
+								@if($row['order_status'] != 'DELIVERED' && $row['order_status'] != 'CANCEL')
 								<li style="margin-left: 10px;">
 									<a data-toggle='modal' data-target='#modal_cancel_form' data-oid='{{ $row['order_id'] }}' data-popup="tooltip" title="Cancel" data-placement="left">
 										<i class="icon-cancel-square2"></i>

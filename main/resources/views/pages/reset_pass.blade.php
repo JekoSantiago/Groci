@@ -1,8 +1,8 @@
 @extends('layout.base_tpl')
-    @section('contents') 
+    @section('contents')
     <nav class="navbar navbar-light navbar-expand-lg bg-faded" style="background-color: transparent;">
         <div class="container">
-            <a class="navbar-brand mr-auto mt-5 mt-lg-2 margin-auto top-categories-search-main" href="{{ url('/') }}"><img src="{{ asset('img/logo.png')}}" alt="logo"></a>
+            <a class="navbar-brand mr-auto mt-5 mt-lg-2 margin-auto top-categories-search-main" href="{{ url('/') }}"><img src="{{ asset('img/Alfamart-logo.fw.png')}}" alt="logo"></a>
         </div>
     </nav>
 
@@ -41,7 +41,7 @@
                                     <input type="hidden" id="customerEmail" value="{{ $email }}">
                                     <input type="hidden" id="customerID" value="{{ $custID }}">
                                 </fieldset>
-                                
+
                                 <fieldset class="form-group">
                                     <button type="button" id="btnChangePassword" class="btn btn-lg btn-secondary btn-block">CHANGE PASSWORD</button>
                                 </fieldset>
@@ -52,6 +52,6 @@
             </div>
         </div>
     </section>
-    
+
     <div id="clock" style="display:none"></div>
     @endsection

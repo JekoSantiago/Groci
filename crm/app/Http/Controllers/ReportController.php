@@ -20,16 +20,16 @@ use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
 
 class ReportController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(function ($request, $next) {
-            if(base64_decode(Session::get('Role_ID')) != 5) :
-                abort(403, json_encode(config('app.btn_previous')));
-            endif;
+    // public function __construct()
+    // {
+    //     $this->middleware(function ($request, $next) {
+    //         if(base64_decode(Session::get('Role_ID')) != 5) :
+    //             abort(403, json_encode(config('app.btn_previous')));
+    //         endif;
 
-            return $next($request);
-        });
-    }
+    //         return $next($request);
+    //     });
+    // }
 
     public function index(Request $request)
     {

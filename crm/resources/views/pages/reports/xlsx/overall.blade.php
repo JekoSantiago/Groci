@@ -29,7 +29,7 @@
         <td style="text-align: left; font-size: 10px; font-family: 'Calibri';">{{ $i->items['TC'] }}</td>
 		<td style="text-align: left; font-size: 10px; font-family: 'Calibri';">{{ $i->items['SPD'] }}</td>
 		<td style="text-align: left; font-size: 10px; font-family: 'Calibri';">{{ $i->items['STD'] }}</td>
-		<td style="text-align: left; font-size: 10px; font-family: 'Calibri';">{{ number_format(($i->items['SPD'] / $i->items['STD']), 3, '.', '') }}</td>
+		<td style="text-align: left; font-size: 10px; font-family: 'Calibri';">{{ ($i->items['SPD'] > 0) ? number_format(($i->items['SPD'] / $i->items['STD']), 3, '.', '') : 0 }}</td>
 	</tr>
 	@endforeach
 	<tr>

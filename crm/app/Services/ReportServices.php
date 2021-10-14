@@ -3,7 +3,7 @@ namespace App\Services;
 use App\Report;
 use App\Cms;
 
-class ReportServices 
+class ReportServices
 {
     public static function overAllReport($branchCode, $dateFrom, $dateTo)
     {
@@ -125,7 +125,7 @@ class ReportServices
     {
         $filterDate = date('Y-m-d', strtotime($date));
         $results = Report::getTop15ProductsDailyData($itemID, $filterDate);
-        
+
         $data = [
             'AMT' => (empty($results)) ? 0 : $results[0]->total_price,
             'QTY' => (empty($results)) ? 0 : $results[0]->total_qty
@@ -170,7 +170,7 @@ class ReportServices
             'totalTC'  => $transCount,
             'totalSPD' => $spd,
             'totalSTD' => $std,
-            'totalAPC' => ($spd / $std)
+            'totalAPC' => ($spd > 0 && $std > 0) ? ($spd / $std) : 0
         ];
 
         $response = [
@@ -196,7 +196,7 @@ class ReportServices
                 'work_days'  => 1,
                 'items'      => $items
             ];
-            
+
             $encode[] = $data;
         endforeach;
 
@@ -306,7 +306,7 @@ class ReportServices
                 'work_days'  => 1,
                 'items'      => $items
             ];
-            
+
             $encode[] = $data;
 
         endforeach;
@@ -350,27 +350,27 @@ class ReportServices
         return $detail[0]->branch_name;
     }
 
-    public static function base64url_encode($data) 
+    public static function base64url_encode($data)
     {
         return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
     }
-      
+
     public static function base64url_decode($data)
     {
         return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
     }
 
-    public static function dateRange($first, $last, $step = '+1 day', $format = 'm/d/Y' ) 
+    public static function dateRange($first, $last, $step = '+1 day', $format = 'm/d/Y' )
 	{
 		$dates   = array();
 		$current = strtotime($first);
 		$last    = strtotime($last);
-	
+
 		while( $current <= $last ) :
 			$dates[] = date( $format, $current );
 			$current = strtotime( $step, $current );
 		endwhile;
-	
+
 		return $dates;
 	}
 

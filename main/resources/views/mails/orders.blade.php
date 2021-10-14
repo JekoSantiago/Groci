@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
     <title>Alfanda Express | Order Confirmation Notification</title> <!-- The title tag shows in email notifications, like Android 4.4. -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Web Font / @font-face : BEGIN -->
     <!-- NOTE: If web fonts are not required, lines 9 - 26 can be safely removed. -->
-    
+
     <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
     <!--[if mso]>
         <style>
@@ -17,14 +17,14 @@
             }
         </style>
     <![endif]-->
-    
+
     <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
     <!--[if !mso]><!-->
         <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
     <!--<![endif]-->
 
     <!-- Web Font / @font-face : END -->
-    
+
     <!-- CSS Reset -->
     <style type="text/css">
 
@@ -38,25 +38,25 @@
             width: 100% !important;
             font-family: 'Poppins', sans-serif;
         }
-        
+
         /* What it does: Stops email clients resizing small text. */
         * {
             -ms-text-size-adjust: 100%;
             -webkit-text-size-adjust: 100%;
         }
-        
+
         /* What is does: Centers email on Android 4.4 */
         div[style*="margin: 16px 0"] {
             margin:0 !important;
         }
-        
+
         /* What it does: Stops Outlook from adding extra spacing to tables. */
         table,
         td {
             mso-table-lspace: 0pt !important;
             mso-table-rspace: 0pt !important;
         }
-                
+
         /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
         table {
             border-spacing: 0 !important;
@@ -65,26 +65,26 @@
             Margin: 0 auto !important;
         }
         table table table {
-            table-layout: auto; 
+            table-layout: auto;
         }
-        
+
         /* What it does: Uses a better rendering method when resizing images in IE. */
         img {
             -ms-interpolation-mode:bicubic;
         }
-        
+
         /* What it does: Overrides styles added when Yahoo's auto-senses a link. */
         .yshortcuts a {
             border-bottom: none !important;
         }
-        
+
         /* What it does: A work-around for iOS meddling in triggered links. */
         .mobile-link--footer a,
         a[x-apple-data-detectors] {
             color:inherit !important;
             text-decoration: underline !important;
 		}
-		
+
 		table th {
 			text-align: left;
 			font-weight: 500;
@@ -110,12 +110,12 @@
 				margin: auto;
 			}
 		}
-      
+
     </style>
-    
+
     <!-- Progressive Enhancements -->
     <style>
-        
+
         /* What it does: Hover styles for buttons */
         .button-td,
         .button-a {
@@ -138,7 +138,7 @@
 					<!-- Visually Hidden Preheader Text : BEGIN -->
         			<div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;"></div>
        				<!-- Visually Hidden Preheader Text : END -->
-       				<!--    
+       				<!--
 			            Set the email width. Defined in two places:
 			            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 750px.
 			            2. MSO tags for Desktop Windows Outlook enforce a 750px width.
@@ -153,7 +153,7 @@
 						            <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%">
 						                <tr>
 						                    <td style="padding-top: 50px; text-align: center">
-						                       <img src="{{ url('img/logo.png') }}" alt="Alfanda Express" border="0" align="center" style="max-height: 80px;">
+						                       <img src="{{ url('img/Alfamart-logo.fw.png') }}" alt="Alfanda Express" border="0" align="center" style="max-height: 80px;">
 						                    </td>
 						                </tr>
 						            </table>
@@ -167,13 +167,13 @@
 												</p>
 					            			</td>
 					            		</tr>
-					            		
+
 					            		<tr>
 					            			<td style="padding: 0px 20px 20px;" colspan="2">
 					            				<p style="margin: 0px; height: 3px; background-color: #005AAA;">&nbsp;</p>
 					            			</td>
 					            		</tr>
-					            		
+
 					            		<tr>
 					            			<td style="padding: 0px 20px 20px; width: 65%" valign="top">
 					            				<p style="margin: 0px; font-size: 13px;">
@@ -193,7 +193,7 @@
 					            						<td style="width: 30%; font-size: 12px;">Address : </td>
 					            						<td style="width: 70%; font-size: 12px;">{{ $detail[0]->address }} {{ $detail[0]->city }}, {{ $detail[0]->province_name }}</td>
 													</tr>
-													
+
 													<tr>
 					            						<td style="width: 30%; font-size: 12px;">Landmark : </td>
 					            						<td style="width: 70%; font-size: 12px;">{{ $detail[0]->landmarks }}</td>
@@ -217,7 +217,7 @@
 					            						<td style="font-size: 12px;">Change For : </td>
 					            						<td style="font-size: 12px;">{{ $detail[0]->change_for }}</td>
 													</tr>
-													
+
 													<tr>
 					            						<td style="font-size: 12px;">Total Amount : </td>
 					            						<td style="font-size: 12px;">{{ $detail[0]->order_amount }}</td>
@@ -225,7 +225,7 @@
 					            				</table>
 					            			</td>
 					            		</tr>
-					            					            		
+
 					            		<tr>
 					            			<td style="padding: 0px 20px 20px;" colspan="2">
 					            				<p style="margin: 0px; font-size: 13px;">
@@ -247,7 +247,7 @@
 					            				</table>
 					            			</td>
 					            		</tr>
-					            		
+
 					            		<tr>
 					            			<td style="padding: 0px 20px 10px;" colspan="2">
 					            				<p style="margin: 0px; font-size: 13px;">
@@ -255,7 +255,7 @@
 												</p>
 											</td>
 										</tr>
-										
+
 										<tr>
 					            			<td style="padding: 0px 20px 20px;" colspan="2">
 												<table cellspacing="0" cellpadding="0" border="0" width="100%">
@@ -294,19 +294,19 @@
 					            				</table>
 					            			</td>
 					            		</tr>
-					            		
+
 					            		<tr>
 					            			<td style="padding: 0px 20px 10px;" colspan="2">
 					            				<p style="margin: 0px; height: 3px; background-color: #005AAA;">&nbsp;</p>
 					            			</td>
-										</tr>	
-										
+										</tr>
+
 										<tr>
                                             <td style="font-size: 11px; font-weight: 500; color: #555555; text-align: center" colspan="2">
                                                 &copy; Copyright 2020 Groci. All Rights Reserved
                                             </td>
                                         </tr>
-					            			
+
 					            		<!-- Email Body : END -->
 					            	</table>
             					<!--[if (gte mso 9)|(IE)]>

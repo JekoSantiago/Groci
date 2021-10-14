@@ -1,8 +1,8 @@
 @extends('layout.base_tpl')
-    @section('contents') 
+    @section('contents')
     <nav class="navbar navbar-light navbar-expand-lg bg-faded" style="background-color: transparent;">
         <div class="container">
-            <a class="navbar-brand mr-auto mt-5 mt-lg-2 margin-auto top-categories-search-main" href="{{ url('/') }}"><img src="{{ asset('img/logo.png') }}" alt="logo"></a>
+            <a class="navbar-brand mr-auto mt-5 mt-lg-2 margin-auto top-categories-search-main" href="{{ url('/') }}"><img src="{{ asset('img/Alfamart-logo.fw.png') }}" alt="logo"></a>
         </div>
     </nav>
 
@@ -54,7 +54,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                                                    
+
                                             <div class="row">
                                                 <label style="display: block; width: 100%">* Delivery Date & Time</label>
                                                 <p class="reg-txt-header" id="deliveryNow">Today ({{ date('F j, Y') }} Philippine local date & time) expected delivery between 1pm and 3pm upon confirmation of orders. </p>
@@ -94,7 +94,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                        
+
                                         <div class="row" id="pickupContent" style="display: none">
                                             <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
                                                 <label class="display-block">* Pick-up Date & Time</label>
@@ -188,11 +188,11 @@
             </div>
         </div>
     </section>
-    
+
     <div id="clock" style="display:none"></div>
     <script type="text/javascript">
         var isSocial = $('#isSocial').val();
-        
+
         if(isSocial.length > 0)
         {
             loginData($('#email').val(), $('#storeCode').val());
