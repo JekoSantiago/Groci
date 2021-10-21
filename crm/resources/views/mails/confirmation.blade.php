@@ -128,7 +128,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
                                         <tr>
                                             <td style="padding-top: 50px; text-align: center">
-                                                <img src="{{ url('assets/images/Alfamart-logo.png') }}" alt="Alfanda Express" border="0" align="center" style="max-height: 80px;">
+                                                <img src="{{ url('assets/images/alfamart.logo.fw.png') }}" alt="Alfanda Express" border="0" align="center" style="max-height: 80px;">
                                             </td>
                                         </tr>
                                     </table>
@@ -145,10 +145,10 @@
                                                             Dear {{ $name }},
                                                             @if($status == 1)
                                                             <br><br>
-                                                            Thank you for registering with Groci. To enjoy hassle free product delivery, just visit our website at www.groci.atp.ph.
+                                                            Thank you for registering with Shop Alfamart. To enjoy hassle free product delivery, just visit our website at www.Shop Alfamart.atp.ph.
                                                             @else
                                                             <br><br>
-                                                            Thank you for registering with Groci. Now please verify your account to activate it. Just click the link below.
+                                                            Thank you for registering with Shop Alfamart. Now please verify your account to activate it. Just click the link below.
                                                             <br><br>
                                                             Activate Now :
                                                             <br>
@@ -167,7 +167,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0">
                                         <tr>
                                             <td style="width: 100%; font-size: 11px; font-weight: 500; font-family: 'Poppins', sans-serif; color: #555555;">
-                                                &copy; Copyright 2020 Groci. All Rights Reserved
+                                                &copy; Copyright 2020 Shop Alfamart. All Rights Reserved
                                             </td>
                                         </tr>
                                     </table>

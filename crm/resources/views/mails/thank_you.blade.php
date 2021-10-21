@@ -128,7 +128,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
                                         <tr>
                                             <td style="padding-top: 50px; text-align: center">
-                                                <img src="{{ url('assets/images/Alfamart-logo.png') }}" alt="Alfanda Express" border="0" align="center" style="max-height: 80px;">
+                                                <img src="{{ url('assets/images/alfamart.logo.fw.png') }}" alt="Alfanda Express" border="0" align="center" style="max-height: 80px;">
                                             </td>
                                         </tr>
                                     </table>
@@ -144,9 +144,9 @@
                                                         <td style="text-align: left; padding: 40px 0px; font-family: 'Poppins', sans-serif; font-size: 13px; mso-height-rule: exactly; line-height: 20px; color: #555555;">
                                                             Dear {{ $name }},
                                                             <br><br>
-                                                            Thank you for your recent order from Groci. Your order has been successfully delivered. Enclosed are the items your ordered, receipt and order slip. We look forward to serving you again.
+                                                            Thank you for your recent order from Shop Alfamart. Your order has been successfully delivered. Enclosed are the items your ordered, receipt and order slip. We look forward to serving you again.
                                                             <br><br>
-                                                            To enjoy hassle free product delivery, just visit our website at <a href="http://groci.atp.ph">http://groci.atp.ph</a>
+                                                            To enjoy hassle free product delivery, just visit our website at <a href="http://Shop Alfamart.atp.ph">http://Shop Alfamart.atp.ph</a>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -160,7 +160,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0">
                                         <tr>
                                             <td style="width: 100%; font-size: 11px; font-weight: 500; font-family: 'Poppins', sans-serif; color: #555555;">
-                                                &copy; Copyright 2020 Groci. All Rights Reserved
+                                                &copy; Copyright 2020 Shop Alfamart. All Rights Reserved
                                             </td>
                                         </tr>
                                     </table>

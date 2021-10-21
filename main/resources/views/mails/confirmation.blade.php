@@ -128,7 +128,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
                                         <tr>
                                             <td style="padding-top: 50px; text-align: center">
-                                                <img src="{{ url('assets/images/Alfamart-logo.fw.png') }}" alt="Shop Alfamart" border="0" align="center" style="max-height: 80px;">
+                                                <img src="{{ url('img/Alfamart-logo.fw.png') }}" alt="Shop Alfamart" border="0" align="center" style="max-height: 80px;">
                                             </td>
                                         </tr>
                                     </table>
@@ -145,14 +145,20 @@
                                                             Dear {{ $name }},
                                                             @if($status == 1)
                                                             <br><br>
-                                                            Thank you for registering with Shop Alfamart. To enjoy hassle free product delivery, just visit our website at www.Shop Alfamart.atp.ph.
+                                                            Thank you for registering with Shop Alfamart. To enjoy hassle free product delivery, just visit our website at www.shop.alfamart.com.ph.
                                                             @else
                                                             <br><br>
-                                                            Thank you for registering with Shop Alfamart. Now please verify your account to activate it. Just click the link below.
+                                                            Welcome to Shop Alfamart!
                                                             <br><br>
-                                                            Activate Now :
+                                                            Please click the link below to complete your registration:
                                                             <br>
                                                             <a href="{{ config('app.web_url').'/activate/'.base64_encode($email) }}">{{ config('app.web_url').'/activate/'.base64_encode($email) }}</a>
+                                                            <br><br>
+                                                            Connect with us! Follow Alfamart at Facebook <a href="https://www.facebook.com/AlfamartPHOfficial">Alfamart PH</a> today.
+                                                            <br><br>
+                                                            Need help? Email us at customercare@alfamart.com.ph
+                                                            <br><br>
+                                                            This ia a post-only mailing. Please do not reply to this email.
                                                             @endif
                                                         </td>
                                                     </tr>

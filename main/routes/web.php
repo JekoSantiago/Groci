@@ -55,6 +55,8 @@ Route::post('account/details', 'AccountController@customerDetails');
 Route::post('account/stores', 'AccountController@showStorePerProvince');
 Route::post('/stores/per-city', 'AccountController@showStorePerCity');
 Route::get('/address-list','AccountController@addressList');
+Route::post('/address-del','AccountController@deleteAddress');
+Route::post('/address-update','AccountController@updateAddress');
 
 Route::post('account/view/address', 'AccountController@showCustomerAddress');
 Route::post('account/transaction', 'AccountController@selectTransaction');

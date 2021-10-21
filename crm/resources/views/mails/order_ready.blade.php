@@ -128,7 +128,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
                                         <tr>
                                             <td style="padding-top: 50px; text-align: center">
-                                                <img src="{{ url('assets/images/Alfamart-logo.png') }}" alt="Alfanda Express" border="0" align="center" style="max-height: 80px;">
+                                                <img src="{{ url('assets/images/alfamart.logo.fw.png') }}" alt="Alfanda Express" border="0" align="center" style="max-height: 80px;">
                                             </td>
                                         </tr>
                                     </table>
@@ -146,7 +146,7 @@
                                                             <br><br>
                                                             This is a quick update to let you know that your order is now {{ ($status == 'pick-up') ? 'ready for pickup at '.$store : 'out for delivery' }}.
                                                             <br><br>
-                                                            To see the status of your order, kindly login to our website at <a href="http://groci.atp.ph">http://groci.atp.ph</a>
+                                                            To see the status of your order, kindly login to our website at <a href="http://Shop Alfamart.atp.ph">http://Shop Alfamart.atp.ph</a>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -160,7 +160,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0">
                                         <tr>
                                             <td style="width: 100%; font-size: 11px; font-weight: 500; font-family: 'Poppins', sans-serif; color: #555555;">
-                                                &copy; Copyright 2020 Groci. All Rights Reserved
+                                                &copy; Copyright 2020 Shop Alfamart. All Rights Reserved
                                             </td>
                                         </tr>
                                     </table>

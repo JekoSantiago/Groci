@@ -929,7 +929,7 @@ $(document).ready(function() {
         var remoteLink = webURL + '/account/order/details/'+orderID;
         $('#modal_view_order_items').modal({ show: true});
         $('#modal_view_order_items').find('.modal-body').load(remoteLink, function() {
-            if(orderStatus == 'CLOSE' || orderStatus == 'CANCEL')
+            if(orderStatus == 'CLOSE' || orderStatus == 'CANCEL' || orderStatus == 'DELIVERED')
             {
                 $('#btnReOrder').show();
                 $('#btnCancelReOrder').hide();
@@ -1256,6 +1256,166 @@ $(document).ready(function() {
             });
         }
 
+    $('body').on('click','.deladd',function(e){
+        var addressID = $(this).data('aid');
+        var form_data = new FormData();
+        form_data.append('aid', addressID);
+        console.log(addressID);
+        swal({
+            title: "Are you sure you want to delete the address?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#2196f3",
+            cancelButtonColor: "#ed1c24",
+            confirmButtonText: "YES",
+            cancelButtonText: "NO",
+            closeOnConfirm: false,
+            closeOnCancel: true
+        },
+        function(isConfirm){
+            if (isConfirm) {
+
+                $.ajax({
+                    url: webURL + '/address-del',
+                    type: 'POST',
+                    dataType: 'json',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    success: function (data) {
+                        if(data.num>0)
+                        {
+                            swal({
+                                title: data.msg,
+                                type: 'success'
+                            })
+                            loadAddressList();
+
+                        }
+                        else
+                        {
+                            swal({
+                                title: "Warning!",
+                                text: data.msg,
+                                type: "warning",
+                                confirmButtonText: "Ok",
+                                confirmButtonColor: '#6658dd',
+                                allowOutsideClick: false,
+                            });
+                        }
+                    }
+                });
+            }
+
+        });
+
+    })
+
+    $('#modal_edit_address').on('show.bs.modal' ,function(e){
+
+       var address = $(e.relatedTarget).data('add');
+       var landmark = $(e.relatedTarget).data('lm');
+       var type = $(e.relatedTarget).data('typ');
+       var aid = $(e.relatedTarget).data('aid');
+
+
+       $('#edit_address').val(address);
+       $('#edit_landmark').val(landmark);
+       $('#edit_type').val(type);
+       $('#addressID').val(aid);
+
+    })
+
+    $('#btnEditAdd').on('click',function(){
+        var error = false;
+
+        var address = $('#edit_address').val();
+        var type = $('#edit_type').val();
+        var landmark = $('#edit_landmark').val();
+        var aid = $('#addressID').val();
+
+
+        if(address.length<0)
+        {
+            $('#edit_address_error').show()
+            error = true;
+        }
+        else
+        {
+            $('#edit_address_error').hide()
+        }
+
+        if(error == false)
+        {
+            var form_data = new FormData();
+
+            form_data.append('aid', aid);
+            form_data.append('address', address);
+            form_data.append('landmark', landmark);
+            form_data.append('type', type);
+
+            swal({
+                title: "Are you sure you want to update the address?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#2196f3",
+                cancelButtonColor: "#ed1c24",
+                confirmButtonText: "YES",
+                cancelButtonText: "NO",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            },
+            function(isConfirm){
+                if (isConfirm) {
+
+                    $.ajax({
+                        url: webURL + '/address-update',
+                        type: 'POST',
+                        dataType: 'json',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        success: function (data) {
+
+                            if(data.num>0)
+                            {
+                                swal({
+                                    title: data.msg,
+                                    type: 'success'
+                                })
+                                $('#modal_edit_address').hide();
+                                $(document.body).removeClass("modal-open");
+                                $(".modal-backdrop").remove();
+                                loadAddressList();
+
+                            }
+                            else
+                            {
+                                swal({
+                                    title: "Warning!",
+                                    text: data.msg,
+                                    type: "warning",
+                                    confirmButtonText: "Ok",
+                                    confirmButtonColor: '#6658dd',
+                                    allowOutsideClick: false,
+                                });
+                            }
+                        }
+                    });
+                }
+
+            });
+
+
+        }
+
+
+
+
+
+    })
 
 
 });

@@ -30,7 +30,7 @@ class SendConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->subject('Thank you for signing-up with Shop Alfamart')
+        return $this->subject('Verify your Shop Alfamart account')
             ->view('mails.confirmation')
             ->with($this->data);
     }

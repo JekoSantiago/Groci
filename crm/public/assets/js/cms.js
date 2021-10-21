@@ -36,7 +36,7 @@ $(function() {
 
     // Basic datatable
     $('.datatable-basic').DataTable({
-        "ordering": false
+        "ordering": true
     });
 
     $('.datatable-stores').DataTable({

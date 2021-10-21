@@ -273,9 +273,9 @@ class OrdersController extends Controller
         $orderID = $request->input('id');
         $check = $this->checkOrderSlip($orderID);
 
-        if(!$check['isExist']) :
+        // if(!$check['isExist']) :
             $this->generatePDF($orderID);
-        endif;
+        // endif;
 
         echo json_encode($check['fileName']);
     }
@@ -366,6 +366,7 @@ class OrdersController extends Controller
         $deliveryDate = ($detail[0]->delivery_time == 'PROMISE TIME') ? $detail[0]->order_date : date('Y-m-d', strtotime($detail[0]->delivery_time));
         $deliveryTime = ($detail[0]->delivery_time == 'PROMISE TIME') ? '1pm-3pm' : date('g:i A', strtotime($detail[0]->delivery_time));
         $deliveryCharge = Orders::deliveryCharge();
+                dd($detail);
 
         $data = [
             'data'    => OrderServices::basketItems($orderID),

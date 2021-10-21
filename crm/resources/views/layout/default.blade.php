@@ -173,7 +173,7 @@
 	<!-- /page container -->
 
 	<input type="hidden" id="customer_notification" value="{{ asset('assets/audio/text_notification.mp3') }}">
-	<input type="hidden" id="order_notification" value="{{ asset('assets/audio/notification_sapm.mp3') }}">
+	<input type="hidden" id="order_notification" value="{{ asset('assets/audio/press_my_doorbell.wav') }}">
 
 	<!-- Footer -->
 	<div class="footer text-muted">

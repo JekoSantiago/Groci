@@ -137,4 +137,27 @@ class Account extends Model
 
         return $result;
     }
+
+    /**
+     * Delete Address
+     */
+
+    public static function deleteAddress($data)
+    {
+        $query = DB::connection('dbSqlSrv')->select('EXEC sp_CustomerAddress_Delete ?', $data);
+
+        return $query;
+
+    }
+
+    /**
+     * Update Address
+     */
+
+     public static function updateAddress($data)
+     {
+        $query = DB::connection('dbSqlSrv')->select('EXEC sp_CustomerAddress_Update ?,?,?,?', $data);
+
+        return $query;
+     }
 }

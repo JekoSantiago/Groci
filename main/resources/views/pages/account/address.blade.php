@@ -140,6 +140,47 @@
             </div>
         </div>
     </section>
+    		<!-- Edit form modal -->
+		<div id="modal_edit_address" class="modal" data-backdrop="static">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Edit Address</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+					</div>
+					<div class="modal-body">
+                        <form id="editAddressForm">
+                            <div class="form-group">
+                                <label class="text-semibold">Address</label>
+                                <input type="text" name="edit_address" id="edit_address" class="form-control" />
+                                <label class="error" id="edit_address_error" style="margin-top: 7px; color: red; font-size: 11px; font-style: italic; display: none;">* Address is required.</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-semibold">Landmark</label>
+                                <input type="text" name="edit_landmark" id="edit_landmark" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="text-semibold">Type:</label>
+                                <select name="edit_type" id="edit_type" class="form-control">
+                                    <option value="Home">HOME</option>
+                                    <option value="Office">OFFICE</option>
+                                    <option value="Others">OTHERS</option>
+                                </select>
+                            </div>
+                            <input type="hidden" id="addressID" value="" form="editAddressForm">
+                        </form>
+                    </div>
+					<div class="modal-footer text-center">
+						<button type="button" class="btn btn-danger" id="btnClose" data-dismiss="modal"><i class="icon-x position-left"></i>CLOSE</button>
+						<button type="button" class="btn btn-success" id="btnEditAdd">SAVE</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /edit form modal -->
+
 
     @include('pages.partials.footers')
     <!-- End profile content -->

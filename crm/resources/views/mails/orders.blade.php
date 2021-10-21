@@ -152,7 +152,7 @@
 						            <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%">
 						                <tr>
 						                    <td style="padding-top: 50px; text-align: center">
-						                       <img src="{{ url('assets/images/Alfamart-logo.png') }}" alt="Alfanda Express" border="0" align="center" style="max-height: 80px;">
+						                       <img src="{{ url('assets/images/alfamart.logo.fw.png') }}" alt="Alfanda Express" border="0" align="center" style="max-height: 80px;">
 						                    </td>
 						                </tr>
 						            </table>
@@ -162,7 +162,7 @@
 					            		<tr>
 					            			<td style="padding: 20px 20px 10px" colspan="2">
 					            				<p style="margin:0px; border-radius: 5px; padding: 15px; font-size: 13px; background-color: #F8DA00;">
-					            					<span style="margin-bottom: 10px; display: block;">Thank you for ordering at Groci, {{ $name }}! Please see the order summary below with reference number <span style="font-weight: 600">{{ $orderID }}</span> </span>
+					            					<span style="margin-bottom: 10px; display: block;">Thank you for ordering at Shop Alfamart, {{ $name }}! Please see the order summary below with reference number <span style="font-weight: 600">{{ $orderID }}</span> </span>
 												</p>
 					            			</td>
 					            		</tr>
@@ -302,7 +302,7 @@
 
 										<tr>
                                             <td style="font-size: 11px; font-weight: 500; color: #555555; text-align: center" colspan="2">
-                                                &copy; Copyright 2020 Groci. All Rights Reserved
+                                                &copy; Copyright 2020 Shop Alfamart. All Rights Reserved
                                             </td>
                                         </tr>
 

@@ -202,7 +202,7 @@ $(document).ready(function() {
                 {
                     swal({
                         title: "Warning!",
-                        text: 'TOur minimum order requirement is P'+ minCharge+'. Please add more items. ',
+                        text: 'Our minimum order requirement is P'+ minCharge+'. Please add more items. ',
                         confirmButtonColor: "#EF5350",
                         type: "warning"
                     });

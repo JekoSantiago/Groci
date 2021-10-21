@@ -182,7 +182,7 @@ class AccountController extends Controller
         ];
 
         // dd($data);
-        // Mail::to($email)->send(new SendConfirmation($data));
+        Mail::to($email)->send(new SendConfirmation($data));
     }
 
     /**
@@ -276,15 +276,35 @@ class AccountController extends Controller
     public function addressList()
     {
         $data = Account::getCustomerAddress(NULL, Session::get('email'), NULL, NULL);
+        $count = 0;
+
+        foreach($data as $c)
+        {
+            $count ++;
+        }
 
         $output = '';
+        $disable = '';
+
+        if ($count <= 1)
+        {
+            $disable = 'style=display:none';
+        }
 
         foreach($data as $row) :
-            $output .= '<div class="col-sm-12"><div class="form-group">
-                <label class="control-label" style="width: 100%">'. $row->type .' Address </label>
-                <textarea class="form-control border-form-control" style="text-align: left" readonly>Address :'. $row->address.' '.$row->city.' '.$row->province_name .'&#13;&#10;Landmark :'.  $row->landmarks .'</textarea>
-            </div>
-        </div>';
+            $output .= '<div class="col-sm-12 ">
+                            <div class="form-group">
+                                <label class="control-label" style="width: 100%"> STORE: <b>'. $row->store_name .'</b>
+                                    <button type="button" data-toggle="modal" data-target="#modal_edit_address" data-popup="tooltip" title="Edit" data-placement="top" class="btn btn-error btn-sm text-right" data-add ="'.$row->address.'" data-lm="'.$row->landmarks.'" data-typ="'.$row->type.'" data-aid="'.$row->address_id.'">
+                                    <i class="mdi mdi-pencil text-info"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-error btn-sm text-right deladd" data-aid ="'. $row->address_id.'" '.$disable.' data-popup="tooltip" title="Delete" data-placement="top">
+                                    <i class="mdi mdi-close text-danger"></i>
+                                    </button>
+                                </label>
+                                <textarea rows=3 class="form-control border-form-control" style="text-align: left" readonly>Address : '. $row->address.' '.$row->city.' '.$row->province_name .'&#13;&#10;Landmark : '.  $row->landmarks .' &#13;&#10;Type : '. $row->type . '  </textarea>
+                            </div>
+                        </div>';
         endforeach;
 
         echo $output;
@@ -513,7 +533,7 @@ class AccountController extends Controller
                     'id'    => $detail[0]->customer_id
                 ];
 
-                // Mail::to($detail[0]->email_address)->send(new SendForgotPasswordNotification($data));
+                Mail::to($detail[0]->email_address)->send(new SendForgotPasswordNotification($data));
             else :
                 $item = AccountServices::getCode($request->input('email'));
                 $store = ContentServices::storeName($item['scode']);
@@ -523,7 +543,7 @@ class AccountController extends Controller
                     'store' => $store
                 ];
 
-                //  Mail::to($detail[0]->email_address)->send(new SendConfirmationCode($data));
+                 Mail::to($detail[0]->email_address)->send(new SendConfirmationCode($data));
             endif;
 
             if(count(Mail::failures()) > 0) :
@@ -641,5 +661,47 @@ class AccountController extends Controller
         Session::flush();
 
         return Redirect::to('/');
+    }
+
+    /**
+     * Delete Address
+     */
+
+    public function deleteAddress(Request $request)
+    {
+        // dd($request->aid);
+
+        $param = [
+            $request->aid
+        ] ;
+
+        $res = Account::deleteAddress($param);
+
+
+
+        $num = $res[0]->RETURN;
+        $msg = $res[0]->Message;
+
+        $result = array('num' => $num, 'msg' => $msg);
+        return $result;
+
+
+    }
+
+    public function updateAddress(Request $request)
+    {
+        $param = [
+            $request->aid,
+            $request->address,
+            $request->landmark,
+            $request->type
+        ];
+        $res = Account::updateAddress($param);
+
+        $num = $res[0]->RETURN;
+        $msg = $res[0]->Message;
+
+        $result = array('num' => $num, 'msg' => $msg);
+        return $result;
     }
 }
