@@ -33,7 +33,7 @@ $(document).ready(function() {
 				var error = true;
 				$('#docFileError').html('* Documents file must be of type: xlsx.');
 				$('#docFileError').show();
-			} 
+			}
 			else
 			{
 				var fileExtension = ['xlsx'];
@@ -53,7 +53,7 @@ $(document).ready(function() {
 			$('#btnUpdatePrice').attr('disabled', 'disabled');
 			var form_data = new FormData();
 			form_data.append('doc_file', docs);
-			
+
 			$.ajax({
 				url: webURL + '/cms/update/price',
 				type: 'POST',
@@ -65,13 +65,12 @@ $(document).ready(function() {
 				success: function (response) {
 					if(response.status == 'ok')
 					{
-						swal({
+						swal.fire({
 							title: "Success!",
 							text: response.message,
 							confirmButtonColor: "#EF5350",
-							type: "success"
-						},
-						function(isConfirm){
+							icon: "success"
+						}.then((isConfirm) => {
 							if (isConfirm) {
 								$(window.location).attr('href', webURL + '/cms/product/items');
 							}
@@ -79,13 +78,12 @@ $(document).ready(function() {
 					}
 					else
 					{
-						swal({
+						swal.fire({
 							title: "Error!",
 							text: response.message,
 							confirmButtonColor: "#EF5350",
 							type: "error"
-						},
-						function(isConfirm){
+						}.then((isConfirm) => {
 							if (isConfirm) {
 								$('#btnUploadFile').removeAttr('disabled');
 							}

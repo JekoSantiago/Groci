@@ -652,13 +652,13 @@ $(document).ready(function() {
                     }
                     else
                     {
-                        swal({
+                        swal.fire({
                             title: "Warning!",
                             text: response.message,
                             confirmButtonColor: "#EF5350",
-                            type: "warning"
-                        },
-                        function(isConfirm){
+                            icon: "warning"
+                        }),
+                        then((isConfirm) => {
                             if (isConfirm) {
                                 $(window.location).attr('href', webURL);
                              }
@@ -793,10 +793,10 @@ $(document).ready(function() {
                 }
                 else
                 {
-                    swal({
+                    swal.fire({
                         title: "Are you sure?",
-                        text: "By clicking 'YES', store will be change and order cart will be reset.",
-                        type: "warning",
+                        text: "You are about to change the Alfamart store address. By clicking “yes” your order will be reset",
+                        icon: "question",
                         showCancelButton: true,
                         confirmButtonColor: "#2196f3",
                         cancelButtonColor: "#ed1c24",
@@ -804,8 +804,7 @@ $(document).ready(function() {
                         cancelButtonText: "NO",
                         closeOnConfirm: false,
                         closeOnCancel: true
-                    },
-                    function(isConfirm){
+                    }).then((isConfirm) => {
                         if (isConfirm) {
                             changeStore(addressID);
                         }
@@ -1038,13 +1037,11 @@ $(document).ready(function() {
                 success: function (response) {
                     if(response.status == 'success')
                     {
-                        swal({
-                            title: "Success!",
+                        swal.fire({
                             text: response.message,
                             confirmButtonColor: "#EF5350",
-                            type: "success"
-                        },
-                        function(isConfirm){
+                            icon: "success"
+                        }).then((isConfirm) => {
                             if (isConfirm) {
                                 $(window.location).attr('href', webURL + '/login');
                             }
@@ -1052,13 +1049,12 @@ $(document).ready(function() {
                     }
                     else
                     {
-                        swal({
+                        swal.fire({
                             title: "Error!",
                             text: response.message,
                             confirmButtonColor: "#EF5350",
                             type: "error"
-                        },
-                        function(isConfirm){
+                        }).then((isConfirm) => {
                             if (isConfirm) {
                                 $('#btnChangePassword').prop('disabled', false);
                                 $('#btnChangePassword').html('CHANGE PASSWORD');
@@ -1261,9 +1257,9 @@ $(document).ready(function() {
         var form_data = new FormData();
         form_data.append('aid', addressID);
         console.log(addressID);
-        swal({
-            title: "Are you sure you want to delete the address?",
-            type: "warning",
+        swal.fire({
+            text: "Are you sure you want to delete the address?",
+            icon: "question",
             showCancelButton: true,
             confirmButtonColor: "#2196f3",
             cancelButtonColor: "#ed1c24",
@@ -1271,8 +1267,7 @@ $(document).ready(function() {
             cancelButtonText: "NO",
             closeOnConfirm: false,
             closeOnCancel: true
-        },
-        function(isConfirm){
+        }).then((isConfirm) => {
             if (isConfirm) {
 
                 $.ajax({
@@ -1286,19 +1281,19 @@ $(document).ready(function() {
                     success: function (data) {
                         if(data.num>0)
                         {
-                            swal({
+                            swal.fire({
                                 title: data.msg,
-                                type: 'success'
+                                icon: 'success'
                             })
                             loadAddressList();
 
                         }
                         else
                         {
-                            swal({
+                            swal.fire({
                                 title: "Warning!",
                                 text: data.msg,
-                                type: "warning",
+                                icon: "warning",
                                 confirmButtonText: "Ok",
                                 confirmButtonColor: '#6658dd',
                                 allowOutsideClick: false,
@@ -1355,9 +1350,9 @@ $(document).ready(function() {
             form_data.append('landmark', landmark);
             form_data.append('type', type);
 
-            swal({
-                title: "Are you sure you want to update the address?",
-                type: "warning",
+            swal.fire({
+                text: "Are you sure you want to update the address?",
+                icon: "question",
                 showCancelButton: true,
                 confirmButtonColor: "#2196f3",
                 cancelButtonColor: "#ed1c24",
@@ -1365,8 +1360,7 @@ $(document).ready(function() {
                 cancelButtonText: "NO",
                 closeOnConfirm: false,
                 closeOnCancel: true
-            },
-            function(isConfirm){
+            }).then((isConfirm) => {
                 if (isConfirm) {
 
                     $.ajax({
@@ -1381,9 +1375,9 @@ $(document).ready(function() {
 
                             if(data.num>0)
                             {
-                                swal({
+                                swal.fire({
                                     title: data.msg,
-                                    type: 'success'
+                                    icon: 'success'
                                 })
                                 $('#modal_edit_address').hide();
                                 $(document.body).removeClass("modal-open");
@@ -1393,10 +1387,10 @@ $(document).ready(function() {
                             }
                             else
                             {
-                                swal({
+                                swal.fire({
                                     title: "Warning!",
                                     text: data.msg,
-                                    type: "warning",
+                                    icon: "warning",
                                     confirmButtonText: "Ok",
                                     confirmButtonColor: '#6658dd',
                                     allowOutsideClick: false,

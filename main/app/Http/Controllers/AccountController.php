@@ -143,12 +143,13 @@ class AccountController extends Controller
         $store  = ContentServices::storeName($request->input('store'));
         $result = AccountServices::doRegister($data);
 
-        if($result == 100) :
+        if($result[0]->_RETURN == 100) :
             $name = $request->input('firstName').' '. $request->input('lastName');
             $email = $request->input('email');
+            $cid = $result[0]->customer_id;
 
             if($isActive == 0) :
-                static::sentConfirmation($name, $email);
+                static::sentConfirmation($name, $email, $cid);
             endif;
 
             $status   = 'ok';
@@ -173,7 +174,7 @@ class AccountController extends Controller
         echo json_encode($response);
     }
 
-    public function sentConfirmation($name, $email)
+    public function sentConfirmation($name, $email, $cid)
     {
         $data = [
             'name'   => $name,
@@ -181,8 +182,27 @@ class AccountController extends Controller
             'status' => 0
         ];
 
-        // dd($data);
+        $body = ' Dear ' . $name . ' ,
+        Welcome to Shop Alfamart!
+        Please click the link below to complete your registration:
+        ' . env('APP_URL') .'/activate/' . base64_encode($email) .'
+        Connect with us! Follow Alfamart at Facebook Alfamart PH today.
+        Need help? Email us at customercare@alfamart.com.ph
+        This ia a post-only mailing. Please do not reply to this email.';
+
+        $subj = 'Verify your Shop Alfamart account';
+
+        $logs = [
+            $email,
+            $subj,
+            $body,
+            $cid
+        ];
         Mail::to($email)->send(new SendConfirmation($data));
+
+        Account::emailLogs($logs);
+
+
     }
 
     /**
@@ -257,7 +277,7 @@ class AccountController extends Controller
         $save = AccountServices::saveCustomerAddress($data);
 
         if($save == 100) :
-            // static::sentConfirmation(Session::get('CustomerName'), Session::get('email'));
+             static::sentConfirmation(Session::get('CustomerName'), Session::get('email'),base64_decode($request->input('customerID')));
             $response = [
                 'status'  => 'success',
                 'message' => 'You have successfully registered another store on your account.'
@@ -533,7 +553,23 @@ class AccountController extends Controller
                     'id'    => $detail[0]->customer_id
                 ];
 
+                $body = ' Dear ' . $detail[0]->firstname.' '.$detail[0]->lastname . ' ,
+                Forgot your password? No worries! Just click the link below to reset this:
+                '.url('/change-password/'.base64_encode($detail[0]->email_address.'&'.$detail[0]->customer_id)).'
+                Connect with us! Follow Alfamart at Facebook (hyperlink to the Alfamart PH FB page) today.
+                Need help? Email us at customercare@alfamart.com.ph.
+                This is a post-only mailing. Please do not reply to this email. ';
+
+                $subj = 'Shop Alfamart Account Password recovery';
+
+                $logs = [
+                    $detail[0]->email_address,
+                    $subj,
+                    $body
+                ];
                 Mail::to($detail[0]->email_address)->send(new SendForgotPasswordNotification($data));
+                Account::emailLogs($logs);
+
             else :
                 $item = AccountServices::getCode($request->input('email'));
                 $store = ContentServices::storeName($item['scode']);

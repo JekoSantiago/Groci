@@ -144,15 +144,15 @@
                                                         <td style="text-align: left; padding: 40px 0px; font-family: 'Poppins', sans-serif; font-size: 13px; mso-height-rule: exactly; line-height: 20px; color: #555555;">
                                                             Dear {{ $name }},
                                                             <br><br>
-                                                            Forgot your password?
-                                                            <br><br>
-                                                            To reset your password please follow the link below:
+                                                            Forgot your password? No worries! Just click the link below to reset this:
                                                             <br><br>
                                                             <a href="{{ url('/change-password/'.base64_encode($email.'&'.$id)) }}">{{ url('/change-password/'.base64_encode($email.'&'.$id)) }}</a>
                                                             <br><br>
-                                                            Thanks,
-                                                            <br>
-                                                            Shop Alfamart
+                                                            Connect with us! Follow Alfamart at Facebook <a href="https://www.facebook.com/AlfamartPHOfficial">Alfamart PH</a> today.
+                                                            <br><br>
+                                                            Need help? Email us at customercare@alfamart.com.ph.
+                                                            <br><br>
+                                                            This is a post-only mailing. Please do not reply to this email.
                                                         </td>
                                                     </tr>
                                                 </table>

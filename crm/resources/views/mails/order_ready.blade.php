@@ -144,9 +144,17 @@
                                                         <td style="text-align: left; padding: 40px 0px; font-family: 'Poppins', sans-serif; font-size: 13px; mso-height-rule: exactly; line-height: 20px; color: #555555;">
                                                             Dear {{ $name }},
                                                             <br><br>
-                                                            This is a quick update to let you know that your order is now {{ ($status == 'pick-up') ? 'ready for pickup at '.$store : 'out for delivery' }}.
+                                                            This is to inform you that your Shop Alfamart order is now ready for {{ ($status == 'pick-up') ? 'pickup' : 'delivery' }}.
                                                             <br><br>
-                                                            To see the status of your order, kindly login to our website at <a href="http://Shop Alfamart.atp.ph">http://Shop Alfamart.atp.ph</a>
+                                                            To check the status of your order, please login to your Shop Alfamart account at  <a href="https://shop.alfamart.com.ph">shop.alfamart.com.ph</a>
+                                                            <br><br>
+                                                            Thanks for shopping with your Super Minimart, Alfamart!
+                                                            <br><br>
+                                                            Connect with us! Follow Alfamart at Facebook <a href="https://www.facebook.com/AlfamartPHOfficial">Alfamart PH</a> today.
+                                                            <br><br>
+                                                            Need help? Email us at customercare@alfamart.com.ph.
+                                                            <br><br>
+                                                            This is a post-only mailing. Please do not reply to this email.
                                                         </td>
                                                     </tr>
                                                 </table>

@@ -66,10 +66,9 @@ $(document).ready(function() {
         {
             if(parseInt(inpQty) > parseInt(actualQty))
             {
-                swal({
-                    title: "Warning!!!",
-                    text: "Sorry, the maximum value of "+ actualQty +" was reached.",
-                    type: "warning",
+                swal.fire({
+                    text: "You’ve reached the purchase limit for this item",
+                    icon: "warning",
                     timer: 2000,
                     showConfirmButton: false
                 });
@@ -143,10 +142,9 @@ $(document).ready(function() {
         if(valueCurrent >= minValue) {
             $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
         } else {
-            swal({
-                title: "Warning!!!",
-                text: "Sorry, the minimum value of one(1) was reached.",
-                type: "warning",
+            swal.fire({
+                text: "You’ve reached the purchase limit for this item",
+                icon: "warning",
                 timer: 2000,
                 showConfirmButton: false
             });
@@ -157,10 +155,9 @@ $(document).ready(function() {
         if(valueCurrent <= maxValue) {
             $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
         } else {
-            swal({
-                title: "Warning!!!",
-                text: "Sorry, the maximum value of "+ maxValue +" was reached",
-                type: "warning",
+            swal.fire({
+                text: "You’ve reached the purchase limit for this item",
+                icon: "warning",
                 timer: 2000,
                 showConfirmButton: false
             });
@@ -200,11 +197,10 @@ $(document).ready(function() {
             {
                 if(parseFloat(minCharge) > parseFloat(totalAmountDue))
                 {
-                    swal({
-                        title: "Warning!",
-                        text: 'Our minimum order requirement is P'+ minCharge+'. Please add more items. ',
+                    swal.fire({
+                        title: 'Our minimum order requirement is P'+ minCharge+'. Please add more items. ',
                         confirmButtonColor: "#EF5350",
-                        type: "warning"
+                        icon: "warning"
                     });
                 }
                 else
@@ -215,11 +211,10 @@ $(document).ready(function() {
         }
         else
         {
-            swal({
-                title: "Warning!",
-                text: 'Your basket is empty. Kindly add items.',
+            swal.fire({
+                text: 'Your basket is empty. Kindly add more items..',
                 confirmButtonColor: "#EF5350",
-                type: "warning"
+                icon: "warning"
             });
         }
     });
@@ -339,9 +334,9 @@ $(document).ready(function() {
         $('#btnSubmitOrder').attr('disabled', 'disabled');
         $('#btnBackHome').attr('disabled', 'disabled');
 
-        swal({
-            title: "Are you sure you want to cancel your order?",
-            type: "question",
+        swal.fire({
+            text: "Are you sure you want to cancel your order?",
+            icon: "question",
             showCancelButton: true,
             confirmButtonColor: "#2196f3",
             cancelButtonColor: "#ed1c24",
@@ -387,11 +382,10 @@ $(document).ready(function() {
                 if(response.status == 'success')
                 {
                     $('#modal_view_order_items').modal({ show: false});
-                    swal({
-                        title: "Success!",
-                        text: response.message,
+                    swal.fire({
+                        title: response.message,
                         confirmButtonColor: "#EF5350",
-                        type: "success"
+                        icon: "success"
                     },
                     function(isConfirm){
                         if (isConfirm) {
@@ -401,8 +395,8 @@ $(document).ready(function() {
                 }
                 else
                 {
-                    swal({
-                        title: "Error!",
+                    swal.fire({
+                        text: "Error!",
                         text: response.message,
                         confirmButtonColor: "#EF5350",
                         type: "error"
@@ -426,9 +420,9 @@ $(document).ready(function() {
         $('#btnCancelReOrder').prop('disabled', true);
         $('#btnClosed').prop('disabled', true);
 
-        swal({
-            title: "Are you sure you want to cancel your order?",
-            type:"warning",
+        swal.fire({
+            text: "Are you sure you want to cancel your order?",
+            type:"question",
             showCancelButton: true,
             confirmButtonColor: "#2196f3",
             cancelButtonColor: "#ed1c24",
@@ -436,8 +430,7 @@ $(document).ready(function() {
             cancelButtonText: "NO",
             closeOnConfirm: false,
             closeOnCancel: true
-        },
-        function(isConfirm){
+        }).then((isConfirm) => {
             if (isConfirm) {
                 $.ajax({
                     url: webURL + '/cance/order',
@@ -451,13 +444,11 @@ $(document).ready(function() {
                         if(response.status == 'success')
                         {
                             $('#modal_view_order_items').modal({ show: false});
-                            swal({
-                                title: "Success!",
+                            swal.fire({
                                 text: response.message,
                                 confirmButtonColor: "#EF5350",
-                                type: "success"
-                            },
-                            function(isConfirm){
+                                icon: "success"
+                            }).then((isConfirm) => {
                                 if (isConfirm) {
                                     $(window.location).attr('href', webURL + '/account/orders');
                                 }
@@ -465,13 +456,12 @@ $(document).ready(function() {
                         }
                         else
                         {
-                            swal({
+                            swal.fire({
                                 title: "Error!",
                                 text: response.message,
                                 confirmButtonColor: "#EF5350",
                                 type: "error"
-                            },
-                            function(isConfirm){
+                            }).then((isConfirm) => {
                                 if (isConfirm) {
                                     $('#btnCancelReOrder').prop('disabled', false);
                                     $('#btnClosed').prop('disabled', false);
@@ -506,9 +496,9 @@ function addToCart(value, qty, id)
         processData: false,
         data: form_data,
         success: function (response) {
-            swal({
-                title: "Item added to your basket.",
-                type: "success",
+            swal.fire({
+                text: "Item added to your basket.",
+                icon: "success",
                 timer: 2000,
                 showConfirmButton: false
             });

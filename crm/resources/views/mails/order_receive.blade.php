@@ -144,9 +144,19 @@
                                                         <td style="text-align: left; padding: 40px 0px; font-family: 'Poppins', sans-serif; font-size: 13px; mso-height-rule: exactly; line-height: 20px; color: #555555;">
                                                             Dear {{ $name }},
                                                             <br><br>
-                                                            Thank you for your order. We've received your order and is now being processed. We will send another email confirmation to let you know when your order is ready for pick up or out for delivery.
+                                                            Thanks for ordering from Shop Alfamart!
                                                             <br><br>
-                                                            To see the status of your order, kindly login to our website at <a href="http://Shop Alfamart.atp.ph">http://Shop Alfamart.atp.ph</a>
+                                                            We are already processing your order and we will send another email to confirm when your groceries are ready for pick up or delivery.
+                                                            <br><br>
+                                                            To check the status of your order, please login to your Shop Alfamart account at  <a href="https://shop.alfamart.com.ph">shop.alfamart.com.ph</a>
+                                                            <br><br>
+                                                            Thanks for shopping with your Super Minimart, Alfamart!
+                                                            <br><br>
+                                                            Connect with us! Follow Alfamart at Facebook <a href="https://www.facebook.com/AlfamartPHOfficial">Alfamart PH</a> today.
+                                                            <br><br>
+                                                            Need help? Email us at customercare@alfamart.com.ph.
+                                                            <br><br>
+                                                            This is a post-only mailing. Please do not reply to this email.
                                                         </td>
                                                     </tr>
                                                 </table>

@@ -16,6 +16,7 @@
     <link href="{{ asset('css/osahan.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/owl-carousel/owl.theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/plugin/notifications/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendor/plugin/daterangepicker/daterangepicker.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}" type="text/javascript"></script>
 
@@ -30,7 +31,7 @@
     <script src="{{ asset('vendor/plugin/moments/js/moment.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/plugin/daterangepicker/daterangepicker.min.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('vendor/plugin/notifications/bootbox.min.js') }}" type="text/javascript" ></script>
-    <script src="{{ asset('vendor/plugin/notifications/sweet_alert.min.js') }}" type="text/javascript" ></script>
+    <script src="{{ asset('vendor/plugin/notifications/sweetalert2.min.js') }}" type="text/javascript" ></script>
     <script src="{{ asset('vendor/select2/js/select2.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/owl-carousel/owl.carousel.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/datatables/datatables.min.js') }}" type="text/javascript"></script>
@@ -82,10 +83,10 @@
             }
 
             function inActive() {
-                swal({
+                swal.fire({
                     title: "For your information!",
                     text: "Session already expired. Please login again!.",
-                    type: "warning",
+                    icon: "warning",
                     timer: 10000,
                     showConfirmButton: false
                 });

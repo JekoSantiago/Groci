@@ -30,7 +30,7 @@ class SendForgotPasswordNotification extends Mailable
      */
     public function build()
     {
-        return $this->subject('Shop Alfamart Password Recovery')
+        return $this->subject('Shop Alfamart Account Password recovery')
             ->view('mails.change_pass_mail')
             ->with($this->data);
     }

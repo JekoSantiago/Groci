@@ -8,7 +8,7 @@ class TextServices
 	{
 		$error = [
             100  => 'You have successfully registered on our website. Please visit your preferred store to confirm your registration. Kindly present the confirmation code below to the cashier.<p class="code-txt-center">[code]</p>',
-            101  => "You successfully re-ordered items. Please check your basket if you want to remove some items. For adding more items, just continue shopping.",
+            101  => "You have successfully reorder the item(s). Please review your basket before check out. To add more items, just continue shopping.",
             102  => "Thank you for registering with Shop Alfamart. Please check your email to activate your account.",
             103  => 'You have successfully registered another store on your account. You may sign-in using your registered username and password.',
             -1   => 'User account does not exist. Try another one!',

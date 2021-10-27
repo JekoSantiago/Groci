@@ -144,14 +144,24 @@ class CmsServices
 	public static function saveNoMinimumChargeStores($id, $codes)
 	{
 		$stores = explode(',', $codes);
-		foreach($stores as $code) :
-			$data = [
-				'id' => $id,
-				'storeCode' => $code
-			];
-
-			Cms::saveNoMinimumCharge($data);
-		endforeach;
+        if(strval($stores[0]) != 'null')
+        {
+            foreach($stores as $code) :
+                $data = [
+                    'id' => $id,
+                    'storeCode' => $code
+                ];
+                Cms::saveNoMinimumCharge($data);
+            endforeach;
+        }
+        else
+        {
+            $data = [
+                'id' => $id,
+                'storeCode' => 0
+            ];
+            Cms::saveNoMinimumCharge($data);
+        }
 
 		return 100;
 	}
@@ -160,14 +170,25 @@ class CmsServices
 	{
 		Cms::deleteNoMinimumCharge($id);
 		$stores = explode(',', $codes);
-		foreach($stores as $code) :
-			$data = [
-				'id' => $id,
-				'storeCode' => $code
-			];
+        if(strval($stores[0]) != 'null')
+        {
+            foreach($stores as $code) :
+                $data = [
+                    'id' => $id,
+                    'storeCode' => $code
+                ];
+                Cms::saveNoMinimumCharge($data);
+            endforeach;
+        }
+        else
+        {
+            $data = [
+                'id' => $id,
+                'storeCode' => 0
+            ];
+            Cms::saveNoMinimumCharge($data);
+        }
 
-			Cms::saveNoMinimumCharge($data);
-		endforeach;
 
 		return 200;
 	}

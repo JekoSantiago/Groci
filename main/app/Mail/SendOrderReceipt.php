@@ -29,7 +29,7 @@ class SendOrderReceipt extends Mailable
      */
     public function build()
     {
-        return $this->subject('Shop Alfamart ORDER ID : '. $this->data['orderID'])
+        return $this->subject('Shop Alfamart Order No : '. $this->data['orderID'])
             ->view('mails.orders')
             ->with($this->data);
     }

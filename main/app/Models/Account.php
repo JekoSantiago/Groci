@@ -25,7 +25,7 @@ class Account extends Model
         $query  = DB::connection('dbSqlSrv')->select('EXEC sp_Customer_Insert ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?', [ $data['lastName'], $data['firstName'], $data['email'], $data['contactNum'], $data['password'], $data['storeCode'], $data['regFrom'], $data['regDate'], $data['address'], $data['city'], $data['province'], $data['landmark'], $data['addType'], $data['code'], $data['customerID'], $data['addressID'], $data['isConfirm'], $data['isActive'], $data['remarks'] ]);
         $result = $query[0]->_RETURN;
 
-        return $result;
+        return $query;
     }
 
     /**
@@ -159,5 +159,12 @@ class Account extends Model
         $query = DB::connection('dbSqlSrv')->select('EXEC sp_CustomerAddress_Update ?,?,?,?', $data);
 
         return $query;
+     }
+
+     public static function emailLogs($data)
+     {
+         $query = DB::connection('dbSqlSrv')->select('EXEC sp_EmailLog_Insert ?,?,?,?', $data);
+
+         return $query;
      }
 }

@@ -128,7 +128,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
                                         <tr>
                                             <td style="padding-top: 50px; text-align: center">
-                                                <img src="{{ url('img/Alfamart-logo.fw.png') }}" alt="Shop Alfamart" border="0" align="center" style="max-height: 80px;">
+                                              <!--  <img src="{{ url('img/Alfamart-logo.fw.png') }}" alt="Shop Alfamart" border="0" align="center" style="max-height: 80px;"> -->
                                             </td>
                                         </tr>
                                     </table>

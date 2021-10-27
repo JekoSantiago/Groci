@@ -163,7 +163,7 @@
 					            		<tr>
 					            			<td style="padding: 20px 20px 10px" colspan="2">
 					            				<p style="margin:0px; border-radius: 5px; padding: 15px; font-size: 13px; background-color: #F8DA00;">
-					            					<span style="margin-bottom: 10px; display: block;">Thank you for ordering at Shop Alfamart, {{ $name }}! Please see the order summary below with reference number <span style="font-weight: 600">{{ $orderID }}</span> </span>
+					            					<span style="margin-bottom: 10px; display: block;">Thank you for ordering from Shop Alfamart, {{ $name }}!</span>
 												</p>
 					            			</td>
 					            		</tr>
