@@ -253,6 +253,7 @@ class OrdersController extends Controller
     {
         $details = Orders::getOrderDetails($request->segment(3));
 
+
         if($details[0]->origin == 'ONLINE' && $details[0]->order_status == 'FLOAT') :
             $this->generatePDF($request->segment(3));
         endif;
@@ -391,7 +392,12 @@ class OrdersController extends Controller
         $email = $detail[0]->email_address;
 
         if($request->input('status') == 'received') :
-            $data = [ 'name' => $name ];
+            $data = [
+                    'name' => $name,
+                    'contact' => ($detail[0]->ContactNo ? : 0),
+                    'store'  => $detail[0]->store_name,
+
+            ];
           Mail::to($email)->send(new SendOrderReceiveConfirmation($data));
         endif;
 
@@ -399,7 +405,8 @@ class OrdersController extends Controller
             $data = [
                 'name'   => $name,
                 'status' => $request->input('status'),
-                'store'  => $detail[0]->store_name
+                'store'  => $detail[0]->store_name,
+                'contact' => ($detail[0]->ContactNo ? : 0)
             ];
            Mail::to($email)->send(new SendOrderReadyConfirmation($data));
         endif;
@@ -665,5 +672,29 @@ class OrdersController extends Controller
         ];
 
         echo json_encode($response);
+    }
+
+    public function testMail()
+    {
+        $name = 'Jeko';
+        $email = 'no_reply@atp.ph';
+        $orderID = '1635489355';
+
+        $detail = Orders::getOrderDetails($orderID);
+
+        $data = [
+            'name'   => $name,
+            'status' => 'delivery',
+            'store'  => $detail[0]->store_name,
+            'contact' => ($detail[0]->ContactNo ? : 0)
+        ];
+
+        Mail::to($email)->send(new SendOrderReadyConfirmation($data));
+
+        if(count(Mail::failures()) > 0) :
+            echo 'Mail not sent';
+        else :
+            echo 'Successfully sent mail';
+        endif;
     }
 }

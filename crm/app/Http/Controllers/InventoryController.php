@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Services\InventoryServices;
 use App\Exports\ExportItems;
 use Illuminate\Support\Facades\Session;
+use Excel;
+
 
 
 class InventoryController extends Controller
@@ -38,5 +40,13 @@ class InventoryController extends Controller
         $response = InventoryServices::replenishInventory($scode, $logUser);
 
         echo json_encode($response);
+    }
+
+    public function exportItemsList()
+    {
+        $data = InventoryServices::inventoryItems(base64_decode(Session::get('LocationCode')));
+        $filename  = 'ItemsListAsOf_'.date('Ymd').'.xlsx';
+        return Excel::download(new ExportItems($data), $filename);
+
     }
 }

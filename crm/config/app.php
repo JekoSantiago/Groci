@@ -78,7 +78,7 @@ return [
     'default_pass' => 234,
     'store_role_id' => [2],
     'position_level' => [5],
-    'admin_users' => [ '250009653'],
+    'admin_users' => [ '250009653','8401'],
     'pilot_stores' => [ 1707,1895,3368,3899,3900],
     'percent_qty_sell' => 80,
     'btn_previous' => [ 'Back to previous page', 'javascript: history.go(-1);', 'Please click the button below to go back to previous page.' ],

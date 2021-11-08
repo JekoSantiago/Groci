@@ -78,7 +78,7 @@
                                                     <span class="mdi mdi-minus"></span>
                                                 </button>
                                             </span>
-                                            <input type="text" style="display: inline-block" name="quant[{{ $i['item_id'] }}]" class="form-control input-number form-inp" value="1" min="1" max="{{ $i['stocks_on_hand'] - $i['pre_order_qty'] }}">
+                                            <input type="text" style="display: inline-block" name="quant[{{ $i['item_id'] }}]" class="form-control input-number form-inp" value="1" min="1" max="{{ ($i['category_id'] == env('PFOOD_CAT') && $i['stocks_on_hand'] <= 0) ? env('PFOOD_MAX') : $i['stocks_on_hand'] - $i['pre_order_qty'] }}">
                                             <span class="input-group-btn" style="line-height: 22px !important; display: inline-block">
                                                 <button type="button" class="btnQty btn-success bg-grey btn-number" data-type="plus" data-field="quant[{{ $i['item_id'] }}]">
                                                     <span class="mdi mdi-plus"></span>
@@ -86,7 +86,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    @if( $i['stocks_on_hand'] > 0)
+                                    @if( $i['stocks_on_hand'] > 0 || $i['category_id'] == env('PFOOD_CAT'))
                                     <button type="button" class="btn btn-secondary btn-sm" id="btnAddToCart" data-value="{{ base64_encode($i['params']) }}" data-itemid="{{ $i['item_id'] }}">
                                         <i class="mdi mdi-cart-outline"></i> Add To Cart
                                     </button>

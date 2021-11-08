@@ -39,6 +39,8 @@
         var webURL = '{!! url('/') !!}';
         var sessBasket = '{!! Session::get('transType') !!}';
         var isLogged = '{!! Session::get('isLogged') !!}';
+        var maxtime = '{!! env('MAX_DEL_TIME') !!}';
+        var addtomin = '{!! env('MIN_DEL_TIME') !!}';
 
         function updateClock ( )
         {

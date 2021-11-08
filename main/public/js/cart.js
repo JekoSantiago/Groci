@@ -10,6 +10,43 @@
 * ---------------------------------------------------------------------------- */
 
 $(document).ready(function() {
+
+    $('#SMAC').on('keypress', function(key) {
+        if(key.charCode < 48 || key.charCode > 57) return false;
+    });
+
+
+    $('#dlTimeHour').daterangepicker({
+        timePicker: true,
+        defaultSelect: false,
+        defaultTime:0,
+        singleDatePicker:true,
+        timePickerIncrement: 15,
+        timePickerSeconds: false,
+        locale: {
+            format: 'hh:mm A'
+        },
+    }).on('show.daterangepicker', function (ev, picker) {
+        picker.container.find(".calendar-table").hide();
+    });
+
+    $('#pickTimeHour').daterangepicker({
+        timePicker: true,
+        defaultSelect: false,
+        defaultTime:0,
+        singleDatePicker:true,
+        timePickerIncrement: 15,
+        timePickerSeconds: false,
+        locale: {
+            format: 'hh:mm A'
+        },
+    }).on('show.daterangepicker', function (ev, picker) {
+        picker.container.find(".calendar-table").hide();
+    });
+
+
+
+
     "use strict";
 
     $.ajaxSetup({
@@ -225,22 +262,75 @@ $(document).ready(function() {
         var error = false;
         var amtChange   = $('#amtChange').val();
         var amtDue      = $('#amtDue').val();
+        var delCharge   = $('#delCharge').val();
         var orderID     = $('#orderID').val();
         var checkTerms  = $("input[name='chkTermsConditions']").is(":checked");
         var serviceType = $('#transactionType').val();
+        var smac        = $('#SMAC').val();
+        var dltime       = $('#dlTimeHour').val();
+        var putime       = $('#pickTimeHour').val();
+        var dldate       = $('#pickDate').val();
+        var dt = new Date();
+        var mintime = parseInt(dt.getHours() + addtomin);
 
 
+/*
         if(serviceType == 'Pick-up')
         {
-            var schedule = $('#pickDate').val() + ' ' + $('#pickTimeHour').val() + ':' + $('#pickTimeMin').val() +' '+ $('#pickTimeAMPM').val();
+            var schedule = $('#pickDate').val() + ' ' + $('#pickTimeHour').val();
             var orderType = 'Pick-up';
+
+            if(parseInt(dldate.substring(8))==parseInt(dt.getDate()))
+            {
+                var hours = Number(putime.match(/^(\d+)/)[1]);
+                var AMPM = putime.match(/\s(.*)$/)[1];
+                if(AMPM == "PM" && hours<12) hours = hours+12;
+                if(AMPM == "AM" && hours==12) hours = hours-12;
+                var pHours = hours.toString();
+                if(hours<10) pHours = "0" + pHours;
+
+                if(pHours >= mintime && pHours <= maxtime)
+                {
+                 console.log('pasok');
+                }
+                else
+                {
+                 var error = true;
+                 $('#ptimeForError').show();
+                 console.log('err')
+                 }
+            }
+
         }
         else
         {
             var deliverType = $('input[name="radio-group"]:checked').val();
-            var schedule = (deliverType == 'Delivery Now') ? 'PROMISE TIME' : $('#deliverLaterDate').val() + ' ' + $('#dlTimeHour').val()+':'+$('#dlTimeMin').val()+' '+$('#dlTimeAMPM').val();
+            var schedule = (deliverType == 'Delivery Now') ? 'PROMISE TIME' : $('#deliverLaterDate').val() + ' ' + $('#dlTimeHour').val();
             var orderType = deliverType;
+
+            if(deliverType == 'Delivery Later')
+            {
+                var hours = Number(dltime.match(/^(\d+)/)[1]);
+                var AMPM = dltime.match(/\s(.*)$/)[1];
+                if(AMPM == "PM" && hours<12) hours = hours+12;
+                if(AMPM == "AM" && hours==12) hours = hours-12;
+                var dHours = hours.toString();
+                if(hours<10) dHours = "0" + dHours;
+
+                if(dHours >= mintime && dHours <= maxtime)
+                {
+                    console.log('pasok');
+                }
+                else
+                {
+                    var error = true;
+                    $('#timeForError').show();
+                    console.log('err')
+                }
+            }
         }
+*/
+
 
         if(!checkTerms)
         {
@@ -263,7 +353,8 @@ $(document).ready(function() {
             }
             else
             {
-                if(parseFloat(amtChange) < parseFloat(amtDue))
+
+                if(parseFloat(amtChange) < ((serviceType == 'Pick-up') ? parseFloat(amtDue) :  parseFloat(amtDue) + parseFloat(delCharge)))
                 {
                     var error = true;
                     $('#changeForError').html('You enter an invalid amount');
@@ -272,12 +363,24 @@ $(document).ready(function() {
             }
         }
 
+        if(smac)
+        {
+            if(smac.length != 16)
+            {
+                var error = true;smacForError
+                $('#smacForError').show();
+            }
+        }
+
+
         if(error == false)
         {
             $('#btnCancelOrders').hide();
             $('#btnSubmitOrder').hide();
             $('#btnBackHome').hide();
             $('#processLoaders').show();
+
+            var totalAmount = (serviceType == 'Pick-up') ? parseInt(amtDue) : parseInt(amtDue) + parseInt(delCharge) ;
 
             var form_data = new FormData();
             form_data.append('addressID', $('#addressID').val());
@@ -287,12 +390,13 @@ $(document).ready(function() {
             form_data.append('province', $('#province').val());
             form_data.append('landmark', $('#landmark').val());
             form_data.append('remarks', $('#orderRemarks').val());
-            form_data.append('amount', $('#amtDue').val());
+            form_data.append('amount', totalAmount);
             form_data.append('amtChange', $('#amtChange').val());
             form_data.append('payMethod', $('input[name="radio-group-payment"]').val());
             form_data.append('orderType', orderType);
             form_data.append('delTime', schedule);
-	    form_data.append('storeCode', $('#storeCode').val());
+	        form_data.append('storeCode', $('#storeCode').val());
+            form_data.append('smac', smac);
 
             $.ajax({
                 url: webURL + '/save/order',
@@ -325,6 +429,16 @@ $(document).ready(function() {
         $('#changeForError').hide();
     });
 
+    $('body').on('keyup', '#SMAC', function() {
+        $('#smacForError').hide();
+    });
+
+    $('body').on('click', '.applyBtn', function() {
+        $('#timeForError').hide();
+        $('#ptimeForError').hide();
+
+    });
+
     $('body').on('click', 'input[name="chkTermsConditions"]', function(){
         $('#chkTermsConditionsError').hide();
     });
@@ -342,10 +456,7 @@ $(document).ready(function() {
             cancelButtonColor: "#ed1c24",
             confirmButtonText: "YES",
             cancelButtonText: "NO",
-            closeOnConfirm: false,
-            closeOnCancel: true
-        },
-        function(isConfirm){
+        }).then((isConfirm) => {
             if (isConfirm) {
                 $(window.location).attr('href', webURL + '/cancel/order');
             }

@@ -17,7 +17,7 @@ class Product extends Model
     public static function showItemsInBasket($orderID, $storeCode)
     {
         $result = DB::connection('dbSqlSrv')->select('EXEC sp_OrderTempItems_Get ?, ?', [ $orderID, $storeCode ]);
-        
+
         return $result;
     }
 
@@ -66,7 +66,7 @@ class Product extends Model
     public static function saveTempOrderItems($data)
     {
         $result = DB::connection('dbSqlSrv')->select('EXEC sp_OrderTempItems_Insert ?, ?, ?, ?, ?, ?, ?', [ $data['tempID'], $data['itemID'], $data['itemName'], $data['itemPrice'], $data['itemQty'], $data['totalAmt'], $data['isPromo'] ]);
-        
+
         return $result;
     }
 
@@ -96,7 +96,7 @@ class Product extends Model
      */
     public static function saveOrder($data)
     {
-        $query = DB::connection('dbSqlSrv')->select('EXEC sp_Orders_Insert ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?', [ $data['orderID'], $data['customerID'], $data['orderDate'], $data['orderType'], $data['orderAmt'], $data['orderStatus'], $data['payOption'], $data['payStatus'], $data['origin'], $data['createdBy'], $data['createdAt'], $data['addressID'], $data['amtChange'], $data['remarks'], $data['delTime'] ]);
+        $query = DB::connection('dbSqlSrv')->select('EXEC sp_Orders_Insert ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?', [ $data['orderID'], $data['customerID'], $data['orderDate'], $data['orderType'], $data['orderAmt'], $data['orderStatus'], $data['payOption'], $data['payStatus'], $data['origin'], $data['createdBy'], $data['createdAt'], $data['addressID'], $data['amtChange'], $data['remarks'], $data['delTime'], $data['smac'] ]);
         $result = $query[0]->_RETURN;
 
         return $result;
@@ -131,7 +131,7 @@ class Product extends Model
     public static function itemPricePerStore($itemID, $storeCode)
     {
         $result = DB::connection('dbSqlSrv')->select('EXEC sp_ItemPricePerStore_Get ?, ?', [ $itemID, $storeCode ]);
-        
+
         return $result[0]->price;
     }
 
@@ -139,7 +139,7 @@ class Product extends Model
     public static function getOrderStatus($orderID)
     {
         $result = DB::connection('dbSqlSrv')->select('EXEC sp_OrderStatus_Get ?', [ $orderID ]);
-        
+
         return $result;
     }
 }

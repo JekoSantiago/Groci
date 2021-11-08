@@ -1,5 +1,5 @@
 @extends('layout.base')
-    @section('contents')    
+    @section('contents')
     <!--- Minimu and delivery charge index section -->
     <di class="col-md-6">
         <!-- Basic datatable -->
@@ -25,24 +25,24 @@
 					</tr>
 				</thead>
 				<tbody>
-                @foreach($mCharge as $m) 
+                @foreach($mCharge as $m)
 					<tr>
 						<td><input type="radio" {{ (date('Y-m-d') >= $m->date_from && (date('Y-m-d') <= $m->date_to || is_null($m->date_to))) ? 'checked=checked' : '' }} disabled></td>
 						<td>{{ ($m->amount == '.00') ? '0.00' : $m->amount }}</td>
 						<td>{{ $m->date_from }}</td>
-                        <td>{{ ($m->date_to == NULL) ? 'PRESENT' : $m->date_to }}</td>
+                        <td>{{ ($m->date_to == NULL) ? ($m->date_from > date('Y-m-d')) ? 'ONWARD' :'PRESENT' : $m->date_to }}</td>
 						<td>{{ $m->store_name }}</td>
 						<td class="text-center">
 							<ul class="icons-list">
 								<li class="dropdown">
-                                    <a data-toggle='modal' data-target='#modal_edit_min_charge' data-itemid='{{ $m->id }}'>
+                                    <a data-toggle='modal' data-target='#modal_edit_min_charge' data-itemid='{{ $m->id }}' @if(($m->date_to  != NULL) && $m->date_to < date('Y-m-d') ) style="display:none" @endif>
 					        			<i class="icon-pencil"></i>
 									</a>
 								</li>
 							</ul>
 						</td>
 					</tr>
-				@endforeach	
+				@endforeach
 				</tbody>
 		    </table>
 		</div>
@@ -73,24 +73,24 @@
 					</tr>
 				</thead>
 				<tbody>
-                @foreach($dCharge as $d) 
+                @foreach($dCharge as $d)
 					<tr>
 						<td><input type="radio" {{ (date('Y-m-d') >= $d->edate_from && (date('Y-m-d') <= $d->edate_to || is_null($d->edate_to))) ? 'checked=checked' : '' }} disabled></td>
 						<td>{{ ($d->dc_amount == '.00') ? '0.00' : $d->dc_amount }}</td>
 						<td>{{ $d->edate_from }}</td>
-                        <td>{{ ($d->edate_to == NULL) ? 'PRESENT' : $d->edate_to }}</td>
+                        <td>{{ ($d->edate_to == NULL) ? ($d->edate_from > date('Y-m-d')) ? 'ONWARD' : 'PRESENT' : $d->edate_to }}</td>
 						<td>{{ $d->store_name }}</td>
 						<td class="text-center">
 							<ul class="icons-list">
 								<li class="dropdown">
-                                    <a data-toggle='modal' data-target='#modal_edit_del_charge' data-itemid='{{ $d->dc_id }}'>
+                                    <a data-toggle='modal' data-target='#modal_edit_del_charge' data-itemid='{{ $d->dc_id }}' @if($d->edate_to  != NULL && $d->edate_to < date('Y-m-d') ) style="display:none" @endif>
 					        			<i class="icon-pencil"></i>
 									</a>
 								</li>
 							</ul>
 						</td>
 					</tr>
-				@endforeach			
+				@endforeach
 				</tbody>
 		    </table>
 		</div>
@@ -113,7 +113,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div id="modal_edit_min_charge" class="modal fade" data-backdrop="static" data-keyboard="false">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
@@ -147,7 +147,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div id="modal_edit_del_charge" class="modal fade" data-backdrop="static" data-keyboard="false">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">

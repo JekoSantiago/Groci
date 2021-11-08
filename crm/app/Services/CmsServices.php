@@ -158,7 +158,7 @@ class CmsServices
         {
             $data = [
                 'id' => $id,
-                'storeCode' => 0
+                'storeCode' => NULL
             ];
             Cms::saveNoMinimumCharge($data);
         }
@@ -196,14 +196,26 @@ class CmsServices
 	public static function saveNoDeliveryChargeStores($id, $codes)
 	{
 		$stores = explode(',', $codes);
-		foreach($stores as $code) :
-			$data = [
-				'id' => $id,
-				'storeCode' => $code
-			];
+        if(strval($stores[0]) != 'null')
+        {
+            foreach($stores as $code) :
+                $data = [
+                    'id' => $id,
+                    'storeCode' => $code
+                ];
 
-			Cms::saveNoDeliveryCharge($data);
-		endforeach;
+                Cms::saveNoDeliveryCharge($data);
+            endforeach;
+        }
+        else
+        {
+            $data = [
+                'id' => $id,
+                'storeCode' => 0
+            ];
+            Cms::saveNoDeliveryCharge($data);
+        }
+
 
 		return 100;
 	}
@@ -212,14 +224,25 @@ class CmsServices
 	{
 		Cms::deleteNoDeliveryCharge($id);
 		$stores = explode(',', $codes);
-		foreach($stores as $code) :
-			$data = [
-				'id' => $id,
-				'storeCode' => $code
-			];
+        if(strval($stores[0]) != 'null')
+        {
+            foreach($stores as $code) :
+                $data = [
+                    'id' => $id,
+                    'storeCode' => $code
+                ];
 
-			Cms::saveNoDeliveryCharge($data);
-		endforeach;
+                Cms::saveNoDeliveryCharge($data);
+            endforeach;
+        }
+        else
+        {
+            $data = [
+                'id' => $id,
+                'storeCode' => 0
+            ];
+            Cms::saveNoDeliveryCharge($data);
+        }
 
 		return 200;
 	}
@@ -234,6 +257,7 @@ class CmsServices
 			-100 => 'Error processing your request. Try again later!',
 			-200 => 'Unable to create directory. Try again later!',
 			-300 => 'Unable to upload selected files. Try again later!',
+            -400 => 'Effective date already exist, update the existing to make changes'
 		];
 
 		return $error[$i];

@@ -29,7 +29,7 @@ class ContentServices
 
         return $encode;
     }
-    
+
     public static function getCategoryName($catID)
     {
         $result = Content::getCategories($catID);
@@ -41,14 +41,30 @@ class ContentServices
     {
         $result = Content::getDeliveryCharge();
 
-        return $result[0]->dc_amount;
+        if($result)
+        {
+            return $result[0]->dc_amount;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public static function minimumCharge()
     {
         $result = Content::getMinimumCharge();
 
-        return $result[0]->amount;
+        if ($result)
+        {
+            return $result[0]->amount;
+        }
+        else
+        {
+            return 0;
+        }
+
+
     }
 
     public static function storeOption($province)
@@ -63,7 +79,7 @@ class ContentServices
         endif;
 
         return $option;
-    } 
+    }
 
     public static function cityOption($provinceID)
     {
@@ -98,7 +114,7 @@ class ContentServices
         $min = date('i');
         $hour = ($min > 45) ? date('h', strtotime('+2 hour')) :date('h', strtotime('+1 hour'));
         $encode = [];
-        for ($h=1; $h<=12; $h++) :
+        for ($h=$hour; $h<=6; $h++) :
             if($h < $hour) :
                 $attr = 'disabled=disabled';
             elseif($h == $hour) :
@@ -178,14 +194,14 @@ class ContentServices
 	    		$detail[$k]['km']            = $distance;
                 $detail[$k]['userLatitude']  = $userLat;
                 $detail[$k]['userLongitude'] = $userLong;
-			endif; 
+			endif;
 		endforeach;
 
         $keys = array_column($detail, 'km');
         array_multisort($keys, SORT_ASC, $detail);
         $topOne = array_slice($detail, 0, 1);
-		
-        return $topOne; 
+
+        return $topOne;
     }
 
     public static function topNearestStore($userLat, $userLong)
@@ -205,13 +221,13 @@ class ContentServices
                     $detail[$k]['city']      = $row->city;
                     $detail[$k]['barangay']  = $row->barangay;
                 endif;
-			endif; 
+			endif;
 		endforeach;
 
         $keys = array_column($detail, 'km');
         array_multisort($keys, SORT_ASC, $detail);
-		
-        return $detail; 
+
+        return $detail;
     }
 
     public static function searchNearestStore($keyword)
@@ -227,6 +243,6 @@ class ContentServices
             $detail[$k]['barangay']  = $row->barangay;
         endforeach;
 
-        return $detail; 
+        return $detail;
     }
 }

@@ -1,5 +1,5 @@
 @extends('layout.base_tpl')
-    @section('contents')  
+    @section('contents')
     <!-- Checkout content -->
     @include('pages.partials.headers')
 
@@ -23,7 +23,7 @@
                                             <div class="text-center login-footer-tab">
                                                 <ul class="nav nav-tabs" role="tablist">
                                                     <li class="nav-item">
-                                                        <a class="nav-link {{ ($serviceType == 'Delivery') ? 'active' : '' }}" id="delivery" style="cursor: pointer">
+                                                        <a class="nav-link {{ ($serviceType == 'Delivery') ? 'active' : '' }} @if (in_array($details['store_code'],config('app.nodel_stores'))) disabled @endif" id="delivery" style="cursor: pointer" >
                                                             <img src="{{ asset('img/delivery.fw.png') }}" />
                                                         </a>
                                                     </li>
@@ -49,26 +49,29 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                                            
+
                                                     <div class="row">
                                                         <label style="{{ (Session::get('transType') == 'Delivery Now') ? 'display: block;' : 'display:none;' }} width: 100%">* Delivery Date & Time</label>
-                                                        <p class="reg-txt-header" id="deliveryNow">Today ({{ date('F j, Y') }} Philippine local date & time) expected delivery between 1pm and 3pm upon confirmation of orders. </p>
+                                                        <p class="reg-txt-header" id="deliveryNow">{{ (strtotime(date('HH:mm')) < strtotime('18:00') ) ? 'Tomorrow (' . date('F j, Y', strtotime('+1 day')) : 'Today (' . date('F j, Y') }} Philippine local date & time) expect delivery 2.5 - 3hours upon order confirmation. <br>
+<b>Note:</b> "Orders received after 5:30 pm will be delivered the following day" </p>
                                                         <div class="col-md-12" id="deliveryLater" style="{{ (Session::get('transType') == 'Delivery Later') ? 'display: block;' : 'display:none;' }} padding-left: 0px; padding-right: 0px;">
-                                                            <div style="width: 40%; float: left; padding-right: 10px;">
+                                                            <div style="width: 50%; float: left; padding-right: 10px;">
                                                                 <div class="form-group">
-                                                                    <input type="text" class="form-control" name="deliverLaterDate" id="deliverLaterDate" value="{{ $items['sdate'] }}">
+                                                                    <input type="text" class="form-control disabled" name="deliverLaterDate" id="deliverLaterDate" value="{{ $items['sdate'] }}">
                                                                 </div>
                                                             </div>
-                                                            <div style="width: 20%; float: left; padding-right: 10px;">
+                                                            <div style="width: 50%; float: left; padding-right: 10px;">
                                                                 <div class="form-group">
-                                                                    <select class="select2 form-control border-form-control" id="dlTimeHour" style="width: 100%">
+                                                                    <input type="text" name="dlTimeHour" id="dlTimeHour" class="form-control" value="{{ (strtotime(date('HH:mm')) < strtotime('18:00') ) ? $items['shour'] + 2 . $items['ampm'] : $items['shour'] }}" />
+                                                                    {{-- <select class="select2 form-control border-form-control" id="dlTimeHour" style="width: 100%">
                                                                         @foreach(App\Services\ContentServices::hourOption() as $h)
                                                                         <option value="{{ $h['hour'] }}" {{ ($h['hour'] == $items['shour']) ? 'selected=selected' : '' }}>{{ $h['hour'] }}</option>
                                                                         @endforeach
-                                                                    </select>
+                                                                    </select> --}}
+                                                                    <label class="form-error-message" style="width: 100%; text-align: right;" id="timeForError">Time should be two hours from now and not after 6PM</label>
                                                                 </div>
                                                             </div>
-                                                            <div style="width: 20%; float: left; padding-right: 10px;">
+                                                            {{-- <div style="width: 20%; float: left; padding-right: 10px;">
                                                                 <div class="form-group">
                                                                     <select class="select2 form-control border-form-control" id='dlTimeMin' style="width: 100%">
                                                                         <option value="00" {{ ($items['smin'] == '00') ? 'selected=selected' : '' }}>00</option>
@@ -85,30 +88,32 @@
                                                                         <option value="PM" {{ ($items['ampm'] == 'PM') ? 'selected=selected' : '' }}>PM</option>
                                                                     </select>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
                                                     </div>
                                                 </div>
-                                
+
                                                 <div class="row" id="pickupContent" {{ ($serviceType == 'Pick-up') ? '' : 'style=display:none' }}>
                                                     <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
                                                         <label class="display-block">* Pick-up Date & Time</label>
                                                         <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
-                                                            <div style="width: 40%; float: left; padding-right: 10px;">
+                                                            <div style="width: 50%; float: left; padding-right: 10px;">
                                                                 <div class="form-group">
                                                                     <input type="text" class="form-control" name="pickDate" id="pickDate" value="{{ $items['sdate'] }}" >
                                                                 </div>
                                                             </div>
-                                                            <div style="width: 20%; float: left; padding-right: 10px;">
+                                                            <div style="width: 50%; float: left; padding-right: 10px;">
                                                                 <div class="form-group">
-                                                                    <select class="select2 form-control border-form-control" id="pickTimeHour" style="width: 100%">
+                                                                    <input type="text" name="pickTimeHour" id="pickTimeHour" class="form-control" value="{{ (strtotime(date('HH:mm')) < strtotime('18:00') ) ? $items['shour'] + 2 . $items['ampm'] : $items['shour'] }}" />
+                                                                    {{-- <select class="select2 form-control border-form-control" id="pickTimeHour" style="width: 100%">
                                                                         @foreach(App\Services\ContentServices::hourOption() as $h)
                                                                         <option value="{{ $h['hour'] }}" {{ ($h['hour'] == $items['shour']) ? 'selected=selected' : '' }}>{{ $h['hour'] }}</option>
                                                                         @endforeach
-                                                                    </select>
+                                                                    </select> --}}
+                                                                    <label class="form-error-message" style="width: 100%; text-align: right;" id="ptimeForError">Time should be two hours from now and not after 6PM</label>
                                                                 </div>
                                                             </div>
-                                                            <div style="width: 20%; float: left; padding-right: 10px;">
+                                                            {{-- <div style="width: 20%; float: left; padding-right: 10px;">
                                                                 <div class="form-group">
                                                                     <select class="select2 form-control border-form-control" id='pickTimeMin' style="width: 100%">
                                                                         <option value="00" {{ ($items['smin'] == '00') ? 'selected=selected' : '' }}>00</option>
@@ -125,7 +130,7 @@
                                                                         <option value="PM" {{ ($items['ampm'] == 'PM') ? 'selected=selected' : '' }}>PM</option>
                                                                     </select>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -211,7 +216,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="form-group">
@@ -220,6 +225,22 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="heading-part" style="margin-top: 15px;">
+                                                <h5 class="sub-heading">Others</h5>
+                                            </div>
+                                            <hr>
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">SMAC Number</label>
+                                                        <input class="form-control border-form-control" id="SMAC"  name="SMAC" type="text" maxlength="16">
+                                                    </div>
+                                                    <label class="form-error-message" style="width: 100%; text-align: right;" id="smacForError">Invalid SMAC format</label>
+                                                </div>
+                                            </div>
+
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="form-group">
@@ -228,7 +249,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="custom-control custom-checkbox">
@@ -238,6 +259,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
 
                                             <div class="heading-part" style="margin-top: 15px;">
                                                 <h5 class="sub-heading">Payment Method</h5>
@@ -265,7 +287,7 @@
                                             <div id="COD">
                                                 <div class="row">
                                                     <div class="col-sm-12">
-                                                        <h6 class="sub-heading float-right">Amount Due : Php {{ number_format($result['amount'] + Session::get('deliveryCharge'), 2) }}</h6>
+                                                        <h6 class="sub-heading float-right">Amount Due : Php <span id='amtText'> {{ number_format($result['amount'] + (($serviceType == 'Pick-up') ? 0 : Session::get('deliveryCharge')), 2) }}</span></h6>
                                                     </div>
                                                 </div>
 
@@ -316,10 +338,11 @@
                                                 <button type="button" type="button" id="btnBackHome" class="btn mb-2 btn-lg" style="background-color: #EEEEEE">ADD MORE PRODUCTS</button>
                                                 <input type="hidden" id="addressID" value="{{ $details['address_id'] }}">
                                                 <input type="hidden" id="storeCode" value="{{ $details['store_code'] }}">
-                                                <input type="hidden" id="amtDue" value="{{ $result['amount'] + Session::get('deliveryCharge') }}">
+                                                <input type="hidden" id="amtDue" value="{{ $result['amount'] }}">
+                                                <input type="hidden" id="delCharge" value=" {{ Session::get('deliveryCharge') }}">
                                                 <input type="hidden" id="orderID" value="{{ $orderID }}">
                                             </div>
-                                            
+
                                         </form>
                                     </div>
                                 </div>
@@ -327,7 +350,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 @include('pages.checkout_cart')
             </div>
         </div>

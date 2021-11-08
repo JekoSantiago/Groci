@@ -666,12 +666,15 @@ $(function() {
     /* ---- Add Form Modal  --------- */
     $('#modal_add_min_charge').on('show.bs.modal', function() {
         var remoteLink = webURL + '/cms/charges/minimum/add';
+        var dateToday = new Date();
         $(this).find('.modal-body').load(remoteLink, function() {
             $('#mineffDate').daterangepicker({
                 singleDatePicker: true,
                 locale: {
                     format: 'YYYY-MM-DD'
-                }
+                },
+                minDate: dateToday
+
             });
             $("#mineffDate").val("");
 
@@ -760,13 +763,16 @@ $(function() {
     /* ---- Edit Form Modal  --------- */
     $('#modal_edit_min_charge').on('show.bs.modal', function(e) {
     	var minChrageID = $(e.relatedTarget).data('itemid');
+        var dateToday = new Date();
+
         var remoteLink = webURL + '/cms/charges/minimum/edit/'+minChrageID;
         $(this).find('.modal-body').load(remoteLink, function() {
             $('#mineffDate').daterangepicker({
                 singleDatePicker: true,
                 locale: {
                     format: 'YYYY-MM-DD'
-                }
+                },
+                minDate: dateToday
             });
 
             $('.bootstrap-select').selectpicker();
@@ -856,12 +862,15 @@ $(function() {
     /* ---- Add Form Modal  --------- */
     $('#modal_add_del_charge').on('show.bs.modal', function() {
         var remoteLink = webURL + '/cms/charges/delivery/add';
+        var dateToday = new Date();
+
         $(this).find('.modal-body').load(remoteLink, function() {
             $('#deleffDate').daterangepicker({
                 singleDatePicker: true,
                 locale: {
                     format: 'YYYY-MM-DD'
-                }
+                },
+                minDate: dateToday
             });
             $("#deleffDate").val("");
 
@@ -951,12 +960,15 @@ $(function() {
     $('#modal_edit_del_charge').on('show.bs.modal', function(e) {
     	var dcID = $(e.relatedTarget).data('itemid');
         var remoteLink = webURL + '/cms/charges/delivery/edit/'+dcID;
+        var dateToday = new Date();
+
         $(this).find('.modal-body').load(remoteLink, function() {
             $('#deleffDate').daterangepicker({
                 singleDatePicker: true,
                 locale: {
                     format: 'YYYY-MM-DD'
-                }
+                },
+                minDate: dateToday
             });
 
             $('.bootstrap-select').selectpicker();
@@ -1564,6 +1576,10 @@ $(function() {
 
     $('body').on('click','#btnExtractStoreList',function(){
         $(window.location).attr('href', webURL + '/cms/store/extract');
+    })
+
+    $('body').on('click','#btnExtractProductList',function(){
+        $(window.location).attr('href', webURL + '/cms/product/items/extract');
     })
 });
 

@@ -52,9 +52,9 @@ $(document).ready(function() {
         minimumResultsForSearch: -1,
     });
 
-    $('#dlTimeHour, #dlTimeMin, #dlTimeAMPM, #pickTimeHour, #pickTimeMin, #pickTimeAMPM, #dlTimeHour-m, #dlTimeMin-m, #dlTimeAMPM-m, #pickTimeHour-m, #pickTimeMin-m, #pickTimeAMPM-m').select2({
-        minimumResultsForSearch: -1
-    });
+    // $('#dlTimeHour, #dlTimeMin, #dlTimeAMPM, #pickTimeHour, #pickTimeMin, #pickTimeAMPM, #dlTimeHour-m, #dlTimeMin-m, #dlTimeAMPM-m, #pickTimeHour-m, #pickTimeMin-m, #pickTimeAMPM-m').select2({
+    //     minimumResultsForSearch: -1
+    // });
 
     $('body').on('click', '#delivery', function(){
         $('#pickup').removeClass('active');
@@ -62,6 +62,10 @@ $(document).ready(function() {
         $('#deliveryContent').show();
         $('#pickupContent').hide();
         $('#transactionType').val('Delivery');
+        var total = parseInt($('#amtDue').val()) + parseInt($('#delCharge').val())
+        $('#amtText').text(parseFloat(total).toFixed(2));
+        $('#cartTotal').text(parseFloat(total).toFixed(2));
+        $('#cartDelCharge').text(parseFloat($('#delCharge').val()).toFixed(2))
     });
 
     $('body').on('click', '#pickup', function(){
@@ -70,6 +74,9 @@ $(document).ready(function() {
         $('#pickupContent').show();
         $('#deliveryContent').hide();
         $('#transactionType').val('Pick-up');
+        $('#amtText').text(parseFloat($('#amtDue').val()).toFixed(2));
+        $('#cartTotal').text(parseFloat($('#amtDue').val()).toFixed(2));
+        $('#cartDelCharge').text(parseFloat(0).toFixed(2))
     });
 
     $('body').on('change', 'input[name="radio-group"]', function() {
@@ -119,13 +126,13 @@ $(document).ready(function() {
 
         if(transType == 'Pick-up')
         {
-            var schedule = $('#pickDate').val() + ' ' + $('#pickTimeHour').val() + ':' + $('#pickTimeMin').val() +' '+ $('#pickTimeAMPM').val();
+            var schedule = $('#pickDate').val() + ' ' + $('#pickTimeHour').val();
             var orderType = 'Pick-up';
         }
         else
         {
             var deliverType = $('input[name="radio-group"]:checked').val();
-            var schedule = (deliverType == 'Delivery Now') ? 'PROMISE TIME' : $('#deliverLaterDate').val() + ' ' + $('#dlTimeHour').val()+':'+$('#dlTimeMin').val()+' '+$('#dlTimeAMPM').val();
+            var schedule = (deliverType == 'Delivery Now') ? 'PROMISE TIME' : $('#deliverLaterDate').val() + ' ' + $('#dlTimeHour').val();
             var orderType = deliverType;
         }
 
@@ -178,6 +185,7 @@ $(document).ready(function() {
             });
         }
     });
+
 
     $('body').on('keyup', '#email', function() {
         $('#emailError').hide();
@@ -593,13 +601,13 @@ $(document).ready(function() {
 
         if(transType == 'Pick-up')
         {
-            var schedule = $('#pickDate-m').val() + ' ' + $('#pickTimeHour-m').val() + ':' + $('#pickTimeMin-m').val() +' '+ $('#pickTimeMin-m').val();
+            var schedule = $('#pickDate-m').val() + ' ' + $('#pickTimeHour-m').val() ;
             var oType = 'Pick-up';
         }
         else
         {
             var deliverType = $('input[name="radioDeliver"]:checked').val();
-            var schedule = (deliverType == 'Delivery Now') ? 'PROMISE TIME' : $('#deliverLaterDate-m').val() + ' ' + $('#dlTimeHour-m').val()+':'+$('#dlTimeMin-m').val()+' '+$('#dlTimeAMPM-m').val();
+            var schedule = (deliverType == 'Delivery Now') ? 'PROMISE TIME' : $('#deliverLaterDate-m').val() + ' ' + $('#dlTimeHour-m').val();
             var oType = deliverType;
         }
 
@@ -657,8 +665,7 @@ $(document).ready(function() {
                             text: response.message,
                             confirmButtonColor: "#EF5350",
                             icon: "warning"
-                        }),
-                        then((isConfirm) => {
+                        }).then((isConfirm) => {
                             if (isConfirm) {
                                 $(window.location).attr('href', webURL);
                              }

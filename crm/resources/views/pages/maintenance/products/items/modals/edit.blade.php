@@ -38,11 +38,11 @@
     <div class="form-group">
         <label for="role" class="text-semibold display-block">IMAGE FILE : <span style="font-size: 11px; color: red">[ Accepted formats: gif, png, jpg, jpeg ]</span></label>
         <div class="media no-margin-top display-block">
-		    <div class="media-left">
+		    <div class="media-left zoom">
                 @php
 			        $imgFile = ($detail[0]->img_pic == NULL) ? 'no-image-available.png' : $detail[0]->img_pic;
 			    @endphp
-			    <img src="{{ url('storage/products/item/'.$imgFile) }}" style="border-radius: 2px;" alt="">
+			    <img src="{{ url('storage/products/item/'.$imgFile) }}" style="border-radius: 2px;" alt="" >
 			</div>
 			<div class="media-body">
                 <input type="file" class="file-styled" name="img_file" id="img_file">

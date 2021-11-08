@@ -148,6 +148,10 @@
                                                             <br><br>
                                                             To check the status of your order, please login to your Shop Alfamart account at  <a href="https://shop.alfamart.com.ph">shop.alfamart.com.ph</a>
                                                             <br><br>
+                                                            @if($contact != 0)
+                                                            You may also get in touch with your chosen Alfamart Store {{ $store }} at {{ $contact }} should you have any questions or concerns on your order.
+                                                            <br><br>
+                                                            @endif
                                                             Thanks for shopping with your Super Minimart, Alfamart!
                                                             <br><br>
                                                             Connect with us! Follow Alfamart at Facebook <a href="https://www.facebook.com/AlfamartPHOfficial">Alfamart PH</a> today.
@@ -168,7 +172,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0">
                                         <tr>
                                             <td style="width: 100%; font-size: 11px; font-weight: 500; font-family: 'Poppins', sans-serif; color: #555555;">
-                                                &copy; Copyright 2020 Shop Alfamart. All Rights Reserved
+                                                &copy; Copyright 2021 Shop Alfamart. All Rights Reserved
                                             </td>
                                         </tr>
                                     </table>

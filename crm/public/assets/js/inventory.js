@@ -47,4 +47,8 @@ $(function() {
 		});
     });
 
+    $('body').on('click','#btnExtractItemsList',function(){
+        $(window.location).attr('href', webURL + '/inventory/download');
+    })
+
 });

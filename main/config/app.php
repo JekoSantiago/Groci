@@ -54,9 +54,13 @@ return [
 
     'url' => env('APP_URL', 'http://shop.alfamart:8090'),
 
+    'web_url' => env('APP_URL', 'http://shop.alfamart:8090'),
+
     'asset_url' => env('ASSET_URL', null),
 
     'assets_url' => 'http://shop.alfamart:8090/storage',
+
+    'nodel_stores' => [3899,4099],
 
     'session_exp_time' => 600000,
     /*

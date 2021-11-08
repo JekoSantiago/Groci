@@ -302,7 +302,7 @@
 
 										<tr>
                                             <td style="font-size: 11px; font-weight: 500; color: #555555; text-align: center" colspan="2">
-                                                &copy; Copyright 2020 Shop Alfamart. All Rights Reserved
+                                                &copy; Copyright 2021 Shop Alfamart. All Rights Reserved
                                             </td>
                                         </tr>
 

@@ -77,6 +77,7 @@ Route::get('customer/remarks/{cid}/{aid}/{action}', 'CustomerController@rejectRe
  */
 Route::get('inventory', 'InventoryController@index');
 Route::post('inventory/update', 'InventoryController@update');
+Route::get('inventory/download','InventoryController@exportItemsList');
 
 /**
  * Maintenance Routes
@@ -94,6 +95,7 @@ Route::post('cms/product/items/save/price', 'CmsController@saveItemPrice');
 
 Route::get('cms/product/items/price', 'CmsController@updatePriceForm');
 Route::post('cms/update/price', 'CmsController@save');
+Route::get('cms/product/items/extract', 'CmsController@exportProductList');
 
 Route::get('cms/product/category', 'CmsController@category');
 Route::get('cms/product/category/add', 'CmsController@addCategory');
@@ -171,4 +173,5 @@ Route::get('/foo', function() {
 });
 
 Route::post('api/test', 'DashboardController@postData');
+Route::get('email/test','OrdersController@testMail');
 

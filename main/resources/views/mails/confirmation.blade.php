@@ -158,7 +158,7 @@
                                                             <br><br>
                                                             Need help? Email us at customercare@alfamart.com.ph
                                                             <br><br>
-                                                            This ia a post-only mailing. Please do not reply to this email.
+                                                            This is a post-only mailing. Please do not reply to this email.
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -173,7 +173,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0">
                                         <tr>
                                             <td style="width: 100%; font-size: 11px; font-weight: 500; font-family: 'Poppins', sans-serif; color: #555555;">
-                                                &copy; Copyright 2020 Shop Alfamart. All Rights Reserved
+                                                &copy; Copyright 2021 Shop Alfamart. All Rights Reserved
                                             </td>
                                         </tr>
                                     </table>

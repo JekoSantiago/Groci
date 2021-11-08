@@ -17,7 +17,6 @@ class HomeController extends Controller
        /* if(date('Y-m-d') == '2021-04-13') :
             return view('pages.under');
         endif; */
-
 	    if(request()->query('id') != '') :
             return Redirect::to('/register/'.request()->query('id'));
         else :
@@ -34,6 +33,8 @@ class HomeController extends Controller
 
             $storeCode = (is_null(Session::get('addressID'))) ? NULL : AccountServices::customerAddressAssignedStore(Session::get('addressID'));
             $isLogged = (!Session::get('isLogged')) ? 0 : 1;
+
+
 
             return view('pages.index',
                 [

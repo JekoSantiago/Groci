@@ -112,6 +112,8 @@ class ShopController extends Controller
         $page = request('page', 1);
         $pageSize = 16;
         $results = ProductServices::productItems(NULL, $storeCode, $key, $isLogged);
+
+
         $offset = ($page * $pageSize) - $pageSize;
         $data = array_slice($results, $offset, $pageSize, true);
         $paginator = new \Illuminate\Pagination\LengthAwarePaginator($data, count($results), $pageSize, $page);

@@ -238,7 +238,7 @@
 					            					</tr>
 					            					<tr>
 					            						<td style="font-size: 12px;">Delivery Time : </td>
-					            						<td style="font-size: 12px;">{{ ($detail[0]->delivery_time == 'PROMISE TIME') ? date('F j, Y', strtotime($detail[0]->order_date)).' between 1pm-3pm' : $detail[0]->delivery_time  }}</td>
+					            						<td style="font-size: 12px;">{{ ($detail[0]->delivery_time == 'PROMISE TIME') ? date('F j, Y', strtotime($detail[0]->order_date)).' 2.5 - 3hours upon order confirmation' : $detail[0]->delivery_time  }}</td>
 													</tr>
 													<tr>
 					            						<td style="font-size: 12px;">Remarks : </td>
@@ -303,7 +303,7 @@
 
 										<tr>
                                             <td style="font-size: 11px; font-weight: 500; color: #555555; text-align: center" colspan="2">
-                                                &copy; Copyright 2020 Shop Alfamart. All Rights Reserved
+                                                &copy; Copyright 2021 Shop Alfamart. All Rights Reserved
                                             </td>
                                         </tr>
 

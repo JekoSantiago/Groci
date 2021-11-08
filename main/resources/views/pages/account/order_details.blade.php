@@ -15,15 +15,15 @@
         <label>TRANSACTION TYPE</label>
         <input type="text" value="{{ $details[0]->order_type }}" class="form-control" disabled>
     </div>
-	
+
     <div class="form-group">
         <label>ORDER DATE</label>
         <input type="text" value="{{ date('M j, Y', strtotime($details[0]->order_date)) }}" class="form-control" disabled>
     </div>
-	
+
 	<div class="form-group">
         <label>DELIVERY DATE</label>
-        <input type="text" value="{{ date('M j, Y', strtotime($details[0]->order_date)) }} {{ ($details[0]->delivery_time == 'PROMISE TIME') ? 'between 1PM-3PM' : $details[0]->delivery_time }}" class="form-control" disabled>
+        <input type="text" value="{{ date('M j, Y', strtotime($details[0]->order_date)) }} {{ ($details[0]->delivery_time == 'PROMISE TIME') ? '2.5 - 3hours upon order confirmation' : $details[0]->delivery_time }}" class="form-control" disabled>
     </div>
 
     <div class="form-group">
@@ -36,7 +36,7 @@
             $time = (is_null($s->date_time)) ? '' : date('g:h:i A', strtotime($s->date_time));
         @endphp
         <div style="display: inline-block; padding: 5px 10px; width: 49%; border-radius: 5px; margin-bottom: 5px; background-color: #e9ecef; color: #000000; font-weight: 500;">{{ $x.'. '. $text . $time }}</div>
-        @php 
+        @php
         $x++;
         endforeach;
         @endphp

@@ -5,6 +5,7 @@ namespace App\Exports;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
+
 class ExportItemsPrice implements FromView
 {
 	private $data;
@@ -18,7 +19,7 @@ class ExportItemsPrice implements FromView
 	{
 		$details = $this->data;
 
-		return view('pages.maintenance.products.items.xls.download_xls', 
+		return view('pages.maintenance.products.items.xls.download_xls',
 			[
 				'data' => $details['data']
 			]

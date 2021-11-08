@@ -57,23 +57,26 @@
 
                                             <div class="row">
                                                 <label style="display: block; width: 100%">* Delivery Date & Time</label>
-                                                <p class="reg-txt-header" id="deliveryNow">Today ({{ date('F j, Y') }} Philippine local date & time) expected delivery between 1pm and 3pm upon confirmation of orders. </p>
+                                                <p class="reg-txt-header" id="deliveryNow">{{ (strtotime(date('HH:mm')) < strtotime('18:00') ) ? 'Tomorrow (' . date('F j, Y', strtotime('+1 day')) : 'Today (' . date('F j, Y') }} Philippine local date & time) expect delivery 2.5 - 3hours upon order confirmation. <br>
+<b>Note:</b> "Orders received after 5:30 pm will be delivered the following day" </p>
                                                 <div class="col-md-12" id="deliveryLater" style="display: none; padding-left: 0px; padding-right: 0px;">
-                                                    <div style="width: 40%; float: left; padding-right: 10px;">
+                                                    <div style="width: 50%; float: left; padding-right: 10px;">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" name="deliverLaterDate" id="deliverLaterDate">
+                                                            <input type="text" class="form-control" name="deliverLaterDate" id="deliverLaterDate" value="{{ (strtotime(date('HH:mm')) < strtotime('18:00') ) ? date('Y-m-d', strtotime('+1 day')) :date('Y-m-d') }}">
                                                         </div>
                                                     </div>
-                                                    <div style="width: 20%; float: left; padding-right: 10px;">
+                                                    <div style="width: 50%; float: left; padding-right: 10px;">
                                                         <div class="form-group">
-                                                            <select class="select2 form-control border-form-control" id="dlTimeHour" style="width: 100%">
+                                                            <input type="text" name="dlTimeHour" id="dlTimeHour" class="form-control" value="{{ date('hh:mm A'), strtotime('+2 hours') }}" />
+                                                            <label class="form-error-message" style="width: 100%; text-align: right;" id="timeForError">Time should be two hours from now and not after 6PM</label>
+                                                            {{-- <select class="select2 form-control border-form-control" id="dlTimeHour" style="width: 100%">
                                                                 @foreach(App\Services\ContentServices::hourOption() as $h)
                                                                 <option value="{{ $h['hour'] }}" }}>{{ $h['hour'] }}</option>
                                                                 @endforeach
-                                                            </select>
+                                                            </select> --}}
                                                         </div>
                                                     </div>
-                                                    <div style="width: 20%; float: left; padding-right: 10px;">
+                                                    {{-- <div style="width: 20%; float: left; padding-right: 10px;">
                                                         <div class="form-group">
                                                             <select class="select2 form-control border-form-control" id='dlTimeMin' style="width: 100%">
                                                                 <option value="00">00</option>
@@ -90,7 +93,7 @@
                                                                 <option value="PM" {{ (strtoupper(date('A')) == 'PM') ? 'selected=selected' : '' }}>PM</option>
                                                             </select>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -99,21 +102,25 @@
                                             <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
                                                 <label class="display-block">* Pick-up Date & Time</label>
                                                 <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
-                                                    <div style="width: 38%; float: left; padding-right: 10px;">
+                                                    <div style="width: 50%; float: left; padding-right: 10px;">
                                                         <div class="form-group">
                                                             <input type="text" class="form-control" name="pickDate" id="pickDate" >
                                                         </div>
                                                     </div>
-                                                    <div style="width: 20%; float: left; padding-right: 10px;">
+                                                    <div style="width: 50%; float: left; padding-right: 10px;">
                                                         <div class="form-group">
-                                                            <select class="select2 form-control border-form-control" id="pickTimeHour" style="width: 100%">
+                                                            <input type="text" name="pickTimeHour" id="pickTimeHour" class="form-control" value="{{ date('hh:mm A')}}" />
+
+                                                            <label class="form-error-message" style="width: 100%; text-align: right;" id="ptimeForError">Time should be two hours from now and not after 6PM</label>
+
+                                                            {{-- <select class="select2 form-control border-form-control" id="pickTimeHour" style="width: 100%">
                                                                 @foreach(App\Services\ContentServices::hourOption() as $h)
                                                                 <option value="{{ $h['hour'] }}" >{{ $h['hour'] }}</option>
                                                                 @endforeach
-                                                            </select>
+                                                            </select> --}}
                                                         </div>
                                                     </div>
-                                                    <div style="width: 20%; float: left; padding-right: 10px;">
+                                                    {{-- <div style="width: 20%; float: left; padding-right: 10px;">
                                                         <div class="form-group">
                                                             <select class="select2 form-control border-form-control" id='pickTimeMin' style="width: 100%">
                                                                 <option value="00">00</option>
@@ -130,7 +137,7 @@
                                                                 <option value="PM" {{ (strtoupper(date('A')) == 'PM') ? 'selected=selected' : '' }}>PM</option>
                                                             </select>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>

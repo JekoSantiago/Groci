@@ -7,6 +7,7 @@ use App\Services\CmsServices;
 use App\Services\HelperServices;
 use App\Exports\ExportItemsPrice;
 use App\Cms;
+use App\Exports\ExportProducts;
 use App\Exports\ExportStoreList;
 use Illuminate\Support\Facades\Session;
 use SimpleXLSX;
@@ -28,7 +29,7 @@ class CmsController extends Controller
 
     public function index()
     {
-
+        // dd(CmsServices::productItems());
         return view('pages.maintenance.products.items.index',
             [
                 'page'  => 'Product Items Page',
@@ -390,11 +391,12 @@ class CmsController extends Controller
 
         $result = Cms::saveMinimumCharge($data);
 
+        // dd($result);
         if($result > 0) :
             $save = CmsServices::saveNoMinimumChargeStores($result, $request->input('codes'));
             $return = $save;
         else :
-            $return = -100;
+            $return = $result;
         endif;
 
         $response   = CmsServices::processData('save', $return);
@@ -459,7 +461,7 @@ class CmsController extends Controller
             $save = CmsServices::saveNoDeliveryChargeStores($result, $request->input('codes'));
             $return = $save;
         else :
-            $return = -100;
+            $return = $result;
         endif;
 
         $response = CmsServices::processData('save', $return);
@@ -812,6 +814,13 @@ class CmsController extends Controller
         $filename  = 'StoresListAsOf_'.date('Ymd').'.xlsx';
         return Excel::download(new ExportStoreList, $filename);
 
+    }
+
+    public function exportProductList()
+    {
+        $data = CmsServices::productItems();
+        $filename  = 'ProductListAsOf_'.date('Ymd').'.xlsx';
+        return Excel::download(new ExportProducts($data), $filename);
     }
 
 }

@@ -18,10 +18,9 @@ class ExportItems implements FromView
 	{
 		$details = $this->data;
 
-		return view('pages.inventory.xls.download_xls', 
+		return view('pages.inventory.xls.download_xls',
 			[
-				'data'  => $details['data'],
-				'scode' => $details['scode']
+				'data'  => $details,
 			]
 		);
 	}

@@ -90,7 +90,12 @@ Route::get('success/{id}', 'CheckoutController@success');
  * About Routes
  * Routes defined for about us page
  */
-Route::get('about-us', 'AboutController@index');
+Route::get('about-us', 'AboutController@index')->name('about');
+Route::get('contact-us','AboutController@contact')->name('contact');
+Route::get('terms-condition','AboutController@tnc')->name('tnc');
+Route::get('FAQ','AboutController@faq')->name('faq');
+Route::get('data-privacy','AboutController@privacy')->name('privacy');
+
 
 
 Route::get('clear-all', function() {
@@ -102,4 +107,6 @@ Route::get('clear-all', function() {
     echo 'success';
 });
 
+
+Route::get('/test','CheckoutController@testMail');
 

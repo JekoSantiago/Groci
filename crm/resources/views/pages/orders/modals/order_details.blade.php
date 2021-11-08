@@ -72,6 +72,11 @@
         </div>
         <div class="row">
             <div class="form-group col-md-12">
+                <input type="text" class="form-control" readonly value="SMAC Number : {{ $details[0]->smac }}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
                 <input type="text" class="form-control" readonly value="Remarks : {{ $details[0]->remarks }}">
             </div>
         </div>
@@ -103,7 +108,7 @@
             </table>
         </div>
         <div class="panel-body bg-teal" style="padding: 12px 20px;">
-            <div class="col-md-12 text-right text-semibold">DELIVERY CHARGE : {{ number_format($data['charges'], 2) }}</div>
+            <div class="col-md-12 text-right text-semibold">DELIVERY CHARGE : {{ ( $details[0]->order_type = 'Pick-up' ) ? number_format(0,2) : number_format($data['charges'], 2) }}</div>
             <div class="col-md-12 text-right text-semibold">SUB-TOTAL AMOUNT : <span id="amountDue"></span></div>
         </div>
     </div>

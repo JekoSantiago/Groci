@@ -30,7 +30,7 @@ class CheckoutController extends Controller
                 'details' => $details,
                 'result'  => ProductServices::showBasketItems(Session::get('orderID'), Session::get('orderBasket'), Session::get('addressID')),
                 'orderID' => base64_encode(Session::get('orderID')),
-                'serviceType' => (Session::get('transType') == 'Pick-up') ? 'Pick-up' : 'Delivery',
+                'serviceType' => (Session::get('transType') == 'Pick-up' || in_array($details['store_code'],config('app.nodel_stores'))) ? 'Pick-up' : 'Delivery',
                 'storeCode' => AccountServices::customerAddressAssignedStore(Session::get('addressID')),
                 'items'      => static::defaultTrans(),
                 'cityOption' => $cityOption,
@@ -51,6 +51,7 @@ class CheckoutController extends Controller
                 'ampm'  => date('A')
             ];
         else :
+
             $dTime = explode(' ', Session::get('deliveryTime'));
             $time  = explode(':', $dTime[1]);
             $items = [
@@ -91,7 +92,8 @@ class CheckoutController extends Controller
             'addressID'   => $request->input('addressID'),
             'amtChange'   => $request->input('amtChange'),
             'delTime'     => $request->input('delTime'),
-            'remarks'     => $request->input('remarks')
+            'remarks'     => $request->input('remarks'),
+            'smac'        => $request->input('smac')
         ];
 
         $save = Product::saveOrder($data);
@@ -114,15 +116,15 @@ class CheckoutController extends Controller
             endforeach;
 
             Product::saveOrderStatus(Session::get('orderID'), 'FLOAT');
-            //static::sentReceipt(Session::get('orderID'), $request->input('storeCode'));
+            static::sentReceipt(Session::get('orderID'), $request->input('storeCode'));
 
             Session::forget('transType');
             Session::forget('deliveryTime');
             Session::forget('orderBasket');
             Session::forget('orderID');
             Session::forget('tempID');
-            Session::forget('addressID');
-	        Session::forget('minimumCharge');
+            //Session::forget('addressID');
+	        //Session::forget('minimumCharge');
             // Session::forget('deliveryCharge');
 
             $response = [
@@ -227,16 +229,17 @@ class CheckoutController extends Controller
 
     public function testMail()
     {
-        $name = 'Igor M. Lucmayon';
-        $email = 'im.lucmayon@alfamart.com.ph';
+        $name = 'Jeko';
+        $email = 'no_reply@atp.ph';
 
         $data = [
             'id'   => '000001',
             'name' => $name,
-            'code' => '1707-ABCDEF'
+            'code' => '1707-ABCDEF',
+            'store' => '1707'
         ];
 
-        // Mail::to($email)->send(new SendConfirmationCode($data));
+        Mail::to($email)->send(new SendConfirmationCode($data));
 
         if(count(Mail::failures()) > 0) :
             echo 'Mail not sent';

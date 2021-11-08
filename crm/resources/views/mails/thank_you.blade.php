@@ -146,7 +146,7 @@
                                                             <br><br>
                                                             Thank you for your recent order from Shop Alfamart. Your order has been successfully delivered. Enclosed are the items your ordered, receipt and order slip. We look forward to serving you again.
                                                             <br><br>
-                                                            To enjoy hassle free product delivery, just visit our website at <a href="http://Shop Alfamart.atp.ph">http://Shop Alfamart.atp.ph</a>
+                                                            To enjoy hassle free product delivery, just visit our website at <a href="https://shop.alfamart.com.ph">Shop Alfamart</a>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -160,7 +160,7 @@
                                     <table cellspacing="0" cellpadding="0" border="0">
                                         <tr>
                                             <td style="width: 100%; font-size: 11px; font-weight: 500; font-family: 'Poppins', sans-serif; color: #555555;">
-                                                &copy; Copyright 2020 Shop Alfamart. All Rights Reserved
+                                                &copy; Copyright 2021 Shop Alfamart. All Rights Reserved
                                             </td>
                                         </tr>
                                     </table>

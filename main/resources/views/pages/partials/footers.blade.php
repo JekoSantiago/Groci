@@ -7,13 +7,15 @@
                 <!--
                 <div class="col-lg-4 col-md-4">
                     <p class="mb-0"><a class="text-success" href="#"><i class="mdi mdi-email"></i> <span class="__cf_email__" data-cfemail="fc959d91938f9d949d92bc9b919d9590d29f9391">customercare@alfamart.com.ph</span></a></p>
-                    <p class="mb-0"><a class="text-primary" href="http://Shop Alfamart.atp.ph"><i class="mdi mdi-web"></i>http://Shop Alfamart.atp.ph</a></p>
+                    <p class="mb-0"><a class="text-primary" href="http://sshop.Alfamart.atp.ph"><i class="mdi mdi-web"></i>http://Shop.Alfamart.atp.ph</a></p>
                 </div> -->
                 <div class="col-lg-10 col-md-10" style="padding-top: 7px;">
                     <ul>
-                        <li style="display: inline-block; font-size: 13px; font-weight: 500;"><a href="#">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-                        <li style="display: inline-block; font-size: 13px; font-weight: 500;"><a href="#">Data Privacy</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-                        <li style="display: inline-block; font-size: 13px; font-weight: 500;"><a href="#">Terms & Condition</a></li>
+                        <li style="display: inline-block; font-size: 13px; font-weight: 500;"><a href="{{ route('about') }}" target="_blank">About Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                        <li style="display: inline-block; font-size: 13px; font-weight: 500;"><a href="{{ route('privacy') }}">Data Privacy</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                        <li style="display: inline-block; font-size: 13px; font-weight: 500;"><a href="{{ route('tnc') }}">Terms & Condition</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                        <li style="display: inline-block; font-size: 13px; font-weight: 500;"><a href="{{ route('faq') }}">FAQ</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                        <li style="display: inline-block; font-size: 13px; font-weight: 500;"><a href="{{ route('contact') }}">Contact Us</a></li>
                     <ul>
                 </div>
             </div>

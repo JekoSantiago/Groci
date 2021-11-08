@@ -1,7 +1,7 @@
 <div class="col-md-8" style="padding-right: 40px;">
     <div class="row">
         <h6 class="text-semibold col-md-12">Order Summary - ({{ count($data['items']) }} items)</h6>
-    </div>    
+    </div>
     <div class="row">
         <div class="table-responsive pre-scrollable" style="max-height: 740px;">
             <table class="table">
@@ -33,7 +33,7 @@
         </div>
         <div class="row">
             <h6 class="text-semibold" style="margin-top: 0px;">Transaction Type</h6>
-        </div> 
+        </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -41,7 +41,7 @@
                     <div class="col-md-6" style="padding-left: 0px">
                         <button type="button" class="btn btn-raised btn-block btn-default btnDelivery" id="btnTransType" data-value="delivery" style="font-weight: 600;"> Worry free Delivery</button>
                     </div>
-                    
+
                     <div class="col-md-6" style="padding-right: 0px">
                         <button type="button" class="btn btn-raised btn-block bg-grey btnPickUp" id="btnTransType" data-value="pick-up" style="font-weight: 600"> Worry free Pickup</button>
                     </div>
@@ -66,7 +66,8 @@
                 <div class="col-md-12">
                     <label class="display-block text-semibold">* Delivery Date & Time</label>
                     <p id="delNowDate">
-                        Today ({{ date('F j, Y') }} Philippine local date & time) expected delivery between 1pm and 3pm upon confirmation of orders. 
+                        {{ (strtotime(date('HH:mm')) < strtotime('18:00') ) ? 'Tomorrow (' . date('F j, Y', strtotime('+1 day')) : 'Today (' . date('F j, Y') }} Philippine local date & time) expect delivery 2.5 - 3hours upon order confirmation. <br>
+<b>Note:</b> "Orders received after 5:30 pm will be delivered the following day"
                     </p>
                     <div id="delLaterDate" style="display: none">
                         <div class="form-group">
@@ -133,10 +134,10 @@
 
             <input type="hidden" id="transactionType" value="delivery">
         </div>
-        
+
         <div class="row">
             <h6 class="text-semibold" style="margin-top: 0px;">Customer Details</h6>
-        </div>    
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">

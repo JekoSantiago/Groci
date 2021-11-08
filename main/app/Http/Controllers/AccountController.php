@@ -188,7 +188,7 @@ class AccountController extends Controller
         ' . env('APP_URL') .'/activate/' . base64_encode($email) .'
         Connect with us! Follow Alfamart at Facebook Alfamart PH today.
         Need help? Email us at customercare@alfamart.com.ph
-        This ia a post-only mailing. Please do not reply to this email.';
+        This is a post-only mailing. Please do not reply to this email.';
 
         $subj = 'Verify your Shop Alfamart account';
 
@@ -740,4 +740,6 @@ class AccountController extends Controller
         $result = array('num' => $num, 'msg' => $msg);
         return $result;
     }
+
+
 }

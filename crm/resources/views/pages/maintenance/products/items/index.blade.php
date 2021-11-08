@@ -7,12 +7,15 @@
 		    <div class="panel-heading">
 			    <h5 class="panel-title">Product Items</h5>
 				<div class="heading-elements">
+                    <button class="btn bg-success-800 btn-xs btn-raised" id="btnExtractProductList">
+                        <i class="icon-download4 position-left"></i> EXPORT
+                    </button>
 					<button type="button" class="btn bg-danger-800 btn-xs btn-raised" id="btnPriceUpdate">
 						<i class="icon-pencil position-left"></i> UPDATE PRICE
                     </button>
-					<button type="button" class="btn bg-indigo btn-xs btn-raised" id="btnNew" data-toggle="modal" data-target="#modal_add_items">
+					{{-- <button type="button" class="btn bg-indigo btn-xs btn-raised" id="btnNew" data-toggle="modal" data-target="#modal_add_items">
 						<i class="icon-new position-left"></i> NEW ITEM
-					</button>
+					</button> --}}
 	            </div>
 			</div>
 
@@ -21,7 +24,7 @@
 			<table class="table datatable-basic">
 			    <thead>
 				    <tr>
-						<th class="col-md-1">IMAGE FILE</th>
+						{{-- <th class="col-md-1">IMAGE FILE</th> --}}
 						<th class="col-md-1">CATEGORY</th>
 					    <th class="col-md-1">SKU</th>
 						<th>ITEM NAME</th>
@@ -37,7 +40,7 @@
 				@foreach($items as $row)
 
 					<tr>
-						<td><img src="{{ url('storage/products/item/'.$row['img']) }}" width="100%"></td>
+						{{-- <td><img src="{{ url('storage/products/item/'.$row['img']) }}" width="100%"></td> --}}
 						<td>{{ strtoupper($row['category_name']) }}</td>
 						<td>{{ $row['sku'] }}</td>
 						<td>{{ $row['item_name'] }}</td>

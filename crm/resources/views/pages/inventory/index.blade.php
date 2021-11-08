@@ -1,5 +1,5 @@
 @extends('layout.default')
-	@section('contents')    
+	@section('contents')
 	<script type="text/javascript" src="{{ asset('assets/js/inventory.js') }}"></script>
     <!--- Customer index section -->
         <!-- Basic datatable -->
@@ -7,6 +7,11 @@
 		    <div class="panel-heading">
 			    <h5 class="panel-title">Store Inventory</h5>
                 <div class="heading-elements">
+                    {{-- @if(base64_decode(Session::get('EmpNo')) == '8401') --}}
+                    {{-- <button class="btn bg-success-800 btn-xs btn-raised" id="btnExtractItemsList">
+                        <i class="icon-download4 position-left"></i> EXPORT
+                    </button> --}}
+                    {{-- @endif --}}
 					<button type="button" id="btnUpdateInventory" class="btn bg-danger-700 btn-xs btn-raised">
 						<i class="icon-pencil position-left"></i> UPDATE INVENTORY
                     </button>
@@ -42,9 +47,9 @@
                         <td class="text-center">{{ $row['stocks_on_hand'] - $row['pre_order_qty'] }}</td>
 						<td class="text-center">{{ $row['pre_order_qty'] }}</td>
                         <td>{{ ($row['replenish_at'] == '') ? '' : date('Y-m-d h:i:s A', strtotime($row['replenish_at'])) }}</td>
-					</tr>		
-				@endforeach		
-				</tbody> 
+					</tr>
+				@endforeach
+				</tbody>
 		    </table>
 		</div>
 		<!-- /basic datatable -->
