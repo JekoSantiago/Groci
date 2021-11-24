@@ -35,6 +35,14 @@ class Content extends Model
         return $result;
     }
 
+    public static function getMinimumChargePerStore($data)
+    {
+        $result  = DB::connection('dbSqlSrv')->select('EXEC sp_MinimumChargePerStore_Get ?,?' , $data);
+
+        return $result;
+
+    }
+
     public static function getProvince($provinceName = NULL)
     {
         $result = DB::connection('dbSqlSrv')->select('EXEC sp_Province_Get ?', [ $provinceName ]);

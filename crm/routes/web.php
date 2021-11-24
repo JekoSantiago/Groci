@@ -155,6 +155,8 @@ Route::get('report/export/branch/daily/{id}', 'ReportController@exportBranchDail
 Route::get('report/export/branch/store/{id}', 'ReportController@exportPerBranchReport');
 Route::get('report/export/store/daily/{id}', 'ReportController@exportStoreDailyReport');
 Route::get('report/export/products/{sd}/{ed}', 'ReportController@exportTopProducts');
+Route::any('report/export/all/{param}','ReportController@exportAllStoreReport');
+
 
 
 Route::get('clear-all', function() {

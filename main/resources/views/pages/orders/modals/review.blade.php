@@ -66,7 +66,7 @@
                 <div class="col-md-12">
                     <label class="display-block text-semibold">* Delivery Date & Time</label>
                     <p id="delNowDate">
-                        {{ (strtotime(date('HH:mm')) < strtotime('18:00') ) ? 'Tomorrow (' . date('F j, Y', strtotime('+1 day')) : 'Today (' . date('F j, Y') }} Philippine local date & time) expect delivery 2.5 - 3hours upon order confirmation. <br>
+                        {{ (strtotime(date('H:i')) < strtotime('18:00') ) ? 'Tomorrow (' . date('F j, Y', strtotime('+1 day')) : 'Today (' . date('F j, Y') }} Philippine local date & time) expect delivery 2.5 - 3hours upon order confirmation. <br>
 <b>Note:</b> "Orders received after 5:30 pm will be delivered the following day"
                     </p>
                     <div id="delLaterDate" style="display: none">

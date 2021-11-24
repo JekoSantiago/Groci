@@ -13,10 +13,9 @@ use App\Cms;
 use App\Exports\ExportStoreList;
 use App\Orders;
 use App\Report;
-use Excel;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportController extends Controller
 {
@@ -224,12 +223,37 @@ class ReportController extends Controller
     {
         $params = base64_decode($request->segment(5));
         $detail = explode('@@', $params);
-        $bcode  = $detail[0];
+        $bcode  = 0;
         $startDate = $detail[1];
         $endDate   = $detail[2];
         $dateRange = ReportServices::dateRange($startDate, $endDate);
         $result = ReportServices::extractPerDCReport($startDate, $endDate, $bcode);
         $filename = 'DCStoreReportAsOf_'.date('Ymd', strtotime($startDate)).'To'.date('Ymd', strtotime($endDate)).'.xlsx';
+
+        $data = [
+            'data' => $result['data'],
+            'dateRange' => date('M j', strtotime($startDate)) .'-'. date('M j, Y', strtotime($endDate)),
+            'countDays' => count($dateRange),
+            'total'     => $result['total']
+        ];
+
+        return Excel::download(new ExportPerStorePerDateRangeReport($data), $filename);
+    }
+
+    /**
+     * EXPORT ALL STORE
+     */
+
+    public function exportAllStoreReport(Request $request)
+    {
+        $params = base64_decode($request->segment(4));
+        $detail = explode('@@', $params);
+        $bcode  = 0;
+        $startDate = $detail[0];
+        $endDate   = $detail[1];
+        $dateRange = ReportServices::dateRange($startDate, $endDate);
+        $result = ReportServices::extractPerDCReport($startDate, $endDate, $bcode);
+        $filename = 'AllStoreReportAsOf_'.date('Ymd', strtotime($startDate)).'To'.date('Ymd', strtotime($endDate)).'.xlsx';
 
         $data = [
             'data' => $result['data'],

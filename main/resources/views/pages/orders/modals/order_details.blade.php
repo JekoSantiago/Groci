@@ -67,7 +67,7 @@
                 <input type="text" class="form-control" readonly value="Transaction Type : {{ $details[0]->order_type }}">
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" readonly value="Delivery Time : {{ ($details[0]->delivery_time == 'PROMISE TIME') ? date('F j, Y', strtotime($details[0]->order_date)).' 2.5 - 3hours upon order confirmation' : $details[0]->delivery_time  }}">
+                <input type="text" class="form-control" readonly value="Delivery Time : {{ ($details[0]->delivery_time == 'PROMISE TIME') ? ((strtotime(date('H:i')) > strtotime('18:00') ) ? date('F j, Y', strtotime('+1 day', strtotime($details[0]->order_date))).' 2.5 - 3hours upon order confirmation' : date('F j, Y', strtotime($details[0]->order_date)).' 2.5 - 3hours upon order confirmation') : $details[0]->delivery_time  }}">
             </div>
         </div>
         <div class="row">

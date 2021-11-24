@@ -50,7 +50,7 @@
 						<td class="text-center">{{ $row['order_type'] }}</td>
 						<td class="text-center">{{ $row['payment_option'] }}</td>
 						<td class="text-semibold text-center">{{ $row['payment_status'] }}</td>
-						<td class="text-center">{{ ($row['delivery_time'] == 'PROMISE TIME') ? '1PM - 3PM' : App\Services\HelperServices::timeFormat($row['delivery_time']) }}</td>
+						<td class="text-center">{{ ($row['delivery_time'] == 'PROMISE TIME') ? '2.5 - 3hours upon order confirmation' : App\Services\HelperServices::timeFormat($row['delivery_time']) }}</td>
 						<td>{{ strtoupper($row['origin']) }}</td>
 						<td class="text-center">
 							<ul class="icons-list">

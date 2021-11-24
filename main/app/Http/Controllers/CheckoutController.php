@@ -23,7 +23,6 @@ class CheckoutController extends Controller
         $details = AccountServices::checkoutDetails(base64_decode(Session::get('CustomerID')), Session::get('addressID'));
         $cityOption = Content::getCityMunicipalOption($details['province_id']);
         $city = Content::getCityMunicipalityDetails($details['city']);
-
         return view('pages.checkout',
             [
                 'page'    => 'Checkout Page',

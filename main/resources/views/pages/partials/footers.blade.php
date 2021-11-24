@@ -58,9 +58,16 @@
                 <img class="img-fluid" src="{{ config('app.assets_url').'/products/item/'.$ii['img'] }}" alt="">
                 <span class="badge badge-success" style="border: none; background: none; padding: 0px;">&nbsp;</span>
                 <h5 style="font-size: 12px !important; margin: -11px 0 5px 0">{{ $ii['item_name'] }}</h5>
-                <div class="float-right" style="width: 70%">
-                    <div style="width: 25%; display: inline-block">
-                        <input type="text" class="form-control form-inp" id="Quant" data-oid="{{ $ii['order_temp_item_id'] }}" data-value="{{ $ii['order_temp_item_id'].'@@'.$ii['item_price'] }}" name="Quant_{{ $ii['order_temp_item_id'] }}" value="{{ $ii['qty'] }}">
+                <div class="float-right" style="width: 76%">
+                    <div style="display: inline-flex; margin-left: 0%" class="checkBtn">
+                        <button class="btn btn-link text-center checkShow float-right" type="button" style="display:none" id="saveQuant" >
+                            <span class="text-center">
+                                <i class="mdi mdi-check text-center"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div style="width: 20%; display: inline-block">
+                        <input type="text" class="form-control form-inp qty" id="Quant" data-oid="{{ $ii['order_temp_item_id'] }}" data-value="{{ $ii['order_temp_item_id'].'@@'.$ii['item_price'] }}" name="Quant_{{ $ii['order_temp_item_id'] }}" value="{{ $ii['qty'] }}">
                         <input type="hidden" id="curQty_{{ $ii['order_temp_item_id'] }}" value="{{ $ii['qty'] }}">
                         <input type="hidden" id="actualStocks_{{ $ii['order_temp_item_id'] }}" value="{{ intval($ii['stocks_on_hand']) - intval($ii['pre_order_qty']) }}">
                     </div>
@@ -83,7 +90,7 @@
             <input type="hidden" id="minCharge" value="{{ $result['m_charge'] }}">
             <input type="hidden" id="totalAmountDue" value="{{ $result['totalAmt'] }}">
             <input type="hidden" id="cntItems" value="{{ $result['cntItems'] }}">
-            <input type="hidden" id="minimumCharge" value="{{ Session::get('minimumCharge') }}">
+            <input type="hidden" id="minimumCharge" value="{{ (Session::get('minimumCharge')) ? : 0 }}">
             <a id="btnCheckOut">
                 <button class="btn btn-secondary btn-lg btn-block text-center" type="button" style="margin-bottom: 10px">
                     <span class="text-center">
@@ -91,6 +98,7 @@
                     </span>
                 </button>
             </a>
+            <button type="button" type="button" id="processLoaders" class="btn btn-lg btn-block text-center" style="cursor: default; display : none"><i class="mdi mdi-spin mdi-loading mdi-16px"></i>&nbsp;</i>&nbsp;Updating your basket..</button>
             <a href="{{ url('/') }}">
                 <button class="btn btn-secondary btn-lg btn-block text-center" type="button">
                     <span class="text-center">

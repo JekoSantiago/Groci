@@ -214,7 +214,6 @@ class ReportServices
         $std = 0;
         $dateRange = static::dateRange($first, $last);
         $stores = Report::storePerDCWithTransaction($bcode, date('Y-m-d', strtotime($first)), date('Y-m-d', strtotime($last)));
-
         foreach($stores as $row) :
             $items = static::reportPerDCPerStorePerRange($row->store_code, date('Y-m-d', strtotime($first)), date('Y-m-d', strtotime($last)));
             $storeName = $row->store_code .'-'. $row->store_name;

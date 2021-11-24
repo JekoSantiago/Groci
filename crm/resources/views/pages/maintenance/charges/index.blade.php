@@ -7,35 +7,31 @@
 		    <div class="panel-heading">
 				<h5 class="panel-title">Minimum Charge</h5>
 				<div class="heading-elements">
-					<button type="submit" class="btn bg-indigo btn-xs btn-raised" data-toggle="modal" data-target="#modal_add_min_charge">
+					{{-- <button type="submit" class="btn bg-indigo btn-xs btn-raised" data-toggle="modal" data-target="#modal_add_min_charge">
 						<i class="icon-new position-left"></i> New Minimum Charge
-					</button>
+					</button> --}}
 	            </div>
 			</div>
 
 			<table class="table datatable-basic">
 			    <thead>
 				    <tr>
-						<th></th>
+						<th>STORE CODE</th>
+                        <th>STORE NAME</th>
 					    <th>AMOUNT</th>
-                        <th>EFFECTIVE DATE FROM</th>
-                        <th>EFFECTIVE DATE TO</th>
-						<th>EXCLUDED STORE</th>
 						<th class="text-center col-md-1">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
                 @foreach($mCharge as $m)
 					<tr>
-						<td><input type="radio" {{ (date('Y-m-d') >= $m->date_from && (date('Y-m-d') <= $m->date_to || is_null($m->date_to))) ? 'checked=checked' : '' }} disabled></td>
-						<td>{{ ($m->amount == '.00') ? '0.00' : $m->amount }}</td>
-						<td>{{ $m->date_from }}</td>
-                        <td>{{ ($m->date_to == NULL) ? ($m->date_from > date('Y-m-d')) ? 'ONWARD' :'PRESENT' : $m->date_to }}</td>
-						<td>{{ $m->store_name }}</td>
+                        <td>{{ $m->store_code }}</td>
+                        <td>{{ $m->store_name }}</td>
+						<td>{{ ($m->MinimumCharge) ? (($m->MinimumCharge == 0) ? '0.00' : $m->MinimumCharge) : '0.00' }}</td>
 						<td class="text-center">
 							<ul class="icons-list">
 								<li class="dropdown">
-                                    <a data-toggle='modal' data-target='#modal_edit_min_charge' data-itemid='{{ $m->id }}' @if(($m->date_to  != NULL) && $m->date_to < date('Y-m-d') ) style="display:none" @endif>
+                                    <a data-toggle='modal' data-target='#modal_edit_min_charge' data-itemid='{{ $m->store_id }}'>
 					        			<i class="icon-pencil"></i>
 									</a>
 								</li>

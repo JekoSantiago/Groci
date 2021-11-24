@@ -64,8 +64,8 @@ class AccountController extends Controller
             Session::put('transType', $request->input('transType'));
             Session::put('deliveryTime', $request->input('schedule'));
             Session::put('addressID', $request->input('addressID'));
-            Session::put('minimumCharge', $charges['minimumCharge']);
-            Session::put('deliveryCharge', $charges['deliveryCharge']);
+            Session::put('minimumCharge', ($charges['minimumCharge']) ? : 0);
+            Session::put('deliveryCharge', ($charges['deliveryCharge']) ? : 0);
             Session::save();
 
             $response = [
@@ -448,8 +448,8 @@ class AccountController extends Controller
         Session::put('transType', $request->input('transType'));
         Session::put('deliveryTime', $request->input('schedule'));
         Session::put('addressID', $request->input('addressID'));
-        Session::put('minimumCharge', $charges['minimumCharge']);
-        Session::put('deliveryCharge', $charges['deliveryCharge']);
+        Session::put('minimumCharge', ($charges['minimumCharge']) ? : 0);
+        Session::put('deliveryCharge', ($charges['deliveryCharge']) ? : 0);
         Session::save();
 
         if(in_array($catID, $categoryIDs)) :
@@ -678,8 +678,8 @@ class AccountController extends Controller
         $charges = AccountServices::orderCharges($request->input('addID'));
 
         Session::put('addressID', $request->input('addID'));
-        Session::put('minimumCharge', $charges['minimumCharge']);
-        Session::put('deliveryCharge', $charges['deliveryCharge']);
+        Session::put('minimumCharge', ($charges['minimumCharge']) ? : 0);
+        Session::put('deliveryCharge', ($charges['deliveryCharge']) ? : 0);
         Session::save();
 
         $response = [

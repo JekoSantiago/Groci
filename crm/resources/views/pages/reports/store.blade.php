@@ -70,6 +70,7 @@
                             @endphp
                             <tr>
                                 <td class="text-semibold">GRAND TOTAL</td>
+                                <td></td>
                                 <td class="text-semibold">{{ date('M j', strtotime($firstDate)) .'-'. date('M j, Y', strtotime($lastDate)) }}</td>
                                 <th class="text-semibold text-center">{{ count($dateRange) }}</th>
                                 <th class="text-semibold text-center">{{ $tData['CS'] }}</th>

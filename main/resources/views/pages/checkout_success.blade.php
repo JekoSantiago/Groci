@@ -29,7 +29,7 @@
                                             <p class="pad-left text-dark p-fw">Landmark : {{ $details[0]->landmarks }}</p>
 
                                             <p class="pad-left p-bottom text-dark">Transaction Type : {{ $details[0]->order_type }}</p>
-                                            <p class="pad-left p-bottom text-dark">Delivery Time : {{ ($details[0]->delivery_time == 'PROMISE TIME') ? date('F j, Y', strtotime($details[0]->order_date)).' 2.5 - 3hours upon order confirmation' : $details[0]->delivery_time  }}</p>
+                                            <p class="pad-left p-bottom text-dark">Delivery Time : {{ ($details[0]->delivery_time == 'PROMISE TIME') ? ((strtotime(date('H:i')) > strtotime('18:00') ) ? date('F j, Y', strtotime('+1 day', strtotime($details[0]->order_date))).' 2.5 - 3hours upon order confirmation' : date('F j, Y', strtotime($details[0]->order_date)).' 2.5 - 3hours upon order confirmation') : $details[0]->delivery_time  }}</p>
                                             <p class="pad-left text-dark">SMAC Number : {{ $details[0]->smac  }}</p>
                                             <p class="pad-left text-dark">Remarks : {{ $details[0]->remarks  }}</p>
 

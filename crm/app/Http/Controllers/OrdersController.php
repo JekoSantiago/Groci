@@ -340,8 +340,8 @@ class OrdersController extends Controller
     public function generatePDF($orderID)
     {
         $detail = Orders::getOrderDetails($orderID);
-        $deliveryDate = ($detail[0]->delivery_time == 'PROMISE TIME') ? $detail[0]->order_date : date('Y-m-d', strtotime($detail[0]->delivery_time));
-        $deliveryTime = ($detail[0]->delivery_time == 'PROMISE TIME') ? '1pm-3pm' : date('g:i A', strtotime($detail[0]->delivery_time));
+        $deliveryDate = ($detail[0]->delivery_time == 'PROMISE TIME') ? (($detail[0]->isNextDay == 1) ? date('Y-m-d' , strtotime('+1 day', strtotime($detail[0]->order_date))) :$detail[0]->order_date) : date('Y-m-d', strtotime($detail[0]->delivery_time));
+        $deliveryTime = ($detail[0]->delivery_time == 'PROMISE TIME') ? '2.5 - 3hours upon order confirmation' : date('g:i A', strtotime($detail[0]->delivery_time));
         $deliveryCharge = Orders::deliveryCharge();
 
         $data = [
@@ -364,8 +364,8 @@ class OrdersController extends Controller
     {
         $orderID = $request->segment(3);
         $detail = Orders::getOrderDetails($orderID);
-        $deliveryDate = ($detail[0]->delivery_time == 'PROMISE TIME') ? $detail[0]->order_date : date('Y-m-d', strtotime($detail[0]->delivery_time));
-        $deliveryTime = ($detail[0]->delivery_time == 'PROMISE TIME') ? '1pm-3pm' : date('g:i A', strtotime($detail[0]->delivery_time));
+        $deliveryDate = ($detail[0]->delivery_time == 'PROMISE TIME') ? (($detail[0]->isNextDay == 1) ? date('Y-m-d' , strtotime('+1 day', strtotime($detail[0]->order_date))) :$detail[0]->order_date) : date('Y-m-d', strtotime($detail[0]->delivery_time));
+        $deliveryTime = ($detail[0]->delivery_time == 'PROMISE TIME') ? '2.5 - 3hours upon order confirmation' : date('g:i A', strtotime($detail[0]->delivery_time));
         $deliveryCharge = Orders::deliveryCharge();
                 dd($detail);
 

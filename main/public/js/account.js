@@ -52,6 +52,7 @@ $(document).ready(function() {
         minimumResultsForSearch: -1,
     });
 
+
     // $('#dlTimeHour, #dlTimeMin, #dlTimeAMPM, #pickTimeHour, #pickTimeMin, #pickTimeAMPM, #dlTimeHour-m, #dlTimeMin-m, #dlTimeAMPM-m, #pickTimeHour-m, #pickTimeMin-m, #pickTimeAMPM-m').select2({
     //     minimumResultsForSearch: -1
     // });

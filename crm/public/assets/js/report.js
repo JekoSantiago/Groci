@@ -65,9 +65,24 @@ $(function() {
 
     $('body').on('click', '#btnBranchPerStoreReport', function() {
         var params = $('#params').val();
-
         $(window.location).attr('href', webURL + '/report/export/branch/store/'+params);
     });
+
+    $('body').on('click', '#btnAllStoresReport', function(){
+
+        var daterange = $('#dateRange').val();
+
+        var result = daterange.split(' - ');
+        var dateFrom = result[0];
+        var dateTo = result[1];
+        var param = dateFrom + '@@' + dateTo;
+        var params = btoa(param);
+        $(window.location).attr('href', webURL + '/report/export/all/'+params);
+
+
+    })
+
+
 
     $('body').on('click', '#btnStoreDailyReport', function() {
         var params = $('#params').val();

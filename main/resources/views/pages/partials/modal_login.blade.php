@@ -37,17 +37,17 @@
 
                                         <div class="row">
                                             <label style="display: block; width: 100%">* Delivery Date & Time</label>
-                                            <p class="reg-txt-header" id="deliveryNow-m">{{ (strtotime(date('HH:mm')) < strtotime('18:00') ) ? date('Y-m-d', strtotime('+1 day')) :date('Y-m-d') }} Philippine local date & time) expect delivery 2.5 - 3hours upon order confirmation. <br>
+                                            <p class="reg-txt-header" id="deliveryNow-m">{{ (strtotime(date('H:i')) < strtotime('18:00') ) ? date('Y-m-d', strtotime('+1 day')) :date('Y-m-d') }} Philippine local date & time) expect delivery 2.5 - 3hours upon order confirmation. <br>
 <b>Note:</b> "Orders received after 5:30 pm will be delivered the following day" </p>
                                             <div class="col-md-12" id="deliveryLater-m" style="display: none; padding-left: 0px; padding-right: 0px;">
                                                 <div style="width: 50%; float: left; padding-right: 10px;">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="deliverLaterDate-m">
+                                                        <input type="text" class="form-control" id="deliverLaterDate-m" value="{{ (strtotime(date('H:i')) > strtotime('18:00') ) ? date('Y-m-d', strtotime('+1 day')) :date('Y-m-d') }}">
                                                     </div>
                                                 </div>
                                                 <div style="width: 50%; float: left; padding-right: 10px;">
-                                                    <input type="text" name="dlTimeHour-m" id="dlTimeHour-m" class="form-control" value="{{ date('hh:mm A'), strtotime('+2 hours') }}" />
-                                                    <label class="form-error-message" style="width: 100%; text-align: right;" id="timeForError">Time should be two hours from now and not after 6PM</label>
+                                                    <input type="text" name="dlTimeHour-m" id="dlTimeHour-m" class="form-control" value="{{ date('g:i a'), strtotime('+2 hours') }}" />
+                                                    <label class="form-error-message" style="width: 100%; text-align: right;" id="timeForError">Time should be two hours from now and not after 8PM</label>
 
                                                     {{-- <div class="form-group">
                                                         <select class="select2 form-control border-form-control" id="dlTimeHour-m" style="width: 100%">
@@ -85,13 +85,13 @@
                                             <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
                                                 <div style="width: 50%; float: left; padding-right: 10px;">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="pickDate-m" >
+                                                        <input type="text" class="form-control" id="pickDate-m" value="{{ (strtotime(date('H:i')) > strtotime('18:00') ) ? date('Y-m-d', strtotime('+1 day')) :date('Y-m-d') }}" >
                                                     </div>
                                                 </div>
                                                 <div style="width: 50%; float: left; padding-right: 10px;">
                                                     <div class="form-group">
-                                                        <input type="text" name="pickTimeHour-m" id="pickTimeHour-m" class="form-control" value="{{ date('hh:mm A'), strtotime('+2 hours') }}" />
-                                                        <label class="form-error-message" style="width: 100%; text-align: right;" id="timeForError">Time should be two hours from now and not after 6PM</label>
+                                                        <input type="text" name="pickTimeHour-m" id="pickTimeHour-m" class="form-control" value="{{ date('g:i a'), strtotime('+2 hours') }}" />
+                                                        <label class="form-error-message" style="width: 100%; text-align: right;" id="timeForError">Time should be two hours from now and not after 8PM</label>
 
                                                         {{-- <select class="select2 form-control border-form-control" id="pickTimeHour-m" style="width: 100%">
                                                         @foreach(App\Services\ContentServices::hourOption() as $h)

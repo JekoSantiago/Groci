@@ -1,5 +1,5 @@
 @extends('layout.base')
-    @section('contents')    
+    @section('contents')
     <!--- Report content section -->
     <script type="text/javascript" src="{{ asset('assets/js/report.js') }}"></script>
     <div class="row">
@@ -12,7 +12,7 @@
                             <div class="col-lg-1">&nbsp;</div>
                             <div class="col-lg-2">
                                 <label for="date_range" class="text-semibold">DATE RANGE</label>
-								<input type="text" name="dateRange" id="dateRange" class="form-control daterange-basic" value="{{ $firstDate }} - {{ $lastDate }}"> 
+								<input type="text" name="dateRange" id="dateRange" class="form-control daterange-basic" value="{{ $firstDate }} - {{ $lastDate }}">
 							</div>
 						</div>
                         <div class="form-group">
@@ -31,7 +31,7 @@
 							    <label for="dc" class="text-semibold">STORE NAME</label>
 								<select class="select-store" data-placeholder="SELECT STORE" id="stores" name="stores">
                                     <option></option>
-                                    @foreach($optStores as $s) 
+                                    @foreach($optStores as $s)
                                     <option value="{{ $s->store_code }}" {{ ($s->store_code == $store) ? 'selected=selected' : '' }}>{{ $s->store_code.'-'.$s->store_name }}</option>
                                     @endforeach
                                 </select>
@@ -45,7 +45,7 @@
 							</div>
                             <div class="col-lg-1">&nbsp;</div>
 						</div>
-                    </form>	
+                    </form>
                 </div>
             </div>
         </div>
@@ -58,6 +58,9 @@
                     <div class="heading-elements">
                         <button class="btn bg-success-800 btn-xs btn-raised" id="btnExport">
                             <i class="icon-download4 position-left"></i> EXPORT
+                        </button>
+                        <button class="btn bg-success-800 btn-xs btn-raised" id="btnAllStoresReport">
+                            <i class="icon-download4 position-left"></i> ALL STORES
                         </button>
                     </div>
                 </div>
@@ -129,7 +132,7 @@
                             </tr>
                             @php
                             endforeach;
-                            
+
                             $totalAPC = ($std == 0)? 0 : ($spd / $std);
                             @endphp
                             <tr>
@@ -201,14 +204,14 @@
                                 <th class="text-semibold text-center">{{ $row['STD'] }}</th>
                                 <th class="text-semibold text-center">{{ number_format($row['APC'], 3, '.', '') }}</th>
                             </tr>
-                            
+
                         </tbody>
                     </table>
                     @endif
                 </div>
 
                 <div class="panel-body">
-                    <h6 class="panel-title display-block text-semibold">LEGENDS</h6>  
+                    <h6 class="panel-title display-block text-semibold">LEGENDS</h6>
 
                     <div class="row">
                         <div class="col-md-6">
@@ -223,8 +226,8 @@
                             <div class="col-md-6 text-semibold">STD : Average sales transaction per day</div>
                             <div class="col-md-6 text-semibold">APC : Average per customer</div>
                         </div>
-                    </div>       
-                
+                    </div>
+
                 </div>
             </div>
             <!-- /marketing campaigns -->
@@ -279,7 +282,7 @@
                                 <td class="text-center">{{ $top['rank'] }}</td>
                                 <td>{{ $top['item_name'] }}</td>
                                 <td class="text-center">{{ $top['total_qty'] }}</td>
-                                @php 
+                                @php
                                 $items = json_decode($top['items']);
                                 $x=0;
                                 foreach($dateRange as $d) :
@@ -287,7 +290,7 @@
                                 @endphp
                                 <td class="text-center">{{ $items[$x]->$dd->QTY }}</td>
                                 <td class="text-center">{{ number_format($items[$x]->$dd->AMT, 2, '.', '') }}</td>
-                                @php 
+                                @php
                                 $x++;
                                 endforeach;
                                 @endphp
@@ -297,7 +300,7 @@
                     </table>
                 </div>
             </div>
-                    
+
         </div>
     </div>
     <!-- End report section -->

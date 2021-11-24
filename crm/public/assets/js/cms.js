@@ -763,19 +763,10 @@ $(function() {
     /* ---- Edit Form Modal  --------- */
     $('#modal_edit_min_charge').on('show.bs.modal', function(e) {
     	var minChrageID = $(e.relatedTarget).data('itemid');
-        var dateToday = new Date();
 
         var remoteLink = webURL + '/cms/charges/minimum/edit/'+minChrageID;
         $(this).find('.modal-body').load(remoteLink, function() {
-            $('#mineffDate').daterangepicker({
-                singleDatePicker: true,
-                locale: {
-                    format: 'YYYY-MM-DD'
-                },
-                minDate: dateToday
-            });
 
-            $('.bootstrap-select').selectpicker();
         });
     });
 
@@ -783,8 +774,6 @@ $(function() {
         e.preventDefault();
         var error = false;
         var amount = $('#minAmt').val();
-        var minEffDate = $('#mineffDate').val();
-        var exStores = $('#exStores').val();
 
         if(amount.length == 0)
         {
@@ -801,20 +790,12 @@ $(function() {
             }
         }
 
-        if(minEffDate.length == 0)
-        {
-            var error = true;
-            $('#mineffDateError').show();
-        }
-
         if(error == false)
         {
             $('#btnEditMinCharge').attr('disabled', 'disabled');
             var form_data = new FormData();
             form_data.append('amount', amount);
-            form_data.append('effDate', minEffDate);
             form_data.append('id', $('#minChargeID').val());
-            form_data.append('codes', exStores);
 
             $.ajax({
                 url: webURL + '/cms/charges/minimum/update',
@@ -825,11 +806,11 @@ $(function() {
                 processData: false,
                 data: form_data,
                 success: function (response) {
-                    if(response.status == 'ok')
+                    if(response.num > 0)
                     {
                         swal({
                             title: "Success!",
-                            text: response.message,
+                            text: response.msg,
                             confirmButtonColor: "#EF5350",
                             type: "success"
                         },
@@ -843,7 +824,7 @@ $(function() {
                     {
                         swal({
                             title: "Error!",
-                            text: response.message,
+                            text: response.msg,
                             confirmButtonColor: "#EF5350",
                             type: "error"
                         },

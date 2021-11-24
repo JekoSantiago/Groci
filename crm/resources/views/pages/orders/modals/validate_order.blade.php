@@ -4,13 +4,13 @@
     <form>
         <div class="row">
             <h6 class="text-semibold col-md-12">Delivery Details</h6>
-        </div>    
+        </div>
         <div class="row">
             <div class="form-group col-md-11">
                 <input type="text" class="form-control" readonly value="Name : {{ $details[0]->customer_name }}">
             </div>
         </div>
-        <div class="row"> 
+        <div class="row">
             <div class="form-group col-md-11">
                 <input type="text" class="form-control" readonly value="Mobile No. : {{ $details[0]->contact_num }}">
             </div>
@@ -32,13 +32,13 @@
     <form>
         <div class="row">
             <h6 class="text-semibold col-md-12">Payment Details</h6>
-        </div>    
+        </div>
         <div class="row">
             <div class="form-group col-md-11">
                 <input type="text" class="form-control" readonly value="Payment Option : {{ $details[0]->payment_option }}">
             </div>
         </div>
-        <div class="row"> 
+        <div class="row">
             <div class="form-group col-md-11">
                 <input type="text" class="form-control" readonly value="Amount Due : PhP {{ $details[0]->order_amount }}">
             </div>
@@ -62,13 +62,13 @@
     <form>
         <div class="row">
             <h6 class="text-semibold col-md-12">Transaction Details</h6>
-        </div>    
+        </div>
         <div class="row">
             <div class="form-group col-md-6">
                 <input type="text" class="form-control" readonly value="Transaction Type : {{ $details[0]->order_type }}">
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" readonly value="Delivery Time : {{ ($details[0]->delivery_time == 'PROMISE TIME') ? date('F j, Y', strtotime($details[0]->order_date)).' between 1pm-3pm' : $details[0]->delivery_time  }}">
+                <input type="text" class="form-control" readonly value="Delivery Time : {{ ($details[0]->delivery_time == 'PROMISE TIME') ? (($details[0]->isNextDay == 1 ) ? date('F j, Y', strtotime('+1 day', strtotime($details[0]->order_date))).'  2.5 - 3hours upon order confirmation' : date('F j, Y', strtotime($details[0]->order_date)).' 2.5 - 3hours upon order confirmation') : $details[0]->delivery_time  }}">
             </div>
         </div>
         <div class="row">
@@ -84,7 +84,7 @@
 <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
     <div class="row">
         <h6 class="text-semibold col-md-12">Order Summary - ({{ count($data['items']) }} items)</h6>
-    </div>    
+    </div>
     <div class="row">
         <div class="table-responsive pre-scrollable" style="max-height: 212px;">
             <table class="table">

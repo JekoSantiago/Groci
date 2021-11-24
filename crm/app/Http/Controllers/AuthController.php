@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cms;
 use Illuminate\Http\Request;
 use App\Users;
 use Illuminate\Support\Facades\Redirect, Illuminate\Support\Facades\Session;
@@ -41,14 +42,20 @@ class AuthController extends Controller
         Session::put('Location', base64_encode($result[0]->SLocation));
         Session::save();
 
+        $stores = Cms::getStores(NULL,1);
+        $active = [];
+        foreach($stores as $s)
+        {
+            array_push($active,$s->store_code);
+        }
 
         if(in_array(base64_decode(Session::get('EmpNo')), config('app.admin_users') )) :
             return Redirect::to('/cms/product/items');
         else :
-            if(in_array(base64_decode(Session::get('Role_ID')), config('app.store_role_id')) && in_array(base64_decode(Session::get('LocationCode')), config('app.pilot_stores'))) :
+            if(in_array(base64_decode(Session::get('Role_ID')), config('app.store_role_id')) && in_array(base64_decode(Session::get('LocationCode')), /*config('app.pilot_stores')*/ $active)) :
                 return Redirect::to('/orders');
             else :
-                return Redirect::to('/403');
+               return Redirect::to('/403');
             endif;
         endif;
     }

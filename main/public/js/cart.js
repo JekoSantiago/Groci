@@ -44,7 +44,20 @@ $(document).ready(function() {
         picker.container.find(".calendar-table").hide();
     });
 
+    var dateToday = new Date();
 
+    if(dateToday.getHours() > 18)
+    {
+        dateToday.setDate(dateToday.getDate() + 1);
+    }
+
+    $('.daterangepick').daterangepicker({
+        singleDatePicker: true,
+        locale: {
+            format: 'YYYY-MM-DD'
+        },
+        minDate: dateToday
+    });
 
 
     "use strict";
@@ -85,6 +98,29 @@ $(document).ready(function() {
 
 
     /**
+     * Enable Update Basket
+     */
+
+     $('body').on('focus', '#Quant', function(e) {
+        e.preventDefault();
+        $(this).parent().prev('.checkBtn').find('.checkShow').show();
+        $('#processLoaders').show();
+        $('#btnCheckOut').hide();
+
+     })
+
+     $('body').on('click', '.checkShow', function(e) {
+        e.preventDefault();
+        $('#processLoaders').hide();
+        $('#btnCheckOut').show();
+        $(this).hide();
+
+     })
+
+
+
+
+    /**
      * Update Quantity from Basket
      * Onchange event
      */
@@ -101,6 +137,7 @@ $(document).ready(function() {
         }
         else
         {
+            $('#btnCheckOut').hide();
             if(parseInt(inpQty) > parseInt(actualQty))
             {
                 swal.fire({
@@ -116,6 +153,7 @@ $(document).ready(function() {
             {
                 updateBasket(d[0], inpQty, d[1]);
             }
+            $('#btnCheckOut').show();
         }
     });
 
@@ -269,18 +307,19 @@ $(document).ready(function() {
         var smac        = $('#SMAC').val();
         var dltime       = $('#dlTimeHour').val();
         var putime       = $('#pickTimeHour').val();
-        var dldate       = $('#pickDate').val();
+        var pdate       = $('#pickDate').val();
+        var dldate      = $('#deliverLaterDate').val()
         var dt = new Date();
-        var mintime = parseInt(dt.getHours() + addtomin);
+        var mintime = parseInt(dt.getHours()) + parseInt(addtomin);
 
+        console.log(mintime,maxtime)
 
-/*
         if(serviceType == 'Pick-up')
         {
             var schedule = $('#pickDate').val() + ' ' + $('#pickTimeHour').val();
             var orderType = 'Pick-up';
 
-            if(parseInt(dldate.substring(8))==parseInt(dt.getDate()))
+            if(parseInt(pdate.substring(8))==parseInt(dt.getDate()))
             {
                 var hours = Number(putime.match(/^(\d+)/)[1]);
                 var AMPM = putime.match(/\s(.*)$/)[1];
@@ -291,14 +330,22 @@ $(document).ready(function() {
 
                 if(pHours >= mintime && pHours <= maxtime)
                 {
-                 console.log('pasok');
+                    $('#pickTimeHour').removeClass('error-input')
+                    console.log('pasok')
                 }
                 else
                 {
                  var error = true;
+                 $('#pickTimeHour').addClass('error-input')
                  $('#ptimeForError').show();
                  console.log('err')
                  }
+            }
+            else
+            {
+                $('#pickTimeHour').removeClass('error-input')
+                $('#ptimeForError').hide();
+
             }
 
         }
@@ -310,6 +357,8 @@ $(document).ready(function() {
 
             if(deliverType == 'Delivery Later')
             {
+                if(parseInt(dldate.substring(8))==parseInt(dt.getDate()))
+                {
                 var hours = Number(dltime.match(/^(\d+)/)[1]);
                 var AMPM = dltime.match(/\s(.*)$/)[1];
                 if(AMPM == "PM" && hours<12) hours = hours+12;
@@ -319,17 +368,27 @@ $(document).ready(function() {
 
                 if(dHours >= mintime && dHours <= maxtime)
                 {
-                    console.log('pasok');
+                    $('#dlTimeHour').removeClass('error-input')
+
                 }
                 else
                 {
+                    $('#dlTimeHour').addClass('error-input')
                     var error = true;
                     $('#timeForError').show();
                     console.log('err')
                 }
+                }
+                else
+                {
+                    $('#pickTimeHour').removeClass('error-input')
+                    $('#ptimeForError').hide();
+
+                }
+
             }
         }
-*/
+
 
 
         if(!checkTerms)
@@ -422,6 +481,10 @@ $(document).ready(function() {
                     }
                 }
             });
+        }
+        else
+        {
+            $('.error-input').filter(":first").focus();
         }
     });
 

@@ -21,10 +21,11 @@
                         <thead>
                             <tr class="bg-teal">
                                 <th style="width: 5%" class="text-center">ACTION</th>
-                                <th style="width: 20%">STORE</th>
+                                <th style="width: 15%">STORE</th>
                                 <th style="width: 10%">ORDER DATE</th>
                                 <th style="width: 10%">ORDER ID</th>
-                                <th style="width: 10%">RECEIPT NO.</th>
+                                <th style="width: 10%">ORDER STATUS</th>
+                                <th style="width: 5%">RECEIPT NO.</th>
                                 <th style="width: 10%">AMOUNT</th>
                             </tr>
                         </thead>
@@ -46,7 +47,8 @@
                                 <td>{{ $storeName }}</td>
                                 <td>{{ $order->order_date}}</td>
                                 <td>{{ $order->order_id }}</td>
-                                <td>{{ $order->receipt_num }}</td>
+                                <td>{{ $order->order_status }}</td>
+                                <td>{{ ($order->receipt_num) ? : '-' }}</td>
                                 <td>{{ number_format($order->order_amount, 2, '.', '') }}</td>
                             </tr>
                         </tbody>

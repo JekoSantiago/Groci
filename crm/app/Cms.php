@@ -209,9 +209,16 @@ class Cms extends Model
     }
 
 
-    public static function getMinimumCharge($id = NULL)
+    public static function getMinimumCharge_old($id = NULL)
     {
         $result = DB::connection('dbSqlSrv')->select('EXEC sp_MinimumCharge_Get ?', [ $id ]);
+
+        return $result;
+    }
+
+    public static function getMinimumCharge($data)
+    {
+        $result = DB::connection('dbSqlSrv')->select('EXEC sp_MinimumChargePerStore_Get ?' , $data);
 
         return $result;
     }
@@ -224,12 +231,18 @@ class Cms extends Model
         return $result;
     }
 
-    public static function updateMinimumCharge($data)
+    public static function updateMinimumCharge_old($data)
     {
         $query = DB::connection('dbSqlSrv')->select('EXEC sp_MinimumCharge_Update ?, ?, ?, ?', [ $data['amount'], $data['effDate'], $data['modifiedBy'], $data['id'] ]);
         $result = $query[0]->_RETURN;
 
         return $result;
+    }
+
+    public static function updateMinimumCharge($data)
+    {
+        $query = DB::connection('dbSqlSrv')->select('EXEC sp_MinimumChargePerstore_Update ?, ?, ?', $data);
+        return $query;
     }
 
     public static function saveNoMinimumCharge($data)

@@ -329,6 +329,27 @@ class AccountServices
     {
         $row = Account::getCustomerAddress(NULL, NULL, $addressID);
         $storeCode = $row[0]->store_code;
+        $mc = Content::getMinimumChargePerStore([0,$storeCode]);
+        $dc = Content::getDeliveryCharge();
+
+        // dd($mc);
+        $minCharge = ($mc[0]->MinimumCharge) ? : 0;
+
+        $noDelChargeStore = explode(',', $dc[0]->store_code);
+        $delCharge = (in_array($storeCode, $noDelChargeStore) ? 0 : $dc[0]->dc_amount);
+
+        $charges = [
+            'minimumCharge'  => $minCharge,
+            'deliveryCharge' => $delCharge
+        ];
+
+        return $charges;
+    }
+
+    public static function orderCharges_old($addressID)
+    {
+        $row = Account::getCustomerAddress(NULL, NULL, $addressID);
+        $storeCode = $row[0]->store_code;
         $mc = Content::getMinimumCharge();
         $dc = Content::getDeliveryCharge();
 

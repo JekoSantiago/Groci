@@ -238,7 +238,7 @@
 					            					</tr>
 					            					<tr>
 					            						<td style="font-size: 12px;">Delivery Time : </td>
-					            						<td style="font-size: 12px;">{{ ($detail[0]->delivery_time == 'PROMISE TIME') ? date('F j, Y', strtotime($detail[0]->order_date)).' 2.5 - 3hours upon order confirmation' : $detail[0]->delivery_time  }}</td>
+					            						<td style="font-size: 12px;">{{ ($detail[0]->delivery_time == 'PROMISE TIME') ? ((strtotime(date('H:i')) > strtotime('18:00') ) ? date('F j, Y', strtotime('+1 day', strtotime($detail[0]->order_date))).' 2.5 - 3hours upon order confirmation' : date('F j, Y', strtotime($detail[0]->order_date)).' 2.5 - 3hours upon order confirmation') : $detail[0]->delivery_time  }}</td>
 													</tr>
 													<tr>
 					            						<td style="font-size: 12px;">Remarks : </td>

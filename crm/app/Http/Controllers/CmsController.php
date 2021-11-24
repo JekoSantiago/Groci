@@ -366,7 +366,7 @@ class CmsController extends Controller
         return view('pages.maintenance.charges.index',
             [
                 'page'    => 'Minumum and Delivery Charge Page',
-                'mCharge' => Cms::getMinimumCharge(),
+                'mCharge' => Cms::getMinimumCharge([0]),
                 'dCharge' => Cms::getDeliveryCharge()
             ]
         );
@@ -408,13 +408,13 @@ class CmsController extends Controller
     {
         return view('pages.maintenance.charges.modals.minimum.edit',
             [
-                'details' => Cms::getMinimumCharge($request->segment(5)),
-                'stores'  => Cms::getStores(NULL, 1)
+                'details' => Cms::getMinimumCharge([$request->segment(5)]),
+                // 'stores'  => Cms::getStores(NULL, 1)
             ]
         );
     }
 
-    public function modifyMinCharges(Request $request)
+    public function modifyMinCharges_old(Request $request)
     {
         $data = [
             'amount'     => $request->input('amount'),
@@ -436,6 +436,22 @@ class CmsController extends Controller
         $response = CmsServices::processData('update', $return);
 
         echo json_encode($response);
+    }
+
+    public function modifyMinCharges(Request $request)
+    {
+        $data = [
+            $request->input('id'),
+            $request->input('amount'),
+            base64_decode(Session::get('Emp_Id')),
+        ];
+
+        $update = Cms::updateMinimumCharge($data);
+        $num = $update[0]->RETURN;
+        $msg = $update[0]->Message;
+
+        $result = array('num' => $num, 'msg' => $msg);
+        return $result;
     }
 
     public function addDeliveryCharges()

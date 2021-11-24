@@ -108,12 +108,12 @@
     <script type="text/javascript">
         $(document).ready(function() {
             //console.log(getCookie("GDPR"));
-			if(!getCookie("GDPR")){
-	        	$('#home-modal').modal('toggle');
+			// if(!getCookie("GDPR")){
+	        // 	$('#home-modal').modal('toggle');
 
-			} else {
-				$('#home-modal').modal('hide');
-			}
+			// } else {
+			// 	$('#home-modal').modal('hide');
+			// }
 
 		    $("#okCookies").click(function(){
                 $('#home-modal').modal('hide');
